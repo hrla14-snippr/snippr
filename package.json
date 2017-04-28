@@ -1,0 +1,29 @@
+{
+  "name": "snippr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore"
+  },
+  "pre-commit": [ "lint" ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinliu6102/snippr.git"
+  },
+  "author": "Team Snippr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinliu6102/snippr/issues"
+  },
+  "homepage": "https://github.com/kevinliu6102/snippr#readme",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "pre-commit": "^1.2.2"
+  }
+}
