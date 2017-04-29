@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import Login from './Login';
-import Signup from './signup';
+import Signup from './Signup';
 import  Reducers from '../reducers';
 import Promise from 'redux-promise';
 
