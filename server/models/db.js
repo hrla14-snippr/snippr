@@ -35,7 +35,6 @@ const Transaction = db.define('transaction', {
   price: Sequelize.FLOAT,
 });
 
-
 /*
   RELATIONSHIPS
 */
