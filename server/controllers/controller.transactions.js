@@ -4,4 +4,8 @@ exports.fetchTransactions = (req, res) => {
 
 exports.addTransaction = (req, res) => {
   res.send('add transaction');
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> Set up server routes

@@ -4,4 +4,8 @@ exports.login = (req, res) => {
 
 exports.signup = (req, res) => {
   res.send('signup');
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> Set up server routes
