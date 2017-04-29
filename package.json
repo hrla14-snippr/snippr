@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "nodemon server/index.js & webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./ --cache --ignore-pattern .gitignore"
+    "lint-staged": "lint-staged"
   },
   "pre-commit": [
-    "lint"
+    "lint-staged"
   ],
+  "lint-staged": {
+    "*.js": "eslint"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kevinliu6102/snippr.git"
@@ -28,6 +31,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "lint-staged": "^3.4.1",
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
