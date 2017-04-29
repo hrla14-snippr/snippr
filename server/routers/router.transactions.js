@@ -1,4 +1,4 @@
-const Router  = require('express').Router();
+const Router = require('express').Router();
 const transactionController = require('../controllers/controller.transactions');
 
 Router.get('/transaction', transactionController.fetchTransactions);
