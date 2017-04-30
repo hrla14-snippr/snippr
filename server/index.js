@@ -3,7 +3,10 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 app.use(express.static('client'));
 app.use(bodyParser.json());
@@ -16,4 +19,19 @@ app.use(require('./routers/router.transactions'));
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/../client/index.html')));
 
-app.listen(process.env.PORT, () => console.log(`Listening on http://localhost:${process.env.PORT}`));
+io.on('connection', (socket) => {
+  console.log('sockets connected');
+  socket.on('join', (data) => {
+    console.log(data);
+    socket.join(data.email);
+  });
+  socket.on('private-message', (data) => {
+    io.sockets.in(data.email).emit('private-message', { msg: data });
+  });
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+
+server.listen(process.env.PORT, () => console.log(`Listening on http://localhost:${process.env.PORT}`));
