@@ -9,7 +9,7 @@ const socket = io('http://localhost:3000');
 // for testing purposes since were going to leave email the same as barber chat
 // for production we want to extrapolate barber's email an onclick event
 // and pass that email in as data so we know what room to join
-class UserChat extends Component {
+class ClientChat extends Component {
   constructor() {
     super();
     this.state = {
@@ -45,4 +45,4 @@ class UserChat extends Component {
 
 // going to need to grab barber's email from state, in order to do
 // that ill need to connect this component to the redux store
-export default UserChat;
+export default ClientChat;
