@@ -10,27 +10,30 @@ const socket = io('http://localhost:3000');
 // when trying to chat and user view will emit a message to that room
 
 class BarberChat extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       term: '',
       email: 'snypper@io.com',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
-    socket.emit('join', { email: 'snypper@io.com' });
+    socket.emit('join', { email: this.state.email });
   }
   handleChange(e) {
     this.setState({ term: e.target.value });
   }
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     socket.emit('private-message', { email: this.state.email, msg: this.state.term });
     this.setState({ term: '' });
   }
   render() {
     return (
-      <form onSubmit={(e) => { e.preventDefault(); this.handleSubmit(this.state.term); }}>
-        <input value={this.state.term} onChange={(e) => { this.handleChange(e); }} />
+      <form onSubmit={this.handleSubmit}>
+        <input value={this.state.term} onChange={this.handleChange} />
       </form>
     );
   }

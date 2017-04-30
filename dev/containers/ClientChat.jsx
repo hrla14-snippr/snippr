@@ -16,6 +16,8 @@ class UserChat extends Component {
       term: '',
       email: 'snypper@io.com',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
     socket.emit('join', { email: this.state.email });
@@ -26,20 +28,21 @@ class UserChat extends Component {
   handleChange(e) {
     this.setState({ term: e.target.value });
   }
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     socket.emit('private-message', { email: this.state.email, msg: this.state.term });
     this.setState({ term: '' });
   }
   render() {
     return (
-      <form onSubmit={(e) => { e.preventDefault(); this.handleSubmit(this.state.term); }}>
-        <input value={this.state.term} onChange={(e) => { this.handleChange(e); }} />
+      <form onSubmit={this.handleSubmit}>
+        <input value={this.state.term} onChange={this.handleChange} />
       </form>
     );
   }
 }
 
 
-// going to need to grab user's email from state, in order to do
+// going to need to grab barber's email from state, in order to do
 // that ill need to connect this component to the redux store
 export default UserChat;
