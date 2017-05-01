@@ -11,7 +11,7 @@ class ClientDashboard extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props, 'my props ho');
+    console.log(this.props, 'my props hog');
     this.props.FetchBarbers();
   }
   render() {
