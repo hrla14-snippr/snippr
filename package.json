@@ -12,7 +12,8 @@
     "lint-staged"
   ],
   "lint-staged": {
-    "*.js": "eslint"
+    "*.js": "eslint",
+    "*.jsx": "eslint"
   },
   "repository": {
     "type": "git",
