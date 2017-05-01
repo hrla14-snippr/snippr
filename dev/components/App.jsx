@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Promise from 'redux-promise';
-import LandingPage from './LandingPage';
-import Login from './Login';
 import ClientDashboard from '../containers/ClientDashboard';
 import Reducers from '../reducers';
-import Signup from './Signup';
+import Routing from './Routing';
 
 
 class App extends Component {
@@ -16,25 +14,12 @@ class App extends Component {
 
     this.createStoreWithMiddleware = applyMiddleware(Promise)(createStore);
   }
+
   render() {
-    console.log(this.createStoreWithMiddleware);
-    return (
+    return(
       <Provider store={this.createStoreWithMiddleware(Reducers)}>
         <BrowserRouter basename="/client">
-          <Switch>
-            <Route exact path="/">
-              <LandingPage />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/signup">
-              <Signup />
-            </Route>
-            <Route exact path="/cdashboard">
-              <ClientDashboard />
-            </Route>
-          </Switch>
+          <Routing />
         </BrowserRouter>
       </Provider>
     );
