@@ -1,0 +1,10 @@
+
+const NearbyBarberReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'FETCH_BARBERS' :
+      return action.payload.data;
+    default: return state;
+  }
+};
+
+export default NearbyBarberReducer;
