@@ -12,13 +12,6 @@
     "lint-staged"
   ],
   "lint-staged": {
-    "*.js": "eslint",
-    "*.jsx": "eslint"
-  },
-  "pre-commit": [
-    "lint-staged"
-  ],
-  "lint-staged": {
     "*.js": "eslint"
   },
   "repository": {
@@ -53,7 +46,7 @@
     "express": "^4.15.2",
     "history": "^4.6.1",
     "jwt-decode": "^2.2.0",
-    "mysql": "^2.13.0",
+    "pg": "^6.1.5",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
