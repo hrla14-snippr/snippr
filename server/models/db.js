@@ -10,7 +10,6 @@ const Barber = db.define('barber', {
   fname: Sequelize.STRING,
   lname: Sequelize.STRING,
   address: Sequelize.STRING,
-  stylesList: Sequelize.STRING,
   s3url: Sequelize.STRING,
 }, {
   timestamps: false,
@@ -65,3 +64,9 @@ db.authenticate()
   .catch(() => {
     console.log('database fucked up bro!');
   });
+
+module.exports.Barber = Barber;
+module.exports.Client = Client;
+module.exports.Style = Style;
+module.exports.Transaction = Transaction;
+module.exports.BarberStyles = BarberStyles;
