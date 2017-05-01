@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import LandingPage from './LandingPage';
-import Login from './Login';
-import Signup from './signup';
-import  Reducers from '../reducers';
+import { BrowserRouter } from 'react-router-dom';
 import Promise from 'redux-promise';
+import Routing from './Routing';
 
 class App extends Component {
   constructor() {
@@ -14,22 +11,12 @@ class App extends Component {
 
     this.createStoreWithMiddleware = applyMiddleware(Promise)(createStore);
   }
-  
+
   render() {
     return (
       <Provider store={this.createStoreWithMiddleware}>
-        <BrowserRouter basename='/client'>
-          <Switch>
-            <Route exact path='/'>
-              <LandingPage />
-            </Route>
-            <Route exact path='/login'>
-              <Login />
-            </Route>
-            <Route exact path='/signup'>
-              <Signup />
-            </Route>
-          </Switch>
+        <BrowserRouter basename="/client">
+          <Routing />
         </BrowserRouter>
       </Provider>
     );
