@@ -14,6 +14,12 @@
   "lint-staged": {
     "*.js": "eslint"
   },
+  "pre-commit": [
+    "lint-staged"
+  ],
+  "lint-staged": {
+    "*.js": "eslint"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kevinliu6102/snippr.git"
