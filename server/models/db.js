@@ -1,6 +1,7 @@
+require('dotenv').config();
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('postgres://qwkcryrt:bMBRP1vXSNc4gU4rqzZX4rezDf8qkKPn@stampy.db.elephantsql.com:5432/qwkcryrt');
+const db = new Sequelize(process.env.ESQL_URL);
 
 /*
   MODELS
