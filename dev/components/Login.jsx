@@ -1,11 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Login = () => {
-  return (
+const Login = props =>
+  (
     <div>
-      Login
+      <button onClick={props.login}>Login</button>
     </div>
   );
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
 };
 
 export default Login;

@@ -8,7 +8,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 
-app.use(express.static('client'));
+app.use('/public', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('./routers/router.barberLocations'));
@@ -17,7 +17,7 @@ app.use(require('./routers/router.login'));
 app.use(require('./routers/router.styles'));
 app.use(require('./routers/router.transactions'));
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/../client/index.html')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')));
 
 io.on('connection', (socket) => {
   console.log('sockets connected');

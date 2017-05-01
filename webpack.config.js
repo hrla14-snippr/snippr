@@ -1,7 +1,7 @@
 const path = require('path');
 
 const DEV = path.join(__dirname, '/dev');
-const OUTPUT = path.join(__dirname, '/client');
+const OUTPUT = path.join(__dirname, '/public');
 
 module.exports = {
   entry: `${DEV}/index.jsx`,
