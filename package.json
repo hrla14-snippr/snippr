@@ -16,7 +16,7 @@
     "*.jsx": "eslint"
     },
   "pre-commit": [
-  "lint-staged"
+    "lint-staged"
   ],
   "lint-staged": {
   "repository": {
