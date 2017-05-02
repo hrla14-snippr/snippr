@@ -63,6 +63,7 @@ const Style = db.define('style', {
   style: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
 }, {
   timestamps: false,
