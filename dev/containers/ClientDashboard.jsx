@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Menu, Image, List } from 'semantic-ui-react';
 import { FetchBarbers } from '../actions/FetchBarbers';
-import {Navbar, NavItem, Nav, Grid, Col, Row,ListGroup,ListGroupItem} from 'react-bootstrap'
-import {Menu, Dropdown,Image} from 'semantic-ui-react'
 
 class ClientDashboard extends Component {
   constructor(props) {
@@ -17,45 +16,40 @@ class ClientDashboard extends Component {
     this.props.FetchBarbers();
   }
   render() {
-
     return (
       <div>
-      <Navbar inverse collapseOnSelect>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <a href="#">Snyppr</a>
-        </Navbar.Brand>
-        <Navbar.Toggle />
-      </Navbar.Header>
-      <Navbar.Collapse>
-        <Nav pullRight>
-          <NavItem onClick={this.props.logout} href="">Log Out</NavItem>
-        </Nav>
-      </Navbar.Collapse>
-      </Navbar>
-      <Grid>
-       <Row className="show-grid">
-         <Col xs={4} md={2}><code>
-         <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size='medium' shape='circular'/>
-         <p></p>
+        <Menu pointing secondary>
+          <Menu.Item name="home" />
+          <Menu.Item name="messages" />
+          <Menu.Menu position="right">
+            <Menu.Item name="logout" onClick={this.props.logout} />
+          </Menu.Menu>
+        </Menu>
+        <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="medium" shape="circular" />
          Hi Ebrima
-         <ListGroup>
-           <ListGroupItem href="#link1">Home</ListGroupItem>
-           <ListGroupItem href="#link2">Profile</ListGroupItem>
-           <ListGroupItem >Payment </ListGroupItem>
-            <ListGroupItem onClick={this.props.logout} href="">Log Out </ListGroupItem>
-       </ListGroup>
-    </code></Col>
-         <Col xs={12} md={10}><code>
-
-         <center><h2>Nearby Barbers</h2></center>
-
-
-         </code></Col>
-       </Row>
-      </Grid>
-
-
+        <List selection verticalAlign="middle">
+          <List.Item>
+            <List.Content>
+              <List.Header>Home</List.Header>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content>
+              <List.Header>Profile</List.Header>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content>
+              <List.Header>Payment</List.Header>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content onClick={this.props.logout}>
+              <List.Header>Log Out</List.Header>
+            </List.Content>
+          </List.Item>
+        </List>
+              Neary Barbers
         <ul>
           {this.props.nearbyBarbers.map(barber => (
             <div>
@@ -73,8 +67,9 @@ const mapStateToProps = state => ({
 });
 
 ClientDashboard.propTypes = {
-  nearbyBarbers: PropTypes.Array,
-  FetchBarbers: PropTypes.Function,
+  nearbyBarbers: PropTypes.Array.isRequired,
+  FetchBarbers: PropTypes.Function.isRequired,
+  logout: PropTypes.Function.isRequired,
 };
 
 export default connect(mapStateToProps, { FetchBarbers })(ClientDashboard);
