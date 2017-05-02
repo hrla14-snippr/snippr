@@ -4,6 +4,7 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import AuthService from '../utils/AuthService';
 import LandingPage from './LandingPage';
 import Login from './Login';
+import ClientDashboard from '../containers/ClientDashboard';
 
 class Routing extends Component {
   constructor(props) {
@@ -27,6 +28,9 @@ class Routing extends Component {
         <Route exact path="/" render={this.renderHomepage} />
         <Route exact path="/login">
           <Login login={this.state.auth.login} />
+        </Route>
+        <Route exact path="/cdashboard">
+          <ClientDashboard />
         </Route>
       </Switch>
     );

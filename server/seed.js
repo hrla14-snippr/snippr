@@ -15,6 +15,15 @@ db.Barber.destroy({ where: {} })
   .then(() => {
     db.BarberStyles.destroy({ where: {} });
   })
+  .then(() => {
+    db.Favorite.destroy({ where: {} });
+  })
+  .then(() => {
+    db.BarberReview.destroy({ where: {} });
+  })
+  .then(() => {
+    db.ClientReview.destroy({ where: {} });
+  })
   .catch((err) => {
     console.log('error occured destroying models ', err);
   });
