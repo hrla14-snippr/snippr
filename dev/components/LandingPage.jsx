@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 const LandingPage = props =>
   (
-    <div>
+    <div className="landing-page">
       landing page
-      <button onClick={props.logout}>Logout</button>
     </div>
   );
 
