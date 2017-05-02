@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Menu } from 'semantic-ui-react';
+
 
 const Login = props =>
   (
     <div>
-      <button onClick={props.login}>Login</button>
+      <Menu pointing secondary>
+        <Menu.Item name="home" />
+        <Menu.Item name="messages" />
+        <Menu.Menu position="right">
+          <Menu.Item name="login" onClick={props.login} />
+        </Menu.Menu>
+      </Menu>
     </div>
   );
 

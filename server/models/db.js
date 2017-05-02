@@ -157,4 +157,3 @@ module.exports.BarberStyles = BarberStyles;
 module.exports.Favorite = Favorite;
 module.exports.BarberReview = BarberReview;
 module.exports.ClientReview = ClientReview;
-

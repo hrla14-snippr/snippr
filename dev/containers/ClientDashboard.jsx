@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Menu, Image, List } from 'semantic-ui-react';
 import { FetchBarbers } from '../actions/FetchBarbers';
 
 class ClientDashboard extends Component {
@@ -17,17 +18,47 @@ class ClientDashboard extends Component {
   render() {
     return (
       <div>
-        <h1>Client Dashboard</h1>
-        <h2>Nearby Barbers</h2>
+        <Menu pointing secondary>
+          <Menu.Item name="home" />
+          <Menu.Item name="messages" />
+          <Menu.Menu position="right">
+            <Menu.Item name="logout" />
+          </Menu.Menu>
+        </Menu>
+        <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="medium" shape="circular" />
+         Hi Ebrima
+        <List selection verticalAlign="middle">
+          <List.Item>
+            <List.Content>
+              <List.Header>Home</List.Header>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content>
+              <List.Header>Profile</List.Header>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content>
+              <List.Header>Payment</List.Header>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <List.Content >
+              <List.Header>Log Out</List.Header>
+            </List.Content>
+          </List.Item>
+        </List>
+              Neary Barbers
         <ul>
           {this.props.nearbyBarbers.map(barber => (
             <div>
               <p>{barber.fname}</p>
-              <p>{barber.lname}</p>
             </div>
             ))}
         </ul>
       </div>
+
     );
   }
 }
@@ -37,9 +68,8 @@ const mapStateToProps = state => ({
 });
 
 ClientDashboard.propTypes = {
-  nearbyBarbers: PropTypes.Array,
-  FetchBarbers: PropTypes.Function,
+  nearbyBarbers: PropTypes.arrayOf.isRequired,
+  FetchBarbers: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { FetchBarbers })(ClientDashboard);
-
