@@ -3,7 +3,7 @@ import Auth0Lock from 'auth0-lock';
 import { isTokenExpired } from './jwtHelper';
 
 export default class AuthService extends EventEmitter {
-  constructor(clientId, domain, history) {
+  constructor(clientId, domain, history, prefill) {
     super();
     // Configure Auth0
     this.lock = new Auth0Lock(clientId, domain, {
@@ -11,6 +11,18 @@ export default class AuthService extends EventEmitter {
         redirectUrl: `${window.location.origin}/client/loggingIn`,
         responseType: 'token',
       },
+      additionalSignUpFields: [{
+        name: 'Account Type',
+        placeholder: 'Account Type',
+        prefill,
+        validator: (type) => {
+          const valid = type === 'Synpee' || type === 'Snyppr';
+          return {
+            valid,
+            hint: 'Account Type must be either "Snypee" or "Snyppr"',
+          };
+        },
+      }],
     });
     this.history = history;
     // Add callback for lock `authenticated` event

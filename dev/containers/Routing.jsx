@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import AuthService from '../utils/AuthService';
 import LandingPage from './LandingPage';
-import UserInfoForm from './UserInfoForm';
-import Login from './Login';
+import UserInfoForm from '../components/UserInfoForm';
+import Login from '../components/Login';
 import ClientDashboard from '../containers/ClientDashboard';
 
 class Routing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history),
+      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, 'cb for prefill'),
       hasProfile: false,
     };
     this.renderHomepage = this.renderHomepage.bind(this);
