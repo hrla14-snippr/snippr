@@ -1,3 +1,7 @@
+const db = require('../models/db');
+
 exports.fetchStyles = (req, res) => {
-  res.send('fetch styles');
+  db.Style.findAll()
+    .then(styles => res.json(styles))
+    .catch(e => res.json({ success: false, err: e }));
 };
