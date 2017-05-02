@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   render() {
-    return(
+    return (
       <Provider store={this.createStoreWithMiddleware(Reducers)}>
         <BrowserRouter basename="/client">
           <Routing />
