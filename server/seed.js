@@ -1,5 +1,5 @@
 const db = require('./models/db');
-const Barbers = require('./data');
+const StylesSeed = require('./data');
 
 // delete info in tables
 db.Barber.destroy({ where: {} })
@@ -24,19 +24,8 @@ db.Barber.destroy({ where: {} })
   .then(() => {
     db.ClientReview.destroy({ where: {} });
   })
-  .catch((err) => {
-    console.log('error occured destroying models ', err);
-  });
-
-console.log('these are the barbers', Barbers);
-// create barbers (testing)
-db.Barber.bulkCreate(Barbers.Barber)
-  .then(() =>  // Notice: There are no arguments here, as of right now you'll have to...
-     db.Barber.findAll())
-  .then((barbers) => {
-    console.log('created list of barbers', barbers); // ... in order to get the array of user objects
-  })
-  .catch((err) => {
-    console.log('error occured trying to bulk create barbers ', err);
-  });
-
+  .then(() => db.Style.bulkCreate(StylesSeed.HAIRSTYLES, { returning: true }))
+  .then(data => console.log('bulk created', data))
+  .then(() => db.Style.findAll())
+  .then(data => console.log('findall styles', data))
+  .catch(err => console.log('error seeding db', err));
