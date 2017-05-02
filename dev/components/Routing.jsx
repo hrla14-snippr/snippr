@@ -55,7 +55,7 @@ class Routing extends Component {
           <Login login={this.state.auth.login} />
         </Route>
         <Route exact path="/cdashboard">
-          <ClientDashboard />
+          <ClientDashboard logout={this.state.auth.logout} />
         </Route>
         <Route exact path="/newUser">
           <UserInfoForm submitUserInfo={this.submitUserInfo} />

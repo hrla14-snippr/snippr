@@ -22,7 +22,7 @@ class ClientDashboard extends Component {
           <Menu.Item name="home" />
           <Menu.Item name="messages" />
           <Menu.Menu position="right">
-            <Menu.Item name="logout" />
+            <Menu.Item name="logout" onClick={this.props.logout} />
           </Menu.Menu>
         </Menu>
         <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="medium" shape="circular" />
@@ -44,7 +44,7 @@ class ClientDashboard extends Component {
             </List.Content>
           </List.Item>
           <List.Item>
-            <List.Content >
+            <List.Content onClick={this.props.logout}>
               <List.Header>Log Out</List.Header>
             </List.Content>
           </List.Item>
@@ -70,6 +70,7 @@ const mapStateToProps = state => ({
 ClientDashboard.propTypes = {
   nearbyBarbers: PropTypes.arrayOf.isRequired,
   FetchBarbers: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { FetchBarbers })(ClientDashboard);
