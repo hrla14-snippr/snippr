@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const LandingPage = props =>
+const LandingPage = () =>
   (
     <div className="landing-page">
       landing page
