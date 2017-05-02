@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('./routers/router.barberLocations'));
 app.use(require('./routers/router.favorites'));
-app.use(require('./routers/router.login'));
+app.use(require('./routers/router.profiles'));
 app.use(require('./routers/router.styles'));
 app.use(require('./routers/router.transactions'));
 
