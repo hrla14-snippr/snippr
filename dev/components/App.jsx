@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import Promise from 'redux-promise';
-import ClientDashboard from '../containers/ClientDashboard';
 import Reducers from '../reducers';
 import Routing from './Routing';
 
