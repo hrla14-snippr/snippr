@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import AuthService from '../utils/AuthService';
 import LandingPage from './LandingPage';
+import ClientDashboard from '../containers/ClientDashboard'
 import Login from './Login';
 
 class Routing extends Component {
@@ -16,7 +17,7 @@ class Routing extends Component {
 
   renderHomepage() {
     console.log('logged in?', this.state.auth.loggedIn());
-    return this.state.auth.loggedIn() ? <LandingPage logout={this.state.auth.logout} /> : <Redirect to={'/login'} />;
+    return this.state.auth.loggedIn() ? <ClientDashboard logout={this.state.auth.logout} /> : <Redirect to={'/login'} />;
   }
 
   render() {

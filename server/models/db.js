@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('snyppr', 'root', '');
+const db = new Sequelize('snyppr', 'root', 'supreme1');
 
 /*
   MODELS

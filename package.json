@@ -12,13 +12,6 @@
     "lint-staged"
   ],
   "lint-staged": {
-    "*.js": "eslint",
-    "*.jsx": "eslint"
-  },
-  "pre-commit": [
-    "lint-staged"
-  ],
-  "lint-staged": {
     "*.js": "eslint"
   },
   "repository": {
@@ -56,11 +49,13 @@
     "mysql": "^2.13.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
+    "semantic-ui-react": "^0.68.2",
     "sequelize": "^3.30.4",
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3",
