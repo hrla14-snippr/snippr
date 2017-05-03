@@ -12,9 +12,7 @@ exports.addProfile = (req, res) => {
   // address:"asdf"
   // fname: "asdf"
   // lname: "asdf"
-  // style1: false
-  // style2: false
-  // style3: false
+  // styles: [bool, bool...] -- refer to styles table schema for order
   // save this to DB
   res.send('login');
 };
