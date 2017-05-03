@@ -23,12 +23,12 @@ class Routing extends Component {
 
   submitUserInfo(e) {
     e.preventDefault();
-    const data = {};
+    const data = { styles: [] };
     Array.prototype.slice.call(e.target.children).forEach((childNode, idx, arr) => {
       if (idx < 3) {
         data[childNode.name] = childNode.value;
       } else if (idx < arr.length - 1) {
-        data[childNode.children[0].name] = childNode.children[0].checked;
+        data.styles.push(childNode.children[0].checked);
       }
     });
     console.log(data);
