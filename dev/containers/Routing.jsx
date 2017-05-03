@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import AuthService from '../utils/AuthService';
@@ -23,16 +23,24 @@ class Routing extends Component {
 
   submitUserInfo(e) {
     e.preventDefault();
-    const data = { styles: [] };
+
+    // need to pull account type
+    const data = { styles: '' };
+    data.id = this.state.auth.getAuthId();
+    data.accountType = this.state.auth.getAccountType();
     Array.prototype.slice.call(e.target.children).forEach((childNode, idx, arr) => {
       if (idx < 3) {
         data[childNode.name] = childNode.value;
-      } else if (idx < arr.length - 1) {
-        data.styles.push(childNode.children[0].checked);
+      } else if (idx < arr.length - 1 && childNode.children[0].checked) {
+        data.styles += childNode.children[0].id;
       }
     });
     console.log(data);
+
     // setstate in axios callback
+    axios.post('/addProfile', data)
+      .then(res => console.log(res))
+      .catch(err => console.log('error adding profile', err));
     this.setState({ hasProfile: true });
     this.props.history.push('/dashboard');
   }
