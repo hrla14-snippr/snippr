@@ -5,7 +5,7 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import AuthService from '../utils/AuthService';
 import LandingPage from './LandingPage';
 import UserInfoForm from '../components/UserInfoForm';
-import Login from '../components/Login';
+import BarberDashboard from '../containers/BarberDashboard';
 import ClientDashboard from '../containers/ClientDashboard';
 
 class Routing extends Component {
@@ -15,8 +15,10 @@ class Routing extends Component {
       auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, 'cb for prefill'),
       hasProfile: false,
     };
-    this.renderHomepage = this.renderHomepage.bind(this);
+    this.confirmLoggedIn = this.confirmLoggedIn.bind(this);
     this.submitUserInfo = this.submitUserInfo.bind(this);
+    this.renderDashboard = this.renderDashboard.bind(this);
+    this.confirmHasProfile = this.confirmHasProfile.bind(this);
   }
 
   submitUserInfo(e) {
@@ -32,17 +34,31 @@ class Routing extends Component {
     console.log(data);
     // setstate in axios callback
     this.setState({ hasProfile: true });
-    this.props.history.push('/');
+    this.props.history.push('/dashboard');
   }
 
-  renderUserInfoForm() {
-    return this.state.hasProfile
-      ? <LandingPage logout={this.state.auth.logout} />
-      : <Redirect to="/newUser" />;
+
+  confirmLoggedIn() {
+    return this.state.auth.loggedIn() ? this.renderDashboard() : <Redirect to="/" />;
   }
 
-  renderHomepage() {
-    return this.state.auth.loggedIn() ? this.renderUserInfoForm() : <Redirect to="/login" />;
+  confirmHasProfile() {
+    if (this.state.auth.loggedIn()) {
+      return this.state.hasProfile
+        ? <Redirect to="/dashboard" />
+        : <UserInfoForm submitUserInfo={this.submitUserInfo} />;
+    }
+    return <Redirect to="/" />;
+  }
+
+  renderDashboard() {
+    if (this.state.hasProfile) {
+      const accountType = this.state.auth.getAccountType();
+      return accountType === 'snyppr'
+        ? <BarberDashboard />
+        : <ClientDashboard />;
+    }
+    return <Redirect to="/newUser" />;
   }
 
   render() {
@@ -50,16 +66,11 @@ class Routing extends Component {
 
     return (
       <Switch>
-        <Route exact path="/" render={this.renderHomepage} />
-        <Route exact path="/login">
-          <Login login={this.state.auth.login} />
+        <Route exact path="/">
+          <LandingPage logout={this.state.auth.logout} />
         </Route>
-        <Route exact path="/cdashboard">
-          <ClientDashboard />
-        </Route>
-        <Route exact path="/newUser">
-          <UserInfoForm submitUserInfo={this.submitUserInfo} />
-        </Route>
+        <Route exact path="/dashboard" render={this.confirmLoggedIn} />
+        <Route exact path="/newUser" render={this.confirmHasProfile} />
       </Switch>
     );
   }

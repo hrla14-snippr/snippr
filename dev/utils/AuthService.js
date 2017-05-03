@@ -12,16 +12,14 @@ export default class AuthService extends EventEmitter {
         responseType: 'token',
       },
       additionalSignUpFields: [{
-        name: 'Account Type',
-        placeholder: 'Account Type',
+        type: 'select',
+        name: 'AccountType',
+        placeholder: 'Choose an account type',
         prefill,
-        validator: (type) => {
-          const valid = type === 'Synpee' || type === 'Snyppr';
-          return {
-            valid,
-            hint: 'Account Type must be either "Snypee" or "Snyppr"',
-          };
-        },
+        options: [
+          { value: 'snyppr', label: 'Snyppr' },
+          { value: 'snypee', label: 'Snypee' },
+        ],
       }],
     });
     this.history = history;
@@ -38,7 +36,7 @@ export default class AuthService extends EventEmitter {
     // Saves the user token
     this.setToken(authResult.idToken);
     // navigate to the home route
-    this.history.push('/');
+    this.history.push('/dashboard');
     // Async loads the user profile data
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
@@ -78,6 +76,10 @@ export default class AuthService extends EventEmitter {
     return profile ? JSON.parse(localStorage.profile) : {};
   }
 
+  getAccountType() {
+    return this.getProfile().user_metadata.account_type;
+  }
+
   setToken(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
@@ -92,6 +94,6 @@ export default class AuthService extends EventEmitter {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
-    this.history.push('/login');
+    this.history.push('/');
   }
 }
