@@ -9,12 +9,12 @@ exports.verifyHasProfile = (req, res) => {
 
 exports.addProfile = (req, res) => {
   // req.body will contain profile info
+  // id: "authId string format"
   // address:"asdf"
   // fname: "asdf"
   // lname: "asdf"
-  // style1: false
-  // style2: false
-  // style3: false
+  // styles: '1246' concatted ids of styles for this user
   // save this to DB
+  console.log('profile', req.body);
   res.send('login');
 };

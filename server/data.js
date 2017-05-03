@@ -8,7 +8,7 @@ exports.HAIRSTYLES = [
   { style: 'Quiff' },
 ];
 
-exports.BARBERS = [
+exports.SNYPPRS = [
   {
     id: 'fakeauthid1',
     fname: 'bobby',

@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:3000/nearbyBarbers';
+const URL = 'http://localhost:3000/nearbySnypprs';
 
-exports.FetchBarbers = (address) => {
+exports.FetchSnypprs = (address) => {
   console.log(address);
   const request = axios.get(`${URL}/${address}`);
   console.log('fetch barbers ran');
   return ({
-    type: 'FETCH_BARBERS',
+    type: 'FETCH_SNYPPRS',
     payload: request,
   });
 };

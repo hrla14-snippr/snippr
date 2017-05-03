@@ -7,7 +7,7 @@ const db = new Sequelize(process.env.ESQL_URL);
   MODELS
 */
 
-const Barber = db.define('barber', {
+const Snyppr = db.define('snyppr', {
   id: {
     type: Sequelize.STRING,
     primaryKey: true,
@@ -34,7 +34,7 @@ const Barber = db.define('barber', {
   timestamps: false,
 });
 
-const Client = db.define('client', {
+const Snypee = db.define('snypee', {
   id: {
     type: Sequelize.STRING,
     primaryKey: true,
@@ -79,7 +79,7 @@ const Transaction = db.define('transaction', {
 });
 
 const Favorite = db.define('favorite', {
-  barberId: {
+  snypprId: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -87,8 +87,8 @@ const Favorite = db.define('favorite', {
   timestamps: false,
 });
 
-const BarberReview = db.define('barberreview', {
-  barberId: {
+const SnypprReview = db.define('snypprreview', {
+  snypprId: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -102,8 +102,8 @@ const BarberReview = db.define('barberreview', {
   },
 });
 
-const ClientReview = db.define('clientreview', {
-  clientId: {
+const SnypeeReview = db.define('snypeereview', {
+  snypeeId: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -121,27 +121,27 @@ const ClientReview = db.define('clientreview', {
   RELATIONSHIPS
 */
 
-Barber.hasMany(Transaction);
-Client.hasMany(Transaction);
-Transaction.belongsTo(Barber);
-Transaction.belongsTo(Client);
+Snyppr.hasMany(Transaction);
+Snypee.hasMany(Transaction);
+Transaction.belongsTo(Snyppr);
+Transaction.belongsTo(Snypee);
 
-const BarberStyles = db.define('barberStyles', {}, { timestamps: false });
+const SnypprStyles = db.define('snypprStyles', {}, { timestamps: false });
 
-Style.belongsToMany(Barber, { through: BarberStyles });
-Barber.belongsToMany(Style, { through: BarberStyles });
-Client.hasMany(Favorite);
-Favorite.belongsTo(Client);
+Style.belongsToMany(Snyppr, { through: SnypprStyles });
+Snyppr.belongsToMany(Style, { through: SnypprStyles });
+Snypee.hasMany(Favorite);
+Favorite.belongsTo(Snypee);
 
 
-Barber.sync();
-Client.sync();
+Snyppr.sync();
+Snypee.sync();
 Style.sync();
 Transaction.sync();
-BarberStyles.sync();
+SnypprStyles.sync();
 Favorite.sync();
-BarberReview.sync();
-ClientReview.sync();
+SnypprReview.sync();
+SnypeeReview.sync();
 
 
 db.authenticate()
@@ -152,11 +152,11 @@ db.authenticate()
     console.log('database fucked up bro! ', err);
   });
 
-module.exports.Barber = Barber;
-module.exports.Client = Client;
+module.exports.Snyppr = Snyppr;
+module.exports.Snypee = Snypee;
 module.exports.Style = Style;
 module.exports.Transaction = Transaction;
-module.exports.BarberStyles = BarberStyles;
+module.exports.SnypprStyles = SnypprStyles;
 module.exports.Favorite = Favorite;
-module.exports.BarberReview = BarberReview;
-module.exports.ClientReview = ClientReview;
+module.exports.SnypprReview = SnypprReview;
+module.exports.SnypeeReview = SnypeeReview;

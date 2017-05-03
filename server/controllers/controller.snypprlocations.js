@@ -4,8 +4,7 @@ const stringConverter = require('../../dev/utils/stringConverter');
 const distFinder = require('../../dev/utils/distFinder');
 const promiseAll = require('bluebird').all;
 
-
-exports.fetchBarbers = (req, res) => {
+exports.fetchSnypprs = (req, res) => {
   const userAddress = stringConverter(req.params.address);
   let userCoord;
   const closeBarbers = [];
@@ -16,7 +15,7 @@ exports.fetchBarbers = (req, res) => {
     .catch((err) => {
       console.log('error with user coordinates ', err);
     });
-  db.Barber.findAll()
+  db.Snyppr.findAll()
     .then(results => promiseAll(results.map((barber) => {
       const str = stringConverter(barber.dataValues.address);
       let dist;
@@ -32,7 +31,7 @@ exports.fetchBarbers = (req, res) => {
           });
     }))
         .then(() => {
-          console.log(closeBarbers);
+          console.log(closeBarbers, 'are array right now');
           res.send(closeBarbers);
         }))
     .catch((err) => {

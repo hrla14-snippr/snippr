@@ -54,7 +54,11 @@ export default class AuthService extends EventEmitter {
 
   login() {
     // Call the show method to display the widget.
-    this.lock.show();
+    this.lock.show({ allowSignUp: false });
+  }
+
+  signup() {
+    this.lock.show({ allowLogin: false });
   }
 
   loggedIn() {
@@ -74,6 +78,10 @@ export default class AuthService extends EventEmitter {
     // Retrieves the profile data from localStorage
     const profile = localStorage.getItem('profile');
     return profile ? JSON.parse(localStorage.profile) : {};
+  }
+
+  getAuthId() {
+    return this.getProfile().user_id;
   }
 
   getAccountType() {

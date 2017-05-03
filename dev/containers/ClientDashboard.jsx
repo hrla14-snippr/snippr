@@ -2,21 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Menu, Image, List } from 'semantic-ui-react';
-import { FetchBarbers } from '../actions/FetchBarbers';
+import { FetchSnypprs } from '../actions/FetchSnypprs';
 
 class ClientDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nearbyBarbers: this.props.nearbyBarbers,
+      nearbySnypprs: this.props.nearbySnypprs,
       clientAddress: '209 S Mednik Ave, Los Angeles, CA 90022',
     };
   }
   componentDidMount() {
     console.log(this.props, 'my props hog');
-    this.props.FetchBarbers(this.state.clientAddress);
+    this.props.FetchSnypprs(this.state.clientAddress);
   }
   render() {
+    console.log(this.props);
     return (
       <div>
         <Menu pointing secondary>
@@ -50,11 +51,11 @@ class ClientDashboard extends Component {
             </List.Content>
           </List.Item>
         </List>
-              Neary Barbers
+              Neary snypprs
         <ul>
-          {this.props.nearbyBarbers.map(barber => (
+          {this.props.nearbySnypprs.map(snyppr => (
             <div>
-              <p>{barber.fname}</p>
+              <p>{snyppr.fname}</p>
             </div>
             ))}
         </ul>
@@ -65,13 +66,13 @@ class ClientDashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  nearbyBarbers: state.nearbyBarbers,
+  nearbySnypprs: state.nearbySnypprs,
 });
 
 ClientDashboard.propTypes = {
-  nearbyBarbers: PropTypes.arrayOf.isRequired,
-  FetchBarbers: PropTypes.func.isRequired,
+  nearbySnypprs: PropTypes.arrayOf.isRequired,
+  FetchSnypprs: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { FetchBarbers })(ClientDashboard);
+export default connect(mapStateToProps, { FetchSnypprs })(ClientDashboard);
