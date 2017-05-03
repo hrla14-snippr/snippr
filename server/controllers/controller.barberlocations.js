@@ -8,7 +8,7 @@ const promiseAll = require('bluebird').all;
 exports.fetchBarbers = (req, res) => {
   const userAddress = stringConverter(req.params.address);
   let userCoord;
-  let closeBarbers = [];
+  const closeBarbers = [];
   geoConverter(userAddress)
     .then((user) => {
       userCoord = user;
@@ -17,11 +17,10 @@ exports.fetchBarbers = (req, res) => {
       console.log('error with user coordinates ', err);
     });
   db.Barber.findAll()
-    .then((results) => {
-      return promiseAll(results.map((barber) => {
-        const str = stringConverter(barber.dataValues.address);
-        let dist;
-        return geoConverter(str)
+    .then(results => promiseAll(results.map((barber) => {
+      const str = stringConverter(barber.dataValues.address);
+      let dist;
+      return geoConverter(str)
           .then((coords) => {
             dist = distFinder(userCoord.lat, userCoord.lng, coords.lat, coords.lng);
             if (dist < 20) {
@@ -31,12 +30,11 @@ exports.fetchBarbers = (req, res) => {
           .catch((err) => {
             console.log('something went wrong converting promises ', err);
           });
-      }))
+    }))
         .then(() => {
           console.log(closeBarbers);
           res.send(closeBarbers);
-        });
-    })
+        }))
     .catch((err) => {
       console.log(err);
       res.status(500);
