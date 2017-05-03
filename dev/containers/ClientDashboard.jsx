@@ -9,11 +9,12 @@ class ClientDashboard extends Component {
     super(props);
     this.state = {
       nearbyBarbers: this.props.nearbyBarbers,
+      clientAddress: '209 S Mednik Ave, Los Angeles, CA 90022',
     };
   }
   componentDidMount() {
     console.log(this.props, 'my props hog');
-    this.props.FetchBarbers();
+    this.props.FetchBarbers(this.state.clientAddress);
   }
   render() {
     return (

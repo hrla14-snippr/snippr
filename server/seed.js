@@ -28,4 +28,8 @@ db.Barber.destroy({ where: {} })
   .then(data => console.log('bulk created', data))
   .then(() => db.Style.findAll())
   .then(data => console.log('findall styles', data))
+  .then(() => db.Barber.bulkCreate(StylesSeed.BARBERS))
+  .then(data => console.log('bulk created', data))
+  .then(() => db.Barber.findAll())
+  .then(data => console.log('findall barbers', data))
   .catch(err => console.log('error seeding db', err));
