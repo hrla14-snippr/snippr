@@ -80,6 +80,10 @@ export default class AuthService extends EventEmitter {
     return profile ? JSON.parse(localStorage.profile) : {};
   }
 
+  getAuthId() {
+    return this.getProfile().user_id;
+  }
+
   getAccountType() {
     return this.getProfile().user_metadata.account_type;
   }
