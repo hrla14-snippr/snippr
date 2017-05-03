@@ -38,8 +38,8 @@ const mapStateToProps = state => ({
 });
 
 ClientDashboard.propTypes = {
-  nearbyBarbers: PropTypes.Array,
-  FetchBarbers: PropTypes.Function,
+  nearbyBarbers: PropTypes.arrayof.isRequired,
+  FetchBarbers: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { FetchBarbers })(ClientDashboard);
