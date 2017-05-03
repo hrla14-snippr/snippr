@@ -13,7 +13,7 @@ class UserInfoForm extends Component {
     const context = this;
 
     axios.get('/styles')
-      .then(({ data }) => context.setState({ styles: data.map(style => style.style) }))
+      .then(({ data }) => context.setState({ styles: data }))
       .catch(e => console.log('error fetching styles: ', e));
   }
 
@@ -23,9 +23,9 @@ class UserInfoForm extends Component {
         <input type="text" name="fname" placeholder="First Name" required />
         <input type="text" name="lname" placeholder="Last Name" required />
         <input type="text" name="address" placeholder="Address" required />
-        {this.state.styles.map(style => (
+        {this.state.styles.map(({ style }, idx) => (
           <label htmlFor={style}>
-            <input type="checkbox" id={style} name={style} value={style} />
+            <input type="checkbox" id={idx + 1} name={style} value={style} />
             {style}
           </label>
         ))}
