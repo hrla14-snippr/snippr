@@ -2,9 +2,9 @@ const db = require('./models/db');
 const StylesSeed = require('./data');
 
 // delete info in tables
-db.Barber.destroy({ where: {} })
+db.Snyppr.destroy({ where: {} })
   .then(() => {
-    db.Client.destroy({ where: {} });
+    db.Snypee.destroy({ where: {} });
   })
   .then(() => {
     db.Style.destroy({ where: {} });
@@ -13,16 +13,16 @@ db.Barber.destroy({ where: {} })
     db.Transaction.destroy({ where: {} });
   })
   .then(() => {
-    db.BarberStyles.destroy({ where: {} });
+    db.SnypprStyles.destroy({ where: {} });
   })
   .then(() => {
     db.Favorite.destroy({ where: {} });
   })
   .then(() => {
-    db.BarberReview.destroy({ where: {} });
+    db.SnypprReview.destroy({ where: {} });
   })
   .then(() => {
-    db.ClientReview.destroy({ where: {} });
+    db.SnypeeReview.destroy({ where: {} });
   })
   .then(() => db.Style.bulkCreate(StylesSeed.HAIRSTYLES, { returning: true }))
   .then(data => console.log('bulk created', data))

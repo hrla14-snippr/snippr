@@ -11,7 +11,7 @@ const io = require('socket.io')(server);
 app.use('/public', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(require('./routers/router.barberLocations'));
+app.use(require('./routers/router.snypprLocations'));
 app.use(require('./routers/router.favorites'));
 app.use(require('./routers/router.profiles'));
 app.use(require('./routers/router.styles'));
