@@ -23,8 +23,11 @@ class Routing extends Component {
 
   submitUserInfo(e) {
     e.preventDefault();
+
+    // need to pull account type
     const data = { styles: '' };
     data.id = this.state.auth.getAuthId();
+    data.accountType = this.state.auth.getAccountType();
     Array.prototype.slice.call(e.target.children).forEach((childNode, idx, arr) => {
       if (idx < 3) {
         data[childNode.name] = childNode.value;
@@ -33,6 +36,7 @@ class Routing extends Component {
       }
     });
     console.log(data);
+
     // setstate in axios callback
     axios.post('/addProfile', data)
       .then(res => console.log(res))

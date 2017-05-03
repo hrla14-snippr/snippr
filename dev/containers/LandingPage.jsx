@@ -30,8 +30,8 @@ class LandingPage extends Component {
   render() {
     const { history } = this.props; // eslint-disable-line no-unused-vars
 
-    const SNYPEE = 'snypee';
-    const SNYPPR = 'snyppr';
+    const SNYPEE = 'Snypee';
+    const SNYPPR = 'Snyppr';
     return (
       <div className="landing-page">
         <button onClick={this.typedSignup} value={SNYPEE} className="snypee-but">
