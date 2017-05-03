@@ -3,7 +3,7 @@ import Auth0Lock from 'auth0-lock';
 import { isTokenExpired } from './jwtHelper';
 
 export default class AuthService extends EventEmitter {
-  constructor(clientId, domain, history) {
+  constructor(clientId, domain, history, prefill) {
     super();
     // Configure Auth0
     this.lock = new Auth0Lock(clientId, domain, {
@@ -11,6 +11,16 @@ export default class AuthService extends EventEmitter {
         redirectUrl: `${window.location.origin}/client/loggingIn`,
         responseType: 'token',
       },
+      additionalSignUpFields: [{
+        type: 'select',
+        name: 'AccountType',
+        placeholder: 'Choose an account type',
+        prefill,
+        options: [
+          { value: 'snyppr', label: 'Snyppr' },
+          { value: 'snypee', label: 'Snypee' },
+        ],
+      }],
     });
     this.history = history;
     // Add callback for lock `authenticated` event
@@ -26,7 +36,7 @@ export default class AuthService extends EventEmitter {
     // Saves the user token
     this.setToken(authResult.idToken);
     // navigate to the home route
-    this.history.push('/');
+    this.history.push('/dashboard');
     // Async loads the user profile data
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
@@ -66,6 +76,10 @@ export default class AuthService extends EventEmitter {
     return profile ? JSON.parse(localStorage.profile) : {};
   }
 
+  getAccountType() {
+    return this.getProfile().user_metadata.account_type;
+  }
+
   setToken(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
@@ -80,6 +94,6 @@ export default class AuthService extends EventEmitter {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
-    this.history.push('/login');
+    this.history.push('/');
   }
 }

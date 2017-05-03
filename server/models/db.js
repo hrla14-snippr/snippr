@@ -12,6 +12,7 @@ const Barber = db.define('barber', {
     type: Sequelize.STRING,
     primaryKey: true,
     allowNull: false,
+    unique: true,
   },
   fname: {
     type: Sequelize.STRING,
@@ -38,6 +39,7 @@ const Client = db.define('client', {
     type: Sequelize.STRING,
     primaryKey: true,
     allowNull: false,
+    unique: true,
   },
   fname: {
     type: Sequelize.STRING,
@@ -63,6 +65,7 @@ const Style = db.define('style', {
   style: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
 }, {
   timestamps: false,

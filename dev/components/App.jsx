@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import Promise from 'redux-promise';
 import Reducers from '../reducers';
-import Routing from './Routing';
+import Routing from '../containers/Routing';
 
 
 class App extends Component {
