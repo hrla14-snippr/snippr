@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import StripeCheckout from 'react-stripe-checkout';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Menu, Image, List } from 'semantic-ui-react';
 import GoogleMaps from '../components/GoogleMaps';
@@ -19,6 +20,14 @@ class ClientDashboard extends Component {
   }
   componentDidMount() {
     this.fetchSnypprs(this.state.clientAddress);
+  }
+  onToken(token) {
+    console.log('token is', { token, snyppr: 'acct_1AFZLMC3YHU2IY7a' });
+    axios.post('/transaction', { token, snyppr: 'acct_1AFZLMC3YHU2IY7a' })
+     .then((response) => {
+       console.log('data is', response);
+       alert('We are in business');
+     });
   }
   fetchSnypprs(address) {
     axios.get(`${URL}/${address}`)
@@ -78,6 +87,19 @@ class ClientDashboard extends Component {
               <GoogleMaps
                 clientAddress={this.state.clientConverted}
                 snypprs={this.state.nearbySnypprs} google={window.google}
+              />
+              <StripeCheckout
+                token={this.onToken}
+                stripeKey="pk_test_IhZuZuB7uOy8VF5pg4XA54Df"
+                name="Three Comma Co."
+                description="Big Data Stuff"
+                image="https://www.vidhub.co/assets/logos/vidhub-icon-2e5c629f64ced5598a56387d4e3d0c7c.png"
+                ComponentClass="div"
+                panelLabel="Give Money"
+                amount={1000000}
+                currency="USD"
+                locale="us"
+                email="info@vidhub.co"
               />
             </code></Col>
           </Row>
