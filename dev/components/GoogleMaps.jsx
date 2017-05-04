@@ -7,10 +7,7 @@ class GoogleMaps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentLocation: {
-        lat: props.clientAddress.lat,
-        lng: props.clientAddress.lat,
-      },
+      currentLocation: props.clientAddress,
     };
 
     this.setMarkers = this.setMarkers.bind(this);
@@ -19,8 +16,8 @@ class GoogleMaps extends Component {
   componentDidMount() {
     this.loadMap();
   }
-  componentWillReceiveProps() {
-    this.setState({ currentLocation: this.props.clientAddress });
+  componentWillReceiveProps(nextProps) {
+    this.setState({ currentLocation: nextProps.clientAddress });
   }
   componentDidUpdate() {
     this.loadMap();
@@ -49,13 +46,12 @@ class GoogleMaps extends Component {
     });
   }
   loadMap() {
-    console.log('we in chea for the fifth time in fuckin loadmap');
     const homeUrl = 'https://cdn2.iconfinder.com/data/icons/bazza-maps-and-navigation/60/02_-_Home_map_marker-128.png';
     if (this.props && this.props.google) {
       const { google } = this.props;
       const maps = google.maps;
-      const mapRef = this.refs.map;
-      const node = ReactDOM.findDOMNode(mapRef);
+      const mapRef = this.refs.map; // eslint-disable-line react/no-string-refs
+      const node = ReactDOM.findDOMNode(mapRef); // eslint-disable-line react/no-find-dom-node
       const { initialCenter, zoom } = this.props;
       console.log(this.state.currentLocation.lat, 'this is currentlat boy', 'this is current long too ', this.state.currentLocation.lng);
       const { lat, lng } =
@@ -86,9 +82,8 @@ class GoogleMaps extends Component {
     }
   }
   render() {
-    console.log('in google maps ', this.props.clientAddress.lat);
     return (
-      <div className="googlemap" ref="map" />
+      <div className="googlemap" ref="map" /> // eslint-disable-line react/no-string-refs
     );
   }
 }
