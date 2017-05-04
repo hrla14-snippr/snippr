@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Menu, Image, List } from 'semantic-ui-react';
 import { FetchSnypprs } from '../actions/FetchSnypprs';
+import { Grid, Row, Col } from 'react-bootstrap';
+import GoogleMaps from '../components/GoogleMaps';
 
 class ClientDashboard extends Component {
   constructor(props) {
@@ -27,40 +29,40 @@ class ClientDashboard extends Component {
             <Menu.Item name="logout" onClick={this.props.logout} />
           </Menu.Menu>
         </Menu>
-        <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="medium" shape="circular" />
-         Hi Ebrima
-        <List selection verticalAlign="middle">
-          <List.Item>
-            <List.Content>
-              <List.Header>Home</List.Header>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Content>
-              <List.Header>Profile</List.Header>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Content>
-              <List.Header>Payment</List.Header>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Content onClick={this.props.logout}>
-              <List.Header>Log Out</List.Header>
-            </List.Content>
-          </List.Item>
-        </List>
-              Neary snypprs
-        <ul>
-          {this.props.nearbySnypprs.map(snyppr => (
-            <div>
-              <p>{snyppr.fname}</p>
-            </div>
-            ))}
-        </ul>
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={6} md={4}><code>
+              <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="small" shape="circular"/>
+              Hi Ebrima
+              <List>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Home</List.Header>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Profile</List.Header>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Payment</List.Header>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Content onClick={this.props.logout}>
+                    <List.Header>Log Out</List.Header>
+                  </List.Content>
+                </List.Item>
+              </List>
+            </code></Col>
+            <Col xs={12} md={8}><code>
+              <GoogleMaps google={window.google} />
+            </code></Col>
+          </Row>
+        </Grid>
       </div>
-
     );
   }
 }

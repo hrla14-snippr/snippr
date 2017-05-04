@@ -143,3 +143,38 @@ body{
     font-family: "Operator Mono";
     src: url('./assets/OperatorMono-Medium.otf');
 }
+
+.dash-contain{
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: 20%;
+    border: 2px solid lavender;
+}
+
+.dash-menu{
+    position: absolute;
+    width: 20%;
+    left:0;
+}
+
+.dash-menu-items{
+    text-align: center;
+}
+
+.padding{
+    padding-bottom: 15%;
+}
+
+.welcome{
+    text-align: center;
+}
+
+.profpic{
+    margin-bottom: 6%;
+}
+
+.googlemap{
+    width: 600px;
+    height: 300px;
+}
