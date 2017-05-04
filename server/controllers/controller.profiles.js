@@ -4,7 +4,15 @@ const db = require('../models/db');
 exports.verifyHasProfile = (req, res) => {
   // check if any row in barber/clients table has this id
   // req.body.authId
-  res.json();
+  console.log(req.body);
+  const accountType = req.body.accountType;
+  delete req.body.accountType;
+  db[accountType]
+    .find({ where: { id: req.body.id } })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch(err => console.log('error finding profile', err));
 };
 
 exports.addProfile = (req, res) => {
@@ -24,5 +32,5 @@ exports.addProfile = (req, res) => {
       console.log(data);
       res.send('login');
     })
-    .catch(err => console.log('error creating profile', err.errors));
+    .catch(err => console.log('error creating profile', err));
 };
