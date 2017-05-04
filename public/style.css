@@ -197,6 +197,30 @@ body{
     height: 400px;
 }
 
+.modalname{
+    font-family: "Brandon Grotesque";
+    font-size: 18px;
+    text-align: center;
+    color: black;
+}
+
+.bodyContent{
+    text-align: center;
+    color: mediumspringgreen;
+    font-size: 14px;
+}
+
+modalimg{
+    margin-left: 10%;
+}
+
+.imagehold{
+    padding-left: 30%
+}
+
+.content{
+    border-radius: 8px;
+}
 .chat-svg {
     width: 70px;
     height: 70px;
