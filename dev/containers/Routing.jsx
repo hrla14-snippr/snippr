@@ -15,17 +15,22 @@ class Routing extends Component {
     this.state = {
       auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, 'cb for prefill'),
       hasProfile: false,
+      profile: {},
     };
     this.confirmLoggedIn = this.confirmLoggedIn.bind(this);
     this.submitUserInfo = this.submitUserInfo.bind(this);
     this.renderDashboard = this.renderDashboard.bind(this);
     this.confirmHasProfile = this.confirmHasProfile.bind(this);
+    this.checkUserExists = this.checkUserExists.bind(this);
+  }
+
+  componentDidMount() {
+    this.checkUserExists();
   }
 
   submitUserInfo(e) {
     e.preventDefault();
 
-    // need to pull account type
     const data = { styles: '' };
     data.id = this.state.auth.getAuthId();
     data.accountType = this.state.auth.getAccountType();
@@ -46,6 +51,22 @@ class Routing extends Component {
     this.props.history.push('/dashboard');
   }
 
+  checkUserExists() {
+    const context = this;
+
+    axios.post('/verifyProfile', {
+      id: this.state.auth.getAuthId(),
+      accountType: this.state.auth.getAccountType(),
+    })
+      .then(({ data }) => {
+        // TODO: refactor to redux store
+        context.setState({
+          profile: data,
+          hasProfile: true,
+        });
+      })
+      .catch(e => console.log('error checkuserexist', e));
+  }
 
   confirmLoggedIn() {
     return this.state.auth.loggedIn() ? this.renderDashboard() : <Redirect to="/" />;
@@ -61,12 +82,14 @@ class Routing extends Component {
   }
 
   renderDashboard() {
+    // do call to db and check if authId exists
     if (this.state.hasProfile) {
       const accountType = this.state.auth.getAccountType();
       return accountType === 'snyppr'
         ? <BarberDashboard />
         : <ClientDashboard />;
     }
+      // if not, send to /newUser
     return <Redirect to="/newUser" />;
   }
 
