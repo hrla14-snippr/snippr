@@ -114,6 +114,11 @@ body{
     transition: 1s;
 }
 
+.snyppr-menu {
+  height: 170px;
+  background-color: black;
+}
+
 .login{
     position: absolute;
     top: 3%;
