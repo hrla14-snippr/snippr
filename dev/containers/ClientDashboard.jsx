@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Menu, Image, List } from 'semantic-ui-react';
-import { FetchSnypprs } from '../actions/FetchSnypprs';
 import GoogleMaps from '../components/GoogleMaps';
+
+const URL = 'http://localhost:3000/nearbySnypprs';
+const GMAPURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 
 class ClientDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nearbySnypprs: this.props.nearbySnypprs,
+      nearbySnypprs: [],
       clientAddress: '209 S Mednik Ave, Los Angeles, CA 90022',
+      clientConverted: '',
     };
   }
   componentDidMount() {
-    console.log(this.props, 'my props hog');
-    this.props.FetchSnypprs(this.state.clientAddress);
+    this.fetchSnypprs(this.state.clientAddress);
+  }
+  fetchSnypprs(address) {
+    axios.get(`${URL}/${address}`)
+      .then((results) => {
+        this.setState({ nearbySnypprs: results });
+      })
+      .then(() => {
+        axios.get(`${GMAPURL}${this.state.clientAddress}`)
+          .then((results) => {
+            console.log(results.data.results[0].geometry.location, 'hi hi hi hi ');
+            this.setState({ clientConverted: results.data.results[0].geometry.location });
+          });
+      })
+      .catch((err) => {
+        console.log('error fucked up ', err);
+      });
   }
   render() {
-    console.log(this.props);
     return (
       <div>
         <Menu pointing secondary>
@@ -58,7 +75,10 @@ class ClientDashboard extends Component {
               </List>
             </code></Col>
             <Col xs={12} md={8}><code>
-              <GoogleMaps google={window.google} />
+              <GoogleMaps
+                clientAddress={this.state.clientConverted}
+                snypprs={this.state.nearbySnypprs} google={window.google}
+              />
             </code></Col>
           </Row>
         </Grid>
@@ -67,14 +87,8 @@ class ClientDashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  nearbySnypprs: state.nearbySnypprs,
-});
-
 ClientDashboard.propTypes = {
-  nearbySnypprs: PropTypes.arrayOf.isRequired,
-  FetchSnypprs: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { FetchSnypprs })(ClientDashboard);
+export default ClientDashboard;

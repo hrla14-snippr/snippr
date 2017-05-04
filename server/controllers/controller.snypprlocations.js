@@ -5,6 +5,7 @@ const distFinder = require('../../dev/utils/distFinder');
 const promiseAll = require('bluebird').all;
 
 exports.fetchSnypprs = (req, res) => {
+  console.log('req params ', req.params.address);
   const userAddress = stringConverter(req.params.address);
   let userCoord;
   const closeSnypprs = [];
