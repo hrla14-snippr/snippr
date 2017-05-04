@@ -13,13 +13,16 @@ class ClientDashboard extends Component {
     super(props);
     this.state = {
       nearbySnypprs: [],
-      clientAddress: '209 S Mednik Ave, Los Angeles, CA 90022',
+      clientAddress: this.props.profile.address,
       clientConverted: '',
     };
   }
+
   componentDidMount() {
+    console.log('profile in dash', this.props.profile);
     this.fetchSnypprs(this.state.clientAddress);
   }
+
   fetchSnypprs(address) {
     axios.get(`${URL}/${address}`)
       .then((results) => {
@@ -28,7 +31,7 @@ class ClientDashboard extends Component {
       .then(() => {
         axios.get(`${GMAPURL}${this.state.clientAddress}`)
           .then((results) => {
-            console.log(results.data.results[0].geometry.location, 'hi hi hi hi ');
+            console.log('addresses', results);
             this.setState({ clientConverted: results.data.results[0].geometry.location });
           });
       })
@@ -89,6 +92,7 @@ class ClientDashboard extends Component {
 }
 
 ClientDashboard.propTypes = {
+  profile: PropTypes.shape.isRequired,
   logout: PropTypes.func.isRequired,
 };
 

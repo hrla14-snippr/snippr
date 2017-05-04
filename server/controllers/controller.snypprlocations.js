@@ -32,7 +32,6 @@ exports.fetchSnypprs = (req, res) => {
           });
     }))
         .then(() => {
-          console.log(closeSnypprs, 'are array right now');
           res.send(closeSnypprs);
         }))
     .catch((err) => {
