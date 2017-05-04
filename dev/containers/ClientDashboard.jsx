@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Grid, Row, Col } from 'react-bootstrap';
 import { Menu, Image, List } from 'semantic-ui-react';
 import { FetchSnypprs } from '../actions/FetchSnypprs';
-import { Grid, Row, Col } from 'react-bootstrap';
 import GoogleMaps from '../components/GoogleMaps';
 
 class ClientDashboard extends Component {
@@ -32,7 +32,7 @@ class ClientDashboard extends Component {
         <Grid>
           <Row className="show-grid">
             <Col xs={6} md={4}><code>
-              <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="small" shape="circular"/>
+              <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="small" shape="circular" />
               Hi Ebrima
               <List>
                 <List.Item>
