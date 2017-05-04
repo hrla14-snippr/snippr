@@ -118,12 +118,12 @@ body{
     transition: 1s;
 }
 
-.snyppr-menu {
+.snyp-menu {
     height: 100px;
     background-color: black;
 }
 
-.snyppr-footer {
+.snyp-footer {
     height: 30px;
     background-color: black;
     position:fixed;
@@ -193,8 +193,8 @@ body{
 }
 
 .googlemap{
-    width: 600px;
-    height: 300px;
+    width: 700px;
+    height: 400px;
 }
 
 .chat-svg {
