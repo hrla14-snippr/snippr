@@ -18,7 +18,6 @@ class GoogleMaps extends Component {
   }
   componentDidMount() {
     this.loadMap();
-    console.log(this.state.test);
   }
   componentWillReceiveProps() {
     this.setState({ currentLocation: this.props.clientAddress });
