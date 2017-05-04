@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import NearbyBarberReducer from './nearbybarber_reducer';
+import NearbySnypprReducer from './nearbySnyppr_reducer';
 import AccountTypeReducer from './accounttype_reducer';
 
 const rootReducer = combineReducers({
-  nearbyBarbers: NearbyBarberReducer,
+  nearbySnypprs: NearbySnypprReducer,
   AccountType: AccountTypeReducer,
 });
 
