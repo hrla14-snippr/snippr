@@ -8,7 +8,6 @@ class BarberDashboard extends Component {
     this.state = {};
   }
   render() {
-    console.log('temp with yuriy');
     return (
       <div>
         <nav className="snyppr-menu" />
