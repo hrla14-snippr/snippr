@@ -1,4 +1,4 @@
-
+const db = require('../models/db');
 // store whether user is snypee or snyppr in auth0 profile
 
 exports.verifyHasProfile = (req, res) => {
@@ -16,5 +16,13 @@ exports.addProfile = (req, res) => {
   // styles: '1246' concatted ids of styles for this user
   // save this to DB
   console.log('profile', req.body);
-  res.send('login');
+  const accountType = req.body.accountType;
+  delete req.body.accountType;
+  db[accountType]
+    .create(req.body)
+    .then((data) => {
+      console.log(data);
+      res.send('login');
+    })
+    .catch(err => console.log(err));
 };
