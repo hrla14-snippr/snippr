@@ -40,6 +40,7 @@ class BarberDashboard extends Component {
             </code></Col>
           </Row>
         </Grid>
+        <div className="chat-svg" />
         <div className="snyppr-footer" />
       </div>
     );
