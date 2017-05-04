@@ -28,4 +28,8 @@ db.Snyppr.destroy({ where: {} })
   .then(data => console.log('bulk created', data))
   .then(() => db.Style.findAll())
   .then(data => console.log('findall styles', data))
+  .then(() => db.Snyppr.bulkCreate(StylesSeed.SNYPPRS))
+  .then(data => console.log('bulk created', data))
+  .then(() => db.Snyppr.findAll())
+  .then(data => console.log('findall barbers', data))
   .catch(err => console.log('error seeding db', err));
