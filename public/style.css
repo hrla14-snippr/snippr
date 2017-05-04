@@ -2,6 +2,10 @@ body{
     margin: 0;
 }
 
+.clientDashContainer {
+  margin: 0;  
+}
+
 .landing-page{
     background-image: url('/public/assets/snyp.jpeg');
     background-size: cover;
@@ -115,8 +119,17 @@ body{
 }
 
 .snyppr-menu {
-  height: 170px;
-  background-color: black;
+    height: 100px;
+    background-color: black;
+}
+
+.snyppr-footer {
+    height: 30px;
+    background-color: black;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
 }
 
 .login{

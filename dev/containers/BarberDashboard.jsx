@@ -40,6 +40,7 @@ class BarberDashboard extends Component {
             </code></Col>
           </Row>
         </Grid>
+        <div className="snyppr-footer" />
       </div>
     );
   }
