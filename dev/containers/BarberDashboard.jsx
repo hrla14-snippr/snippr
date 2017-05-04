@@ -15,7 +15,8 @@ class BarberDashboard extends Component {
           <Row className="show-grid">
             <Col xs={6} md={4}><code>
               <Image className="snyppr-img" src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="small" shape="circular" />
-              <List className="snyppr-list" selection verticalAlign="middle">
+              <List size="small" selection verticalAlign="middle">
+
                 <List.Item>
                   <List.Content>
                     <List.Header>Home</List.Header>
@@ -39,8 +40,8 @@ class BarberDashboard extends Component {
               </List>
             </code></Col>
           </Row>
+          <img alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg" />
         </Grid>
-        <div className="chat-svg" />
         <div className="snyppr-footer" />
       </div>
     );

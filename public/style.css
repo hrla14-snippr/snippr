@@ -198,5 +198,6 @@ body{
 }
 
 .chat-svg {
-    background: url('/public/assets/speech-bubble.svg');
+    width: 70px;
+    height: 70px;
 }
