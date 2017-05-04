@@ -33,7 +33,7 @@ class GoogleMaps extends Component {
         position: { lat: snyppr[1], lng: snyppr[2] },
         map,
       });
-      let contentString = `<div onclick=console.log('hi') data-*=JSON.parse(${snyppr[0]}) id="content">  <div id="siteNotice">  </div> 
+      const contentString = `<div onclick=console.log('hi') data-*=JSON.parse(${snyppr[0]}) id="content">  <div id="siteNotice">  </div> 
         <h1 id="firstHeading" class="firstHeading">${snyppr[0].fname}</h1> 
         <image wrapped size="small" src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png" height="85" width="85"/>' 
         <div id="bodyContent">  <h2>${snyppr[0].lname}</h2>  </div>`;
