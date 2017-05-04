@@ -26,14 +26,14 @@ class GoogleMaps extends Component {
   setMarkers(map) {
     console.log(this.props, 'inside of set markers');
     const maps = this.props.google.maps;
-    _.each(this.props.barbers, (barber) => {
+    _.each(this.props.snypprs, (snyppr) => {
       const marker = new maps.Marker({
-        position: { lat: barber[1], lng: barber[2] },
+        position: { lat: snyppr[1], lng: snyppr[2] },
         map,
       });
       const cardContent = `<div class='card-content'>
       <img src='https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg'>
-      <div>${barber[0]}.fname ${barber[0].lname}</div>
+      <div>${snyppr[0]}.fname ${snyppr[0].lname}</div>
       </div>`;
       const infoWindow = new maps.InfoWindow({
         cardContent,
@@ -76,12 +76,12 @@ class GoogleMaps extends Component {
 }
 
 const mapStateToProps = state => (
-  { barbers: state.nearbyBarbers }
+  { snypprs: state.nearbySnypprs }
 );
 
 GoogleMaps.propTypes = {
   google: PropTypes.shape.isRequired,
-  barbers: PropTypes.arrayOf.isRequired,
+  snypprs: PropTypes.arrayOf.isRequired,
   zoom: PropTypes.shape.isRequired,
   initialCenter: PropTypes.number.isRequired,
 };
