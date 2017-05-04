@@ -82,6 +82,7 @@ class ClientDashboard extends Component {
             </code></Col>
           </Row>
         </Grid>
+        <div className="snyp-footer" />
       </div>
     );
   }

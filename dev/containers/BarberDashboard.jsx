@@ -10,7 +10,7 @@ class BarberDashboard extends Component {
   render() {
     return (
       <div>
-        <nav className="snyppr-menu" />
+        <nav className="snyp-menu" />
         <Grid>
           <Row className="show-grid">
             <Col xs={6} md={4}><code>
@@ -42,7 +42,7 @@ class BarberDashboard extends Component {
           </Row>
           <img alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg" />
         </Grid>
-        <div className="snyppr-footer" />
+        <div className="snyp-footer" />
       </div>
     );
   }
