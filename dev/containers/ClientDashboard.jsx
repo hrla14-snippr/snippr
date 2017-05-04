@@ -76,8 +76,8 @@ class ClientDashboard extends Component {
                     <List.Header>Payment</List.Header>
                   </List.Content>
                 </List.Item>
-                <List.Item>
-                  <List.Content onClick={this.props.logout}>
+                <List.Item href="#" onClick={this.props.logout}>
+                  <List.Content>
                     <List.Header>Log Out</List.Header>
                   </List.Content>
                 </List.Item>
