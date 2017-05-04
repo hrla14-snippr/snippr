@@ -39,7 +39,7 @@ class ClientDashboard extends Component {
       });
   }
   changeSnyppr(currentSnyppr) {
-    console.log('changing snyprr', currentSnyppr)
+    console.log('changing snyprr', currentSnyppr);
     this.setState({ currentSnyppr });
   }
   render() {
