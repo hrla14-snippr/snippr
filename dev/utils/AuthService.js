@@ -17,8 +17,8 @@ export default class AuthService extends EventEmitter {
         placeholder: 'Choose an account type',
         prefill,
         options: [
-          { value: 'snyppr', label: 'Snyppr' },
-          { value: 'snypee', label: 'Snypee' },
+          { value: 'Snyppr', label: 'Snyppr' },
+          { value: 'Snypee', label: 'Snypee' },
         ],
       }],
     });
