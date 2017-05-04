@@ -18,9 +18,9 @@ class GoogleMaps extends Component {
   }
   componentDidMount() {
     this.loadMap();
+    console.log(this.state.test);
   }
   componentWillReceiveProps() {
-    console.log('hhahaha');
     this.setState({ currentLocation: this.props.clientAddress });
   }
   componentDidUpdate() {
@@ -28,24 +28,27 @@ class GoogleMaps extends Component {
   }
   setMarkers(map) {
     const maps = this.props.google.maps;
-    _.each(this.props.snypprs.data, (snyppr) => {
+    _.each(this.props.snypprs.data, (snyppr, idx) => {
       const marker = new maps.Marker({
         position: { lat: snyppr[1], lng: snyppr[2] },
         map,
       });
-      const contentString = `<div onclick=console.log('hi') data-*=JSON.parse(${snyppr[0]}) id="content"> 
-        <h1 class="modalname">${snyppr[0].fname}   ${snyppr[0].lname}</h1> 
+      // data-*=JSON.parse(${snyppr[0]})
+      console.log(snyppr[0])
+      const logger = () => { console.log(snyppr[0]) }
+      const contentString = `<div onclick= id=content${idx}> 
+        <h1 class="modalname">${snyppr[0].fname} ${snyppr[0].lname}</h1> 
         <div class="imagehold"><image wrapped size="small" class="modalimg" src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png" height="65" width="65"/></div>
         <div><h3 class="bodyContent">This is where ratings will go</h3></div></div>`;
       const infoWindow = new maps.InfoWindow({
         content: contentString,
       });
+      infoWindow.addListener('click', (e) => {
+        console.log(e, 'all the info i need rightchea');
+      });
       marker.addListener('click', (e) => {
         console.log(e, 'console log marker add listener');
         infoWindow.open(map, marker);
-      });
-      infoWindow.addListener('click', (e) => {
-        console.log(e, 'all the info i need rightchea');
       });
     });
   }
