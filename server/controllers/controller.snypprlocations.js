@@ -23,7 +23,7 @@ exports.fetchSnypprs = (req, res) => {
           .then((coords) => {
             dist = distFinder(userCoord.lat, userCoord.lng, coords.lat, coords.lng);
             if (dist < 20) {
-              closeSnypprs.push(snyppr.dataValues);
+              closeSnypprs.push([snyppr.dataValues, coords.lat, coords.lng]);
             }
           })
           .catch((err) => {
