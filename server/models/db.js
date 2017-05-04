@@ -26,10 +26,10 @@ const Snyppr = db.define('snyppr', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  s3url: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
+  // s3url: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  // },
 }, {
   timestamps: false,
 });
@@ -53,10 +53,10 @@ const Snypee = db.define('snypee', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  s3url: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
+  // s3url: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  // },
 }, {
   timestamps: false,
 });

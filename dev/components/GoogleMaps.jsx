@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import _ from 'lodash';
 
 class GoogleMaps extends Component {
@@ -94,4 +93,4 @@ GoogleMaps.defaultProps = {
   },
 };
 
-export default connect(mapStateToProps)(GoogleMaps);
+export default GoogleMaps;
