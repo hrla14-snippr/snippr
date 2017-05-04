@@ -24,5 +24,5 @@ exports.addProfile = (req, res) => {
       console.log(data);
       res.send('login');
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log('error creating profile', err.errors));
 };
