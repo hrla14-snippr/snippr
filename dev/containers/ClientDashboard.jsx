@@ -48,6 +48,7 @@ class ClientDashboard extends Component {
   render() {
     console.log('client dashboards state ', this.state);
     return (
+<<<<<<< HEAD
       <div className="dashboard">
         <div className="clientheader">
           <h1 className="clientheadline">Snyppr</h1>
@@ -90,6 +91,66 @@ class ClientDashboard extends Component {
           <span className="footerdet">About Us</span>
           <span className="footerdet">Become Snyppr</span>
         </div>
+=======
+      <div>
+        <Menu pointing secondary>
+          <Menu.Item name="home" />
+          <Menu.Item name="messages" />
+          <Menu.Menu position="right">
+            <Menu.Item name="logout" onClick={this.props.logout} />
+          </Menu.Menu>
+        </Menu>
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={6} md={4}><code>
+              <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="small" shape="circular" />
+              Hi Ebrima
+              <List>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Home</List.Header>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Profile</List.Header>
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Content>
+                    <List.Header>Payment</List.Header>
+                  </List.Content>
+                </List.Item>
+                <List.Item href="#" onClick={this.props.logout}>
+                  <List.Content>
+                    <List.Header>Log Out</List.Header>
+                  </List.Content>
+                </List.Item>
+              </List>
+            </code></Col>
+            <Col xs={12} md={8}><code>
+              <GoogleMaps
+                clientAddress={this.state.clientConverted}
+                snypprs={this.state.nearbySnypprs} google={window.google}
+              />
+              <StripeCheckout
+                token={this.onToken}
+                stripeKey="pk_test_IhZuZuB7uOy8VF5pg4XA54Df"
+                name="Three Comma Co."
+                description="Big Data Stuff"
+                image="https://www.vidhub.co/assets/logos/vidhub-icon-2e5c629f64ced5598a56387d4e3d0c7c.png"
+                ComponentClass="div"
+                panelLabel="Give Money"
+                amount={1000000}
+                currency="USD"
+                locale="us"
+                email="info@vidhub.co"
+              />
+            </code></Col>
+          </Row>
+        </Grid>
+        <div className="snyp-footer" />
+>>>>>>> added stripe pay button on client page & initial barber db setup
       </div>
     );
   }
