@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Menu, Image, List } from 'semantic-ui-react';
 import GoogleMaps from '../components/GoogleMaps';
+import SnypprList from '../components/SnypprList';
 
 const URL = 'http://localhost:3000/nearbySnypprs';
 const GMAPURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
@@ -15,7 +16,9 @@ class ClientDashboard extends Component {
       nearbySnypprs: [],
       clientAddress: this.props.profile.address,
       clientConverted: '',
+      currentSnyppr: {},
     };
+    this.changeSnyppr = this.changeSnyppr.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +34,6 @@ class ClientDashboard extends Component {
       .then(() => {
         axios.get(`${GMAPURL}${this.state.clientAddress}`)
           .then((results) => {
-            console.log('addresses', results);
             this.setState({ clientConverted: results.data.results[0].geometry.location });
           });
       })
@@ -39,7 +41,12 @@ class ClientDashboard extends Component {
         console.log('error fucked up ', err);
       });
   }
+  changeSnyppr(currentSnyppr) {
+    console.log('changing snyprr', currentSnyppr)
+    this.setState({ currentSnyppr });
+  }
   render() {
+    console.log('client dashboards state ', this.state);
     return (
       <div>
         <Menu pointing secondary>
@@ -82,6 +89,7 @@ class ClientDashboard extends Component {
                 clientAddress={this.state.clientConverted}
                 snypprs={this.state.nearbySnypprs} google={window.google}
               />
+              <SnypprList changeSnyppr={this.changeSnyppr} snypprs={this.state.nearbySnypprs} />
             </code></Col>
           </Row>
         </Grid>
