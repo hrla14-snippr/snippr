@@ -8,6 +8,7 @@ import UserInfoForm from '../components/UserInfoForm';
 import BarberDashboard from '../containers/BarberDashboard';
 import ClientDashboard from '../containers/ClientDashboard';
 
+
 class Routing extends Component {
   constructor(props) {
     super(props);
