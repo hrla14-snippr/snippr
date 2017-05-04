@@ -114,11 +114,9 @@ body{
     transition: 1s;
 }
 
-.snyppr-list {
-  width: 250px;
-  margin-left: 30px;
-  border: 1px solid black;
-
+.snyppr-menu {
+  height: 170px;
+  background-color: black;
 }
 
 .login{
