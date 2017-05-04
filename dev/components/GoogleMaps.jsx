@@ -8,8 +8,8 @@ class GoogleMaps extends Component {
     super(props);
     this.state = {
       currentLocation: {
-        lat: null,
-        lng: null,
+        lat: props.clientAddress.lat,
+        lng: props.clientAddress.lat,
       },
     };
 
@@ -19,36 +19,46 @@ class GoogleMaps extends Component {
   componentDidMount() {
     this.loadMap();
   }
+  componentWillReceiveProps() {
+    console.log('hhahaha');
+    this.setState({ currentLocation: this.props.clientAddress });
+  }
   componentDidUpdate() {
     this.loadMap();
   }
   setMarkers(map) {
-    console.log(this.props, 'inside of set markers');
     const maps = this.props.google.maps;
-    _.each(this.props.snypprs, (snyppr) => {
+    _.each(this.props.snypprs.data, (snyppr) => {
       const marker = new maps.Marker({
         position: { lat: snyppr[1], lng: snyppr[2] },
         map,
       });
-      const cardContent = `<div class='card-content'>
-      <img src='https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg'>
-      <div>${snyppr[0]}.fname ${snyppr[0].lname}</div>
-      </div>`;
+      let contentString = `<div onclick=console.log('hi') data-*=JSON.parse(${snyppr[0]}) id="content">  <div id="siteNotice">  </div> 
+        <h1 id="firstHeading" class="firstHeading">${snyppr[0].fname}</h1> 
+        <image wrapped size="small" src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png" height="85" width="85"/>' 
+        <div id="bodyContent">  <h2>${snyppr[0].lname}</h2>  </div>`;
       const infoWindow = new maps.InfoWindow({
-        cardContent,
+        content: contentString,
       });
-      marker.addListener('click', () => {
+      marker.addListener('click', (e) => {
+        console.log(e, 'console log marker add listener');
         infoWindow.open(map, marker);
+      });
+      infoWindow.addListener('click', (e) => {
+        console.log(e, 'all the info i need rightchea');
       });
     });
   }
   loadMap() {
+    console.log('we in chea for the fifth time in fuckin loadmap');
+    const homeUrl = 'https://cdn2.iconfinder.com/data/icons/bazza-maps-and-navigation/60/02_-_Home_map_marker-128.png';
     if (this.props && this.props.google) {
       const { google } = this.props;
       const maps = google.maps;
       const mapRef = this.refs.map;
       const node = ReactDOM.findDOMNode(mapRef);
       const { initialCenter, zoom } = this.props;
+      console.log(this.state.currentLocation.lat, 'this is currentlat boy', 'this is current long too ', this.state.currentLocation.lng);
       const { lat, lng } =
         !this.state.currentLocation.lat || !this.state.currentLocation.lng ?
           initialCenter : this.state.currentLocation;
@@ -58,16 +68,26 @@ class GoogleMaps extends Component {
         zoom,
       });
       this.map = new maps.Map(node, mapConfig);
-      const home = new maps.Marker({
+      const home = {
+        url: homeUrl,
+        scaledSize: new google.maps.Size(40, 40),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(20, 20),
+      };
+      const homeMarker = new maps.Marker({
         map: this.map,
+        draggable: false,
+        animation: maps.Animation.DROP,
         position: center,
+        icon: home,
+        title: 'Your Location',
       });
-      home.setMap(this.map);
+      homeMarker.setMap(this.map);
       this.setMarkers(this.map);
     }
   }
   render() {
-    console.log('these are the barbs inside of maps comp', this.props);
+    console.log('in google maps ', this.props.clientAddress.lat);
     return (
       <div className="googlemap" ref="map" />
     );
@@ -79,10 +99,11 @@ GoogleMaps.propTypes = {
   snypprs: PropTypes.arrayOf.isRequired,
   zoom: PropTypes.shape.isRequired,
   initialCenter: PropTypes.number.isRequired,
+  clientAddress: PropTypes.shape.isRequired,
 };
 
 GoogleMaps.defaultProps = {
-  zoom: 10,
+  zoom: 11,
   initialCenter: {
     lat: 34.049963,
     lng: -118.300709,

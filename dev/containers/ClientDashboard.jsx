@@ -6,6 +6,7 @@ import { Menu, Image, List } from 'semantic-ui-react';
 import GoogleMaps from '../components/GoogleMaps';
 
 const URL = 'http://localhost:3000/nearbySnypprs';
+const GMAPURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 
 class ClientDashboard extends Component {
   constructor(props) {
@@ -13,17 +14,23 @@ class ClientDashboard extends Component {
     this.state = {
       nearbySnypprs: [],
       clientAddress: '209 S Mednik Ave, Los Angeles, CA 90022',
+      clientConverted: '',
     };
   }
   componentDidMount() {
     this.fetchSnypprs(this.state.clientAddress);
   }
   fetchSnypprs(address) {
-    console.log('we at least hit hor');
     axios.get(`${URL}/${address}`)
       .then((results) => {
-        console.log(results, 'results came back');
         this.setState({ nearbySnypprs: results });
+      })
+      .then(() => {
+        axios.get(`${GMAPURL}${this.state.clientAddress}`)
+          .then((results) => {
+            console.log(results.data.results[0].geometry.location, 'hi hi hi hi ');
+            this.setState({ clientConverted: results.data.results[0].geometry.location });
+          });
       })
       .catch((err) => {
         console.log('error fucked up ', err);
@@ -68,7 +75,10 @@ class ClientDashboard extends Component {
               </List>
             </code></Col>
             <Col xs={12} md={8}><code>
-              <GoogleMaps google={window.google} />
+              <GoogleMaps
+                clientAddress={this.state.clientConverted}
+                snypprs={this.state.nearbySnypprs} google={window.google}
+              />
             </code></Col>
           </Row>
         </Grid>
