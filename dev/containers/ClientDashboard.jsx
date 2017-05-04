@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import StripeCheckout from 'react-stripe-checkout';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
 
@@ -21,7 +22,14 @@ class ClientDashboard extends Component {
     console.log('profile in dash', this.props.profile);
     this.fetchSnypprs(this.state.clientAddress);
   }
-
+  onToken(token) {
+    console.log('token is', { token, snyppr: 'acct_1AFZLMC3YHU2IY7a' });
+    axios.post('/transaction', { token, snyppr: 'acct_1AFZLMC3YHU2IY7a' })
+     .then((response) => {
+       console.log('data is', response);
+       alert('We are in business');
+     });
+  }
   fetchSnypprs(address) {
     axios.get(`${URL}/${address}`)
       .then((results) => {
@@ -64,6 +72,18 @@ class ClientDashboard extends Component {
             />
             <SnypprList snypprs={this.state.nearbySnypprs} />
           </div>
+          <StripeCheckout
+            token={this.onToken}
+            stripeKey="pk_test_IhZuZuB7uOy8VF5pg4XA54Df"
+            name="Barber"
+            description="Cut"
+            ComponentClass="div"
+            panelLabel="Pay Snyppr"
+            amount={1000000}
+            currency="USD"
+            locale="us"
+            email="info@vidhub.co"
+          />
         </div>
         <div className="clientfooter" >
           <span className="footerdet">Refer Friends</span>
