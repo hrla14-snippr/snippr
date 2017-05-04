@@ -60,10 +60,13 @@ class Routing extends Component {
     })
       .then(({ data }) => {
         // TODO: refactor to redux store
-        context.setState({
-          profile: data,
-          hasProfile: true,
-        });
+        console.log('verifyprofile res', data);
+        if (data) {
+          context.setState({
+            profile: data,
+            hasProfile: true,
+          });
+        }
       })
       .catch(e => console.log('error checkuserexist', e));
   }
@@ -87,7 +90,7 @@ class Routing extends Component {
       const accountType = this.state.auth.getAccountType();
       return accountType === 'snyppr'
         ? <BarberDashboard />
-        : <ClientDashboard />;
+        : <ClientDashboard profile={this.state.profile} logout={this.state.auth.logout} />;
     }
       // if not, send to /newUser
     return <Redirect to="/newUser" />;
