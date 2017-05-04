@@ -88,7 +88,7 @@ class Routing extends Component {
     // do call to db and check if authId exists
     if (this.state.hasProfile) {
       const accountType = this.state.auth.getAccountType();
-      return accountType === 'snyppr'
+      return accountType === 'Snyppr'
         ? <BarberDashboard />
         : <ClientDashboard profile={this.state.profile} logout={this.state.auth.logout} />;
     }
