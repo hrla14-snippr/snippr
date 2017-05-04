@@ -74,10 +74,6 @@ class GoogleMaps extends Component {
   }
 }
 
-const mapStateToProps = state => (
-  { snypprs: state.nearbySnypprs }
-);
-
 GoogleMaps.propTypes = {
   google: PropTypes.shape.isRequired,
   snypprs: PropTypes.arrayOf.isRequired,

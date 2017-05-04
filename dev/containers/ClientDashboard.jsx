@@ -19,7 +19,7 @@ class ClientDashboard extends Component {
     this.fetchSnypprs(this.state.clientAddress);
   }
   fetchSnypprs(address) {
-    console.log('we at least hit hor')
+    console.log('we at least hit hor');
     axios.get(`${URL}/${address}`)
       .then((results) => {
         console.log(results, 'results came back');
