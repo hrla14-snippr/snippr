@@ -39,72 +39,8 @@ const SnypprStripe = db.define('snypprstripe', {
     allowNull: false,
     primaryKey: true,
   },
-  object: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  business_logo: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  business_name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  business_url: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  charges_enabled: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  country: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  default_currency: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  details_submitted: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  display_name: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  managed: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  payouts_enabled: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  statement_descriptor: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  support_email: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  support_phone: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  timezone: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
 }, {
-  timestamps: false,
+  timestamps: true,
 });
 const Snypee = db.define('snypee', {
   id: {
