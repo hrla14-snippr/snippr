@@ -23,10 +23,11 @@ io.on('connection', (socket) => {
   console.log('sockets connected');
   socket.on('join', (data) => {
     console.log(data);
-    socket.join(data.email);
+    socket.join(data.name);
   });
   socket.on('private-message', (data) => {
-    io.sockets.in(data.email).emit('private-message', { msg: data });
+    console.log('message came thru', data);
+    io.sockets.in(data.name).emit('private-message', { msg: data });
   });
   socket.on('disconnect', () => {
     console.log('user disconnected');
