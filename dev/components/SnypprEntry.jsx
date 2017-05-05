@@ -22,7 +22,7 @@ const SnypprEntry = (props) => {
 
 SnypprEntry.propTypes = {
   snyppr: PropTypes.shape.isRequired,
-  changeSnyppr: PropTypes.func.isRequired,
+  ChangeSnyppr: PropTypes.func.isRequired,
 };
 
 

@@ -16,9 +16,7 @@ class ClientDashboard extends Component {
       nearbySnypprs: [],
       clientAddress: this.props.profile.address,
       clientConverted: '',
-      currentSnyppr: {},
     };
-    this.changeSnyppr = this.changeSnyppr.bind(this);
   }
 
   componentDidMount() {
@@ -40,10 +38,6 @@ class ClientDashboard extends Component {
       .catch((err) => {
         console.log('error fucked up ', err);
       });
-  }
-  changeSnyppr(currentSnyppr) {
-    console.log('changing snyprr', currentSnyppr);
-    this.setState({ currentSnyppr });
   }
   render() {
     console.log('client dashboards state ', this.state);
@@ -89,7 +83,7 @@ class ClientDashboard extends Component {
                 clientAddress={this.state.clientConverted}
                 snypprs={this.state.nearbySnypprs} google={window.google}
               />
-              <SnypprList changeSnyppr={this.changeSnyppr} snypprs={this.state.nearbySnypprs} />
+              <SnypprList snypprs={this.state.nearbySnypprs} />
             </code></Col>
           </Row>
         </Grid>
