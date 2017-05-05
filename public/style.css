@@ -302,12 +302,16 @@ modalimg{
     padding: 5%;
 }
 
-.dashboard-box{
+.dashboard-box, .profile-box{
     position: absolute;
     width: 80%;
     left: 10%;
     height: 80vh;
     top: 10vh;
+}
+
+.profile-box{
+    margin: 1em auto;
 }
 
 .navigation{
@@ -360,7 +364,7 @@ modalimg{
     left: 5%;
 }
 
-.dashboard{
+.dashboard, .profile{
     margin: 0;
     position: relative;
 }
