@@ -20,7 +20,6 @@ const SnypprList = (props) => {
 
 SnypprList.propTypes = {
   snypprs: PropTypes.shape.isRequired,
-  changeSnyppr: PropTypes.func.isRequired,
 };
 
 export default SnypprList;
