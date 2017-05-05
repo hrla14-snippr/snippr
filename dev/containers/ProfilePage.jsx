@@ -1,20 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const ProfilePage = props => (
   <div>
-    <h1>{props.fname} {props.lname}</h1>
-    <p>{props.address}</p>
+    <h1>{props.snyppr.fname} {props.snyppr.lname}</h1>
+    <p>{props.snyppr.address}</p>
     {/* Place Stripe Button Here*/}
   </div>
   )
 ;
 
 ProfilePage.propTypes = {
-  fname: PropTypes.string.isRequired,
-  lname: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
+  snyppr: PropTypes.shape.isRequired,
 };
 
-export default ProfilePage;
+const mapStateToProps = state => ({
+  snyppr: state.currentSnyppr,
+});
+
+export default connect(mapStateToProps)(ProfilePage);
 
