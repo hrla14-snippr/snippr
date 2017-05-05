@@ -21,6 +21,13 @@ export default class AuthService extends EventEmitter {
           { value: 'Snypee', label: 'Snypee' },
         ],
       }],
+      languageDictionary: {
+        title: 'Snyppr',
+      },
+      theme: {
+        logo: 'http://www.free-icons-download.net/images/scissor-logo-icon-77931.png',
+        primaryColor: 'mediumspringgreen',
+      },
     });
     this.history = history;
     // Add callback for lock `authenticated` event
