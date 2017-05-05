@@ -9,8 +9,8 @@ const SnypprEntry = (props) => {
   return (
     <Link to="/snypprProfile">
       <div onClick={() => props.ChangeSnyppr(props.snyppr)} className="snypprentry">
-        <div>
-          <image src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png" />
+        <div className="entryimg">
+          <img alt="placeholder image" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" height="50px" width="50px" />
         </div>
         <div>
           <h1 className="entryheader">{props.snyppr.fname} {props.snyppr.lname}</h1>
