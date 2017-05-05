@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ClientChat from './ClientChat';
 
 const ProfilePage = props => (
   <div>
@@ -8,6 +9,7 @@ const ProfilePage = props => (
     <p>{props.snyppr.address}</p>
     {/* Place Stripe Button Here*/}
     <button>Stripe</button>
+    <ClientChat name={`${props.snyppr.fname}${props.snyppr.lname}`} />
   </div>
   )
 ;
