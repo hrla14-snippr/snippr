@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Image, List } from 'semantic-ui-react';
+import PropType from 'prop-types';
 
 class BarberDashboard extends Component {
   constructor() {
@@ -34,7 +35,7 @@ class BarberDashboard extends Component {
                 </List.Item>
                 <List.Item>
                   <List.Content>
-                    <List.Header>Log Out</List.Header>
+                    <List.Header onClick={this.props.logout} >Log Out</List.Header>
                   </List.Content>
                 </List.Item>
               </List>
@@ -47,5 +48,9 @@ class BarberDashboard extends Component {
     );
   }
 }
+
+BarberDashboard.propTypes = {
+  logout: PropType.func.isRequired,
+};
 
 export default BarberDashboard;

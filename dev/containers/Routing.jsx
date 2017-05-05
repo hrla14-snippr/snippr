@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import AuthService from '../utils/AuthService';
+import ProfilePage from './ProfilePage';
 import LandingPage from './LandingPage';
 import UserInfoForm from '../components/UserInfoForm';
 import BarberDashboard from '../containers/BarberDashboard';
@@ -13,8 +14,9 @@ class Routing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, 'cb for prefill'),
+      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, 'prefill'),
       hasProfile: false,
+      stripeId: '',
       profile: {},
     };
     this.confirmLoggedIn = this.confirmLoggedIn.bind(this);
@@ -22,6 +24,7 @@ class Routing extends Component {
     this.renderDashboard = this.renderDashboard.bind(this);
     this.confirmHasProfile = this.confirmHasProfile.bind(this);
     this.checkUserExists = this.checkUserExists.bind(this);
+    this.renderProfile = this.renderProfile.bind(this);
   }
 
   componentDidMount() {
@@ -51,9 +54,24 @@ class Routing extends Component {
     this.props.history.push('/dashboard');
   }
 
+  // checkUserHasStripe() {
+  //   const context = this;
+
+  //   return axios.get('/stripeId')
+  //     .then(({ data }) => {
+  //       if (data) {
+  //         context.setState({
+  //           stripeId: data.stripeId,
+  //         });
+  //       }
+  //     })
+  //     .catch(e => console.log('stripe error', e));
+  // }
+
   checkUserExists() {
     const context = this;
 
+    // TODO: setup stripeId check
     axios.post('/verifyProfile', {
       id: this.state.auth.getAuthId(),
       accountType: this.state.auth.getAccountType(),
@@ -89,11 +107,17 @@ class Routing extends Component {
     if (this.state.hasProfile) {
       const accountType = this.state.auth.getAccountType();
       return accountType === 'Snyppr'
-        ? <BarberDashboard />
+        ? <BarberDashboard logout={this.state.auth.logout} />
         : <ClientDashboard profile={this.state.profile} logout={this.state.auth.logout} />;
     }
       // if not, send to /newUser
     return <Redirect to="/newUser" />;
+  }
+
+  renderProfile() {
+    return this.state.auth.loggedIn() && this.state.hasProfile
+      ? <ProfilePage />
+      : <Redirect to="/dashboard" />;
   }
 
   render() {
@@ -106,6 +130,7 @@ class Routing extends Component {
         </Route>
         <Route exact path="/dashboard" render={this.confirmLoggedIn} />
         <Route exact path="/newUser" render={this.confirmHasProfile} />
+        <Route exact path="/snypprProfile" render={this.renderProfile} />
       </Switch>
     );
   }
