@@ -33,7 +33,15 @@ const Snyppr = db.define('snyppr', {
 }, {
   timestamps: false,
 });
-
+const SnypprStripe = db.define('snypprstripe', {
+  id: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    primaryKey: true,
+  },
+}, {
+  timestamps: true,
+});
 const Snypee = db.define('snypee', {
   id: {
     type: Sequelize.STRING,
@@ -125,7 +133,7 @@ Snyppr.hasMany(Transaction);
 Snypee.hasMany(Transaction);
 Transaction.belongsTo(Snyppr);
 Transaction.belongsTo(Snypee);
-
+Snyppr.hasOne(SnypprStripe);
 const SnypprStyles = db.define('snypprStyles', {}, { timestamps: false });
 
 Style.belongsToMany(Snyppr, { through: SnypprStyles });
