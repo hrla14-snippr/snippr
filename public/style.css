@@ -373,6 +373,8 @@ modalimg{
     top:0;
     height: 45vh;
     width: 100%;
+    animation: fadein 2s;
+    transition: 2s;
 }
 
 .entryholder{
