@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Image, List } from 'semantic-ui-react';
 import PropType from 'prop-types';
+import BarberChat from './BarberChat';
 
 class BarberDashboard extends Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+
+    console.log('profile', props.profile);
+    this.state = {
+      name: `${props.profile.fname}${props.profile.lname}`,
+    };
   }
   render() {
     return (
@@ -42,6 +47,7 @@ class BarberDashboard extends Component {
             </code></Col>
           </Row>
           <img alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg" />
+          <BarberChat name={this.state.name} />
         </Grid>
         <div className="snyp-footer" />
       </div>
