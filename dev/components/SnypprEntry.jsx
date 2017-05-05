@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { ChangeSnyppr } from '../actions/ChangeSnyppr';
 
 const SnypprEntry = (props) => {
   console.log(props, 'this is snypprentry');
   return (
-    <div role="button" onClick={() => props.changeSnyppr(props.snyppr)} className="snypprentry">
+    <div
+      onClick={() => props.ChangeSnyppr(props.snyppr)} className="snypprentry"
+    >
       <div>
         <image src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png" />
       </div>
@@ -16,10 +20,10 @@ const SnypprEntry = (props) => {
   );
 };
 
-
 SnypprEntry.propTypes = {
   snyppr: PropTypes.shape.isRequired,
   changeSnyppr: PropTypes.func.isRequired,
 };
 
-export default SnypprEntry;
+
+export default connect(null, { ChangeSnyppr })(SnypprEntry);
