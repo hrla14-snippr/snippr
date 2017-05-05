@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
+import PropTypes from 'prop-types';
 
 const socket = io('http://localhost:3000');
 
@@ -10,17 +11,16 @@ const socket = io('http://localhost:3000');
 // for production we want to extrapolate barber's email an onclick event
 // and pass that email in as data so we know what room to join
 class ClientChat extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       term: '',
-      email: 'snypper@io.com',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
-    socket.emit('join', { email: this.state.email });
+    socket.emit('join', { name: this.props.name });
     socket.on('private-message', (data) => {
       console.log(data);
     });
@@ -30,7 +30,7 @@ class ClientChat extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    socket.emit('private-message', { email: this.state.email, msg: this.state.term });
+    socket.emit('private-message', { name: this.props.name, msg: this.state.term });
     this.setState({ term: '' });
   }
   render() {
@@ -42,7 +42,9 @@ class ClientChat extends Component {
   }
 }
 
-
+ClientChat.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 // going to need to grab barber's email from state, in order to do
 // that ill need to connect this component to the redux store
 export default ClientChat;

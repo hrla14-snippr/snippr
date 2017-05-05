@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Image, List } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+import PropType from 'prop-types';
+import BarberChat from './BarberChat';
 
 class BarberDashboard extends Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+
+    console.log('profile', props.profile);
+    this.state = {
+      name: `${props.profile.fname}${props.profile.lname}`,
+    };
   }
   render() {
     return (
@@ -35,12 +40,14 @@ class BarberDashboard extends Component {
                 </List.Item>
                 <List.Item onClick={this.props.logout}>
                   <List.Content>
-                    <List.Header>Log Out</List.Header>
+                    <List.Header onClick={this.props.logout} >Log Out</List.Header>
                   </List.Content>
                 </List.Item>
               </List>
             </code></Col>
           </Row>
+          <img alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg" />
+          <BarberChat name={this.state.name} />
         </Grid>
         <div className="snyp-footer" />
       </div>
@@ -49,7 +56,8 @@ class BarberDashboard extends Component {
 }
 
 BarberDashboard.propTypes = {
-  logout: PropTypes.func.isRequired,
+  logout: PropType.func.isRequired,
+  profile: PropType.string.isRequired,
 };
 
 export default BarberDashboard;

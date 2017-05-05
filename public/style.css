@@ -194,7 +194,7 @@ body{
 
 .googlemap{
     width: 700px;
-    height: 230px;
+    height: 200px;
 }
 
 .modalname{
@@ -224,4 +224,25 @@ modalimg{
 .chat-svg {
     width: 70px;
     height: 70px;
+}
+.entryholder{
+    overflow: auto;
+    height: 200px;
+    border: 2px solid black;
+    width: 95%;
+}
+
+.snypprentry{
+    width: 100%;
+    border-radius: 5px;
+    height: 100px;
+    border-bottom: 2px lightgray solid;
+    color: black;
+    font-family: "Brandon Grotesque";
+    text-align: center;
+    background-color: aliceblue;
+}
+
+.entryname{
+    margin-bottom: 1%;
 }
