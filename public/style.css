@@ -302,6 +302,10 @@ modalimg{
     top: 10vh;
 }
 
+.profile-box{
+    margin: 1em auto;
+}
+
 .navigation{
     position: absolute;
     width: 20%;
