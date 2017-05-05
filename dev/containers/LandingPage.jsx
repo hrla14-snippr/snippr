@@ -1,30 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import AuthService from '../utils/AuthService';
-import { SetAccountType } from '../actions/SetAccountType';
 
 class LandingPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      accountType: props.accountType,
+      accountType: '',
       auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, props.accountType),
     };
 
     this.typedSignup = this.typedSignup.bind(this);
   }
 
-  typedSignup(e) {
-    // TODO: Fix to work every time
-    this.props.SetAccountType(e);
-    this.setState({
-      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', this.props.history, this.props.accountType),
-    });
-
+  componentDidUpdate() {
     this.state.auth.signup();
+  }
+
+  typedSignup(e) {
+    this.setState({
+      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', this.props.history, e.target.value),
+    });
   }
 
   render() {
@@ -53,14 +51,9 @@ class LandingPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  accountType: state.AccountType,
-});
-
 LandingPage.propTypes = {
   accountType: PropTypes.string.isRequired,
-  SetAccountType: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
-export default connect(mapStateToProps, { SetAccountType })(withRouter(LandingPage));
+export default withRouter(LandingPage);
