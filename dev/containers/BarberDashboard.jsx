@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Image, List } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 class BarberDashboard extends Component {
   constructor() {
@@ -10,7 +11,6 @@ class BarberDashboard extends Component {
   render() {
     return (
       <div>
-        {console.log('this props inside barber dashboard is ', this.props)}
         <nav className="snyp-menu" />
         <Grid>
           <Row className="show-grid">
@@ -33,7 +33,7 @@ class BarberDashboard extends Component {
                     <List.Header>Payment</List.Header>
                   </List.Content>
                 </List.Item>
-                <List.Item>
+                <List.Item onClick={this.props.logout}>
                   <List.Content>
                     <List.Header>Log Out</List.Header>
                   </List.Content>
@@ -41,12 +41,15 @@ class BarberDashboard extends Component {
               </List>
             </code></Col>
           </Row>
-          <img alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg" />
         </Grid>
         <div className="snyp-footer" />
       </div>
     );
   }
 }
+
+BarberDashboard.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
 
 export default BarberDashboard;

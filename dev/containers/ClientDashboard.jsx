@@ -42,13 +42,6 @@ class ClientDashboard extends Component {
   render() {
     return (
       <div>
-        {/* <Menu pointing secondary>
-          <Menu.Item name="home" />
-          <Menu.Item name="messages" />
-          <Menu.Menu position="right">
-            <Menu.Item name="logout" onClick={this.props.logout} />
-          </Menu.Menu>
-        </Menu>*/}
         <nav className="snyp-menu">
           <Button onClick={this.props.logout}>Log Out</Button>
         </nav>
