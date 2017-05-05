@@ -4,8 +4,12 @@ const db = require('../models/db');
 exports.verifyHasProfile = (req, res) => {
   const accountType = req.body.accountType;
   delete req.body.accountType;
+  const options = accountType === 'Snyppr'
+    ? { include: [db.SnypprStripe] }
+    : {};
+  options.where = { id: req.body.id };
   db[accountType]
-    .find({ where: { id: req.body.id } })
+    .find(options)
     .then((data) => {
       res.json(data);
     })
