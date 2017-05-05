@@ -119,7 +119,7 @@ body{
 }
 
 .snyp-menu {
-    height: 100px;
+    height: 60px;
     background-color: black;
 }
 
@@ -194,7 +194,7 @@ body{
 
 .googlemap{
     width: 700px;
-    height: 400px;
+    height: 230px;
 }
 
 .modalname{

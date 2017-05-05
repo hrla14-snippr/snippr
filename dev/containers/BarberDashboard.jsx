@@ -10,6 +10,7 @@ class BarberDashboard extends Component {
   render() {
     return (
       <div>
+        {console.log('this props inside barber dashboard is ', this.props)}
         <nav className="snyp-menu" />
         <Grid>
           <Row className="show-grid">

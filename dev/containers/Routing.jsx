@@ -89,7 +89,7 @@ class Routing extends Component {
     if (this.state.hasProfile) {
       const accountType = this.state.auth.getAccountType();
       return accountType === 'Snyppr'
-        ? <BarberDashboard />
+        ? <BarberDashboard profile={this.state.profile} logout={this.state.auth.logout} />
         : <ClientDashboard profile={this.state.profile} logout={this.state.auth.logout} />;
     }
       // if not, send to /newUser

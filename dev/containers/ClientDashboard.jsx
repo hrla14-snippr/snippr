@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { Menu, Image, List } from 'semantic-ui-react';
+import { Button, Image, List } from 'semantic-ui-react';
 import GoogleMaps from '../components/GoogleMaps';
 
 const URL = 'http://localhost:3000/nearbySnypprs';
@@ -42,18 +42,22 @@ class ClientDashboard extends Component {
   render() {
     return (
       <div>
-        <Menu pointing secondary>
+        {/* <Menu pointing secondary>
           <Menu.Item name="home" />
           <Menu.Item name="messages" />
           <Menu.Menu position="right">
             <Menu.Item name="logout" onClick={this.props.logout} />
           </Menu.Menu>
-        </Menu>
+        </Menu>*/}
+        <nav className="snyp-menu">
+          <Button onClick={this.props.logout}>Log Out</Button>
+        </nav>
+        ClientDashboard
+
         <Grid>
           <Row className="show-grid">
             <Col xs={6} md={4}><code>
-              <Image src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" size="small" shape="circular" />
-              Hi Ebrima
+              <Image width="150" height="100" src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" />
               <List>
                 <List.Item>
                   <List.Content>
