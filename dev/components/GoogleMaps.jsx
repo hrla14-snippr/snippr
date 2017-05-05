@@ -83,7 +83,7 @@ class GoogleMaps extends Component {
   }
   render() {
     return (
-      <div className="googlemap" ref="map" /> // eslint-disable-line react/no-string-refs
+      <div className="gmap" ref="map" /> // eslint-disable-line react/no-string-refs
     );
   }
 }
