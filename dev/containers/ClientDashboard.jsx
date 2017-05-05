@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import StripeCheckout from 'react-stripe-checkout';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
 
@@ -21,7 +22,13 @@ class ClientDashboard extends Component {
     console.log('profile in dash', this.props.profile);
     this.fetchSnypprs(this.state.clientAddress);
   }
-
+  onToken(token) {
+    console.log('token is', { token, snyppr: 'acct_1AFZLMC3YHU2IY7a' });
+    axios.post('/transaction', { token, snyppr: 'acct_1AFZLMC3YHU2IY7a' })
+     .then((response) => {
+       console.log('data is', response);
+     });
+  }
   fetchSnypprs(address) {
     axios.get(`${URL}/${address}`)
       .then((results) => {
@@ -54,7 +61,7 @@ class ClientDashboard extends Component {
               <div className="navmenu-items">Payment</div>
               <div className="navmenu-items">favorites</div>
               <div className="navmenu-items">reviews</div>
-              <div onClick={this.props.logout} className="navmenu-items">logout</div>
+              <div href="#" className="navmenu-items">logout</div>
             </div>
           </div>
           <div className="right-box">
@@ -64,6 +71,24 @@ class ClientDashboard extends Component {
             />
             <SnypprList snypprs={this.state.nearbySnypprs} />
           </div>
+          {/* stripeKey=test api key
+              name= name of barber
+              description=type of cut
+              email=user's email address
+              amount=amount of haircut
+             */}
+          <StripeCheckout
+            token={this.onToken}
+            stripeKey="pk_test_IhZuZuB7uOy8VF5pg4XA54Df"
+            name="Barber"
+            description="Cut"
+            ComponentClass="div"
+            panelLabel="Pay Snyppr"
+            amount={1000000}
+            currency="USD"
+            locale="us"
+            email="insfo@vidhub.co"
+          />
         </div>
         <div className="clientfooter" >
           <span className="footerdet">Refer Friends</span>
@@ -77,7 +102,8 @@ class ClientDashboard extends Component {
 
 ClientDashboard.propTypes = {
   profile: PropTypes.shape.isRequired,
-  logout: PropTypes.func.isRequired,
+  //cant put a onclick to div tag for logout
+//  logout: PropTypes.func.isRequired,
 };
 
 export default ClientDashboard;
