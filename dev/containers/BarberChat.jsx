@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
+import PropTypes from 'prop-types';
 
 const socket = io('http://localhost:3000');
 
@@ -41,7 +42,9 @@ class BarberChat extends Component {
   }
 }
 
-
+BarberChat.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 
 export default BarberChat;

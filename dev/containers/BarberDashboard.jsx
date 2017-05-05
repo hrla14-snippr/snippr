@@ -57,6 +57,7 @@ class BarberDashboard extends Component {
 
 BarberDashboard.propTypes = {
   logout: PropType.func.isRequired,
+  profile: PropType.string.isRequired,
 };
 
 export default BarberDashboard;
