@@ -46,6 +46,8 @@ class ClientDashboard extends Component {
   }
   render() {
     console.log('client dashboards state ', this.state);
+
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <div className="dashboard">
         <div className="clientheader">
@@ -61,7 +63,7 @@ class ClientDashboard extends Component {
               <div className="navmenu-items">Payment</div>
               <div className="navmenu-items">favorites</div>
               <div className="navmenu-items">reviews</div>
-              <div href="#" className="navmenu-items">logout</div>
+              <div onClick={this.props.logout} className="navmenu-items">logout</div>
             </div>
           </div>
           <div className="right-box">
@@ -102,8 +104,7 @@ class ClientDashboard extends Component {
 
 ClientDashboard.propTypes = {
   profile: PropTypes.shape.isRequired,
-  //cant put a onclick to div tag for logout
-//  logout: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default ClientDashboard;
