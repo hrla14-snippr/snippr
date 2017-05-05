@@ -47,7 +47,7 @@ class ClientDashboard extends Component {
         <div className="dashboard-box">
           <div className="navigation">
             <div className="picturebox">
-              <img className="userpic" alt="placeholderimage" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" height="100" width="100" />
+              <img className="userpic" alt="placeholderimage" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" />
             </div>
             <div className="navmenu">
               <div className="navmenu-items">Profile</div>
