@@ -232,7 +232,8 @@ modalimg{
     border-bottom: 2px solid lightgray;
     background-color: rgba(255, 255, 255, 0.5);
     animation: fadein 2s;
-    transition: 1s
+    transition: 1s;
+    position: relative;
 }
 
 .snypprentry:hover{
@@ -240,6 +241,13 @@ modalimg{
     background-color: aliceblue;
 }
 
+.entryimg{
+    display: inline;
+    padding-right: 20px;
+    position: absolute;
+    left: 40px;
+    top: 15px;
+}
 
 .entryheader{
     font-size: 18px;
@@ -377,6 +385,8 @@ modalimg{
     top:0;
     height: 45vh;
     width: 100%;
+    animation: fadein 2s;
+    transition: 2s;
 }
 
 .entryholder{

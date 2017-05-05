@@ -15,14 +15,10 @@ class LandingPage extends Component {
     this.typedSignup = this.typedSignup.bind(this);
   }
 
-  componentDidUpdate() {
-    this.state.auth.signup();
-  }
-
   typedSignup(e) {
     this.setState({
       auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', this.props.history, e.target.value),
-    });
+    }, () => this.state.auth.signup());
   }
 
   render() {
