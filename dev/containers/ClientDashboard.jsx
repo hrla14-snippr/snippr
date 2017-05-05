@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Grid, Row, Col } from 'react-bootstrap';
-import { Button, Image, List } from 'semantic-ui-react';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
 
@@ -42,49 +40,36 @@ class ClientDashboard extends Component {
   render() {
     console.log('client dashboards state ', this.state);
     return (
-      <div>
-        <nav className="snyp-menu">
-          <Button onClick={this.props.logout}>Log Out</Button>
-        </nav>
-        ClientDashboard
-
-        <Grid>
-          <Row className="show-grid">
-            <Col xs={6} md={4}><code>
-              <Image width="150" height="100" src="https://d1w2poirtb3as9.cloudfront.net/4d3bab3df8c05d96ddf9.jpeg" />
-              <List>
-                <List.Item>
-                  <List.Content>
-                    <List.Header>Home</List.Header>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content>
-                    <List.Header>Profile</List.Header>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content>
-                    <List.Header>Payment</List.Header>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content onClick={this.props.logout}>
-                    <List.Header>Log Out</List.Header>
-                  </List.Content>
-                </List.Item>
-              </List>
-            </code></Col>
-            <Col xs={12} md={8}><code>
-              <GoogleMaps
-                clientAddress={this.state.clientConverted}
-                snypprs={this.state.nearbySnypprs} google={window.google}
-              />
-              <SnypprList snypprs={this.state.nearbySnypprs} />
-            </code></Col>
-          </Row>
-        </Grid>
-        <div className="snyp-footer" />
+      <div className="dashboard">
+        <div className="clientheader">
+          <h1 className="clientheadline">Snyppr</h1>
+        </div>
+        <div className="dashboard-box">
+          <div className="navigation">
+            <div className="picturebox">
+              <img className="userpic" alt="placeholderimage" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" height="100" width="100" />
+            </div>
+            <div className="navmenu">
+              <div className="navmenu-items">Profile</div>
+              <div className="navmenu-items">Payment</div>
+              <div className="navmenu-items">favorites</div>
+              <div className="navmenu-items">reviews</div>
+              <div onClick={this.props.logout} className="navmenu-items">logout</div>
+            </div>
+          </div>
+          <div className="right-box">
+            <GoogleMaps
+              clientAddress={this.state.clientConverted}
+              snypprs={this.state.nearbySnypprs} google={window.google}
+            />
+            <SnypprList snypprs={this.state.nearbySnypprs} />
+          </div>
+        </div>
+        <div className="clientfooter" >
+          <span className="footerdet">Refer Friends</span>
+          <span className="footerdet">About Us</span>
+          <span className="footerdet">Become Snyppr</span>
+        </div>
       </div>
     );
   }

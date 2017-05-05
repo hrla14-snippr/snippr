@@ -20,6 +20,7 @@ exports.fetchSnypprs = (req, res) => {
     .then(results => promiseAll(results.map((snyppr) => {
       const str = stringConverter(snyppr.dataValues.address);
       let dist;
+      console.log(results, 'in the back end foolski with the results');
       return geoConverter(str)
           .then((coords) => {
             dist = distFinder(userCoord.lat, userCoord.lng, coords.lat, coords.lng);

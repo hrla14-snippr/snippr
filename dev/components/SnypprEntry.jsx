@@ -12,8 +12,8 @@ const SnypprEntry = (props) => {
         <div>
           <image src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png" />
         </div>
-        <div className="entryname">
-          <h1>{props.snyppr.fname} {props.snyppr.lname}</h1>
+        <div>
+          <h1 className="entryheader">{props.snyppr.fname} {props.snyppr.lname}</h1>
         </div>
         <div>Average ratings</div>
       </div>
