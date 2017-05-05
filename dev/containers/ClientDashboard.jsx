@@ -60,9 +60,8 @@ class ClientDashboard extends Component {
               <div className="navmenu-items">Profile</div>
               <div className="navmenu-items">Payment</div>
               <div className="navmenu-items">favorites</div>
-              <div className="navmenu-items">reviews</div>
-              <div href="#" className="navmenu-items">logout</div>
               <div className="navmenu-items">transactions</div>
+              <div href="#" className="navmenu-items">logout</div>
               <div onClick={this.props.logout} className="navmenu-items">logout</div>
             </div>
           </div>
