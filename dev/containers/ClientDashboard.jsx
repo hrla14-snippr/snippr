@@ -71,6 +71,12 @@ class ClientDashboard extends Component {
             />
             <SnypprList snypprs={this.state.nearbySnypprs} />
           </div>
+          {/* stripeKey=test api key
+              name= name of barber
+              description=type of cut
+              email=user's email address
+              amount=amount of haircut
+             */}
           <StripeCheckout
             token={this.onToken}
             stripeKey="pk_test_IhZuZuB7uOy8VF5pg4XA54Df"
@@ -81,7 +87,7 @@ class ClientDashboard extends Component {
             amount={1000000}
             currency="USD"
             locale="us"
-            email="info@vidhub.co"
+            email="insfo@vidhub.co"
           />
         </div>
         <div className="clientfooter" >
