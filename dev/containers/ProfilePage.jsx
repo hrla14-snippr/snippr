@@ -7,6 +7,7 @@ const ProfilePage = props => (
     <h1>{props.snyppr.fname} {props.snyppr.lname}</h1>
     <p>{props.snyppr.address}</p>
     {/* Place Stripe Button Here*/}
+    <button>Stripe</button>
   </div>
   )
 ;
