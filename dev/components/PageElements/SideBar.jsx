@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FavoriteIcon from './FavoriteIcon';
 
@@ -14,8 +15,9 @@ class SideBar extends Component {
     console.log('inside handleFav click');
 
     const snypeeId = JSON.parse(window.localStorage.profile).user_id;
+    const snypprId = this.props.snypprId.id;
     axios.post('/favorites', {
-      snypprId: this.props.snypprId,
+      snypprId,
       snypeeId,
     })
     .then((response) => {
@@ -47,5 +49,8 @@ const mapStateToProps = state => ({
   snypprId: state.currentSnyppr,
 });
 
+SideBar.propTypes = {
+  snypprId: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps)(SideBar);
