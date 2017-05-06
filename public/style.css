@@ -231,7 +231,7 @@ modalimg{
     padding-top: 2vh;
     border-bottom: 2px solid lightgray;
     background-color: rgba(255, 255, 255, 0.5);
-    animation: fadein 2s;
+    animation: fadein 1s;
     transition: 1s;
     position: relative;
 }
@@ -391,8 +391,8 @@ modalimg{
     top:0;
     height: 45vh;
     width: 100%;
-    animation: fadein 2s;
-    transition: 2s;
+    animation: fadein 1s;
+    transition: 1s;
 }
 
 .entryholder{
