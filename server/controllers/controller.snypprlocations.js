@@ -16,6 +16,7 @@ exports.fetchSnypprs = (req, res) => {
         }
       });
       res.send(filtered);
+      return filtered;
     })
     .catch((err) => {
       console.log('error during filter process ', err);
