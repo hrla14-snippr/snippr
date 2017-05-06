@@ -1,8 +1,9 @@
 require('dotenv').config();
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('postgres://sxjybake:4jt8-uIF_tZz1akG8t7pQDGvViRC7yys@stampy.db.elephantsql.com:5432/sxjybake');
+const db = new Sequelize('snyppr', 'root', '');
 
+// 'postgres://sxjybake:4jt8-uIF_tZz1akG8t7pQDGvViRC7yys@stampy.db.elephantsql.com:5432/sxjybake'
 /*
   MODELS
 */
