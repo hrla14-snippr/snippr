@@ -7,16 +7,12 @@ import FavoriteList from '../components/FavoriteList';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
 
-const URL = 'http://localhost:3000/nearbySnypprs';
-const GMAPURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-
 class ClientDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       nearbySnypprs: [],
-      clientAddress: this.props.profile.address,
-      clientConverted: '',
+      clientAddress: { lat: props.profile.lat, lng: props.profile.lng },
       favorites: [],
       toggleSnypprs: true,
       toggleFavorites: false,
@@ -25,25 +21,20 @@ class ClientDashboard extends Component {
 
   componentDidMount() {
     console.log('profile in dash', this.props.profile);
-    this.fetchSnypprs(this.state.clientAddress);
+    this.fetchSnypprs(JSON.stringify(this.state.clientAddress));
   }
   fetchSnypprs(address) {
-    axios.get(`${URL}/${address}`)
+    axios.get(`/nearbySnypprs/${address}`)
       .then((results) => {
+        console.log('results from fetching my barbers  ', results);
         this.setState({ nearbySnypprs: results });
-      })
-      .then(() => {
-        axios.get(`${GMAPURL}${this.state.clientAddress}`)
-          .then((results) => {
-            this.setState({ clientConverted: results.data.results[0].geometry.location });
-          });
       })
       .catch((err) => {
         console.log('error fucked up ', err);
       });
   }
   fetchFavorites() {
-    axios.get(`${URL}/favorites`)
+    axios.get('/favorites')
       .then((favorites) => {
         this.setState({ favorites });
       })
@@ -53,6 +44,7 @@ class ClientDashboard extends Component {
   }
   render() {
     console.log('client dashboards state ', this.state);
+    console.log('client dashboards props ', this.props);
     return (
       <div className="dashboard">
         <Header />
@@ -71,7 +63,7 @@ class ClientDashboard extends Component {
           </div>
           <div className="right-box">
             <GoogleMaps
-              clientAddress={this.state.clientConverted}
+              clientAddress={this.state.clientAddress}
               snypprs={this.state.nearbySnypprs} google={window.google}
             />
             <div className={this.state.toggleSnypprs ? '' : 'hidden'}>

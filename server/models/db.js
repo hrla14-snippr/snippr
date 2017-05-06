@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 
 const db = new Sequelize(process.env.ESQL_URL);
 
+// 'postgres://sxjybake:4jt8-uIF_tZz1akG8t7pQDGvViRC7yys@stampy.db.elephantsql.com:5432/sxjybake'
 /*
   MODELS
 */
@@ -26,10 +27,14 @@ const Snyppr = db.define('snyppr', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  // s3url: {
-  //   type: Sequelize.STRING,
-  //   allowNull: false,
-  // },
+  lat: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  },
+  lng: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  },
 }, {
   timestamps: false,
 });
@@ -61,10 +66,14 @@ const Snypee = db.define('snypee', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  // s3url: {
-  //   type: Sequelize.STRING,
-  //   allowNull: false,
-  // },
+  lat: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  },
+  lng: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  },
 }, {
   timestamps: false,
 });
