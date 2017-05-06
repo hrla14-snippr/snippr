@@ -7,6 +7,7 @@ const db = new Sequelize(process.env.ESQL_URL);
   MODELS
 */
 
+
 const Snyppr = db.define('snyppr', {
   id: {
     type: Sequelize.STRING,
@@ -39,10 +40,6 @@ const SnypprStripe = db.define('snypprstripe', {
     type: Sequelize.STRING,
     allowNull: false,
     primaryKey: true,
-  },
-  snypprId: {
-    type: Sequelize.STRING,
-    allowNull: false,
   },
 }, {
   timestamps: true,

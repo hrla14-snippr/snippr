@@ -1,3 +1,5 @@
+  // const request = require('request-promise');
+  const db = require('../models/db');
   const axios = require('axios');
   const stripe = require('stripe')('sk_test_DLdp9uxn2BsYrBMyVsvyvPdv');
 
@@ -7,22 +9,21 @@
       code: req.query.code,
       client_secret: 'sk_test_DLdp9uxn2BsYrBMyVsvyvPdv',
       grant_type: 'authorization_code',
-    }).then((response) => {
-    // res.send(response.data);
-      stripe.accounts.retrieve(response.stripe_user_id, (err, account) => {
-        console.log('res is ', response);
-        console.log('acc is', account);
-        // asynchronously called
-        // const user = new User(account);
-        // user.save((err,user)=>{
-        //   if (err){
-        //     return console.log('failed adding user:',err);
-        //   }
-          // console.log(user);
-        res.send(response.data);
-      });
-    });
+    })
+      .then((response) => {
+        const authId = req.query.state;
+        const stripeId = response.data.stripe_user_id;
+        return db.Snyppr.findOne({ where: { id: authId } })
+          .then(({ id }) => db.SnypprStripe
+          .create({
+            id: stripeId,
+            snypprId: id,
+          }));
+      }).then(() => {
+        res.redirect('/client/newUser');
+      }).catch(e => console.log('stripe network err', e));
   };
+
   exports.sendPayment = (req, res) => {
     const token = req.body.token.id;
     const destination = req.body.snyppr;
@@ -38,9 +39,10 @@
       destination: {
         account: destination,
       },
-    }).then((charge) => {
-      // asynchronously called
-      console.log(charge);
-      res.send(charge);
-    });
+    })
+      .then((charge) => {
+        // asynchronously called
+        console.log(charge);
+        res.send(charge);
+      });
   };
