@@ -234,7 +234,7 @@ modalimg{
     padding-top: 2vh;
     border-bottom: 2px solid lightgray;
     background-color: rgba(255, 255, 255, 0.5);
-    animation: fadein 2s;
+    animation: fadein 1s;
     transition: 1s;
     position: relative;
 }
@@ -394,8 +394,8 @@ modalimg{
     top:0;
     height: 45vh;
     width: 100%;
-    animation: fadein 2s;
-    transition: 2s;
+    animation: fadein 1s;
+    transition: 1s;
 }
 
 .entryholder{
@@ -405,6 +405,110 @@ modalimg{
     height: 35vh;
     border: 1px solid lightgray;
     width: 100%;
+}
+
+.form-body{
+    position: absolute;
+    top: 10vh;
+    height: 80vh;
+    width: 100%;
+    background-color: #e8ebef;
+}
+
+.userinfo{
+    position: absolute;
+    right: 15%;
+    height: 60vh;
+    width: 60%;
+    background-color: white;
+    border-radius: 8px;
+    top: 10vh;
+    box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+}
+
+.formheader{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #7691bc;
+    height: 50px;
+    border-radius: 3px;
+}
+
+.formheader h1{
+    font-family: "Brandon Grotesque";
+    font-size: 22px;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+}
+
+.inputbox{
+}
+
+.inputbox input{
+    border-style: none;
+    border-radius: 5px;
+    background-color: #dee3ea;
+}
+
+.profname{
+    position: absolute;
+    width:80%;
+    left: 10%;
+}
+
+.inputbox label{
+    font-family: "Brandon Grotesque";
+    padding-left: 5px;
+}
+
+.forminputs{
+    position: absolute;
+    top: 9vh;
+    width: 100%;
+}
+
+.midinput{
+    position: absolute;
+    top: 20vh;
+    width:  100%;
+    height: 40px;
+}
+
+.leftin{
+    position: absolute;
+    left: 5%;
+    width: 40%;
+    margin-right: 30px;
+    height: 40px;
+}
+
+.rightin{
+    position: absolute;
+    right: 5%;
+    width: 40%;
+    margin-left: 30px;
+    height: 40px;
+}
+
+.midin{
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    height: 40px;
+}
+
+.hairstyles{
+    border-style: none;
+    margin-left: 5%;
+}
+
+.hairholder{
+    position: absolute;
+    top: 30vh;
+    width: 100%;
+    height: 30vh;
 }
 
 /*Heart SVG */

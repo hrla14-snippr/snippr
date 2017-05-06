@@ -8,7 +8,7 @@ const SnypprList = (props) => {
     return (
       <div className="entryholder">
         {props.snypprs.data.map(snyppr =>
-          <SnypprEntry snyppr={snyppr[0]} />)}
+          <SnypprEntry snyppr={snyppr} />)}
       </div>
     );
   }

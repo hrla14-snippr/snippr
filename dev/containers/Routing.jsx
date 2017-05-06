@@ -16,7 +16,7 @@ class Routing extends Component {
     this.state = {
       auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, 'prefill'),
       hasProfile: false,
-      stripeId: '',
+      hasStripeId: false,
       profile: {},
     };
     this.confirmLoggedIn = this.confirmLoggedIn.bind(this);
@@ -28,7 +28,9 @@ class Routing extends Component {
   }
 
   componentDidMount() {
-    this.checkUserExists();
+    if (this.state.auth.loggedIn()) {
+      this.checkUserExists();
+    }
   }
 
   submitUserInfo(e) {
@@ -37,21 +39,27 @@ class Routing extends Component {
     const data = { styles: '' };
     data.id = this.state.auth.getAuthId();
     data.accountType = this.state.auth.getAccountType();
-    Array.prototype.slice.call(e.target.children).forEach((childNode, idx, arr) => {
-      if (idx < 3) {
+    Array.prototype.slice.call(e.target).forEach((childNode) => {
+      if (childNode.name && childNode.type === 'text') {
         data[childNode.name] = childNode.value;
-      } else if (idx < arr.length - 1 && childNode.children[0].checked) {
-        data.styles += childNode.children[0].id;
+      }
+      if (childNode.type === 'checkbox' && childNode.checked) {
+        data.styles += childNode.value;
       }
     });
-    console.log(data);
-
+    console.log(data, 'this is how data looks before axios call');
     // setstate in axios callback
     axios.post('/addProfile', data)
-      .then(res => console.log(res))
+      .then((res) => {
+        console.log(res);
+        const stateOptions = this.state.auth.getAccountType() === 'Snypee'
+          ? { hasProfile: true, hasStripeId: true }
+          : { hasProfile: true };
+        this.setState(stateOptions, function () {
+          this.props.history.push('/dashboard');
+        });
+      })
       .catch(err => console.log('error adding profile', err));
-    this.setState({ hasProfile: true });
-    this.props.history.push('/dashboard');
   }
 
   // checkUserHasStripe() {
@@ -72,17 +80,18 @@ class Routing extends Component {
     const context = this;
 
     // TODO: setup stripeId check
+    const accountType = this.state.auth.getAccountType();
     axios.post('/verifyProfile', {
       id: this.state.auth.getAuthId(),
-      accountType: this.state.auth.getAccountType(),
+      accountType,
     })
       .then(({ data }) => {
-        // TODO: refactor to redux store
         console.log('verifyprofile res', data);
-        if (data) {
+        if (data && (accountType === 'Snypee' || data.snypprstripe)) {
           context.setState({
             profile: data,
             hasProfile: true,
+            hasStripeId: true,
           });
         }
       })
@@ -95,16 +104,22 @@ class Routing extends Component {
 
   confirmHasProfile() {
     if (this.state.auth.loggedIn()) {
-      return this.state.hasProfile
+      return this.state.hasProfile && this.state.hasStripeId
         ? <Redirect to="/dashboard" />
-        : <UserInfoForm submitUserInfo={this.submitUserInfo} />;
+        : <UserInfoForm
+          submitUserInfo={this.submitUserInfo}
+          hasStripeId={this.state.hasStripeId}
+          hasProfile={this.state.hasProfile}
+          authId={this.state.auth.getAuthId()}
+          accountType={this.state.auth.getAccountType()}
+        />;
     }
     return <Redirect to="/" />;
   }
 
   renderDashboard() {
     // do call to db and check if authId exists
-    if (this.state.hasProfile) {
+    if (this.state.hasProfile && this.state.hasStripeId) {
       const accountType = this.state.auth.getAccountType();
       return accountType === 'Snyppr'
         ? <BarberDashboard profile={this.state.profile} logout={this.state.auth.logout} />
