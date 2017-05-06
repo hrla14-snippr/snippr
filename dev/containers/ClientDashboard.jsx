@@ -43,8 +43,7 @@ class ClientDashboard extends Component {
       });
   }
   render() {
-    console.log('client dashboards state ', this.state);
-    console.log('client dashboards props ', this.props);
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <div className="dashboard">
         <Header />
@@ -55,7 +54,7 @@ class ClientDashboard extends Component {
             </div>
             <div className="navmenu">
               <div className="navmenu-items">Profile</div>
-              <div className="navmenu-items">Close Snypprs</div>
+              <div className="navmenu-items">Nearby Snypprs</div>
               <div className="navmenu-items">Favorites</div>
               <div className="navmenu-items">Transactions</div>
               <div onClick={this.props.logout} className="navmenu-items">Logout</div>

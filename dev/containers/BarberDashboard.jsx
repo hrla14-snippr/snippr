@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import BarberChat from './BarberChat';
 import Header from '../components/PageElements/Header';
 import BarberSideBar from '../components/PageElements/BarberSideBar';
-import Footer from '../components/PageElements/Footer;
+import Footer from '../components/PageElements/Footer';
 
 class BarberDashboard extends Component {
   constructor(props) {
