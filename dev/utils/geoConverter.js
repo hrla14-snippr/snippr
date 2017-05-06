@@ -5,7 +5,7 @@ const URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 require('dotenv').config();
 
 const geoConverter = address =>
-   axios.get(`${URL}${address}&key=AIzaSyBCzjrSU85s1Uztg4n2PaNYtG2ff9dMPKk`)
+   axios.get(`${URL}${address}&key=${process.env.G_MAPKEY}`)
     .then((response) => {
       console.log(response);
       return response.data.results[0].geometry.location;
