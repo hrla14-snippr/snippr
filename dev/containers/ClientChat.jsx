@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 
-const socket = io('http://localhost:3000');
+const socket = io();
 
 // chat containers will be connected to redux store when data is seeded
 // import { connect } from 'react-redux';
