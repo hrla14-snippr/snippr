@@ -16,7 +16,7 @@ class Routing extends Component {
     this.state = {
       auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, 'prefill'),
       hasProfile: false,
-      stripeId: '',
+      hasStripeId: false,
       profile: {},
     };
     this.confirmLoggedIn = this.confirmLoggedIn.bind(this);
@@ -72,17 +72,19 @@ class Routing extends Component {
     const context = this;
 
     // TODO: setup stripeId check
+    const accountType = this.state.auth.getAccountType();
     axios.post('/verifyProfile', {
       id: this.state.auth.getAuthId(),
-      accountType: this.state.auth.getAccountType(),
+      accountType,
     })
       .then(({ data }) => {
         // TODO: refactor to redux store
         console.log('verifyprofile res', data);
-        if (data) {
+        if (data && (accountType === 'Snypee' || data.snypprstripe)) {
           context.setState({
             profile: data,
             hasProfile: true,
+            hasStripeId: true,
           });
         }
       })
@@ -97,7 +99,11 @@ class Routing extends Component {
     if (this.state.auth.loggedIn()) {
       return this.state.hasProfile
         ? <Redirect to="/dashboard" />
-        : <UserInfoForm submitUserInfo={this.submitUserInfo} />;
+        : <UserInfoForm
+          submitUserInfo={this.submitUserInfo}
+          hasStripeId={this.state.hasStripeId}
+          accountType={this.state.auth.getAccountType()}
+        />;
     }
     return <Redirect to="/" />;
   }
