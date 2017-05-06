@@ -26,10 +26,14 @@ const Snyppr = db.define('snyppr', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  // s3url: {
-  //   type: Sequelize.STRING,
-  //   allowNull: false,
-  // },
+  lat: {
+    type: Sequelize.Integer,
+    allowNull: false,
+  },
+  lng: {
+    type: Sequelize.Integer,
+    allowNull: false,
+  },
 }, {
   timestamps: false,
 });
