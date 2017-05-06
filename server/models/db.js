@@ -8,6 +8,7 @@ const db = new Sequelize(process.env.ESQL_URL);
   MODELS
 */
 
+
 const Snyppr = db.define('snyppr', {
   id: {
     type: Sequelize.STRING,
@@ -38,6 +39,7 @@ const Snyppr = db.define('snyppr', {
 }, {
   timestamps: false,
 });
+
 const SnypprStripe = db.define('snypprstripe', {
   id: {
     type: Sequelize.STRING,
@@ -47,6 +49,7 @@ const SnypprStripe = db.define('snypprstripe', {
 }, {
   timestamps: true,
 });
+
 const Snypee = db.define('snypee', {
   id: {
     type: Sequelize.STRING,
@@ -160,6 +163,7 @@ SnypprStripe.sync();
 Favorite.sync();
 SnypprReview.sync();
 SnypeeReview.sync();
+SnypprStripe.sync();
 
 
 db.authenticate()
@@ -179,3 +183,4 @@ module.exports.SnypprStyles = SnypprStyles;
 module.exports.Favorite = Favorite;
 module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
+module.exports.SnypprStripe = SnypprStripe;
