@@ -19,7 +19,7 @@ class UserInfoForm extends Component {
   render() {
     const stripeURL = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AZdNGhV2VUe0pilvxfh5jkNfsevELTNz&scope=read_write&redirect_uri=http://localhost:3000/stripeId&state=${this.props.authId}`;
     return (
-      (this.props.accountType === 'Snyppr' && !this.props.hasStripeId)
+      (this.props.accountType === 'Snyppr' && this.props.hasProfile && !this.props.hasStripeId)
       ? <div>
         <a href={stripeURL}>
           Sign up for a Stripe Account
@@ -45,6 +45,7 @@ class UserInfoForm extends Component {
 UserInfoForm.propTypes = {
   submitUserInfo: PropTypes.func.isRequired,
   authId: PropTypes.string.isRequired,
+  hasProfile: PropTypes.bool.isRequired,
   accountType: PropTypes.string.isRequired,
   hasStripeId: PropTypes.bool.isRequired,
 };

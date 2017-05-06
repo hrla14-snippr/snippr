@@ -50,10 +50,16 @@ class Routing extends Component {
 
     // setstate in axios callback
     axios.post('/addProfile', data)
-      .then(res => console.log(res))
+      .then((res) => {
+        console.log(res);
+        const stateOptions = this.state.auth.getAccountType() === 'Snypee'
+          ? { hasProfile: true, hasStripeId: true }
+          : { hasProfile: true };
+        this.setState(stateOptions, function () {
+          this.props.history.push('/dashboard');
+        });
+      })
       .catch(err => console.log('error adding profile', err));
-    this.setState({ hasProfile: true });
-    this.props.history.push('/dashboard');
   }
 
   // checkUserHasStripe() {
@@ -80,7 +86,6 @@ class Routing extends Component {
       accountType,
     })
       .then(({ data }) => {
-        // TODO: refactor to redux store
         console.log('verifyprofile res', data);
         if (data && (accountType === 'Snypee' || data.snypprstripe)) {
           context.setState({
@@ -99,11 +104,12 @@ class Routing extends Component {
 
   confirmHasProfile() {
     if (this.state.auth.loggedIn()) {
-      return this.state.hasProfile
+      return this.state.hasProfile && this.state.hasStripeId
         ? <Redirect to="/dashboard" />
         : <UserInfoForm
           submitUserInfo={this.submitUserInfo}
           hasStripeId={this.state.hasStripeId}
+          hasProfile={this.state.hasProfile}
           authId={this.state.auth.getAuthId()}
           accountType={this.state.auth.getAccountType()}
         />;
@@ -113,7 +119,7 @@ class Routing extends Component {
 
   renderDashboard() {
     // do call to db and check if authId exists
-    if (this.state.hasProfile) {
+    if (this.state.hasProfile && this.state.hasStripeId) {
       const accountType = this.state.auth.getAccountType();
       return accountType === 'Snyppr'
         ? <BarberDashboard profile={this.state.profile} logout={this.state.auth.logout} />
