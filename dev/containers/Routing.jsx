@@ -37,7 +37,7 @@ class Routing extends Component {
     const data = { styles: '' };
     data.id = this.state.auth.getAuthId();
     data.accountType = this.state.auth.getAccountType();
-    Array.prototype.slice.call(e.target).forEach((childNode, idx, arr) => {
+    Array.prototype.slice.call(e.target).forEach((childNode) => {
       if (childNode.name && childNode.type === 'text') {
         data[childNode.name] = childNode.value;
       }
