@@ -8,7 +8,6 @@ import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
 
 const URL = 'http://localhost:3000/nearbySnypprs';
-const GMAPURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 
 class ClientDashboard extends Component {
   constructor(props) {
