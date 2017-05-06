@@ -27,25 +27,37 @@ class UserInfoForm extends Component {
           <form className="userinfo" onSubmit={this.props.submitUserInfo} >
             <div className="formheader"><h1>Tell Us More!</h1></div>
             <div className="inputbox">
-              <div>
-                <input type="text" name="fname" placeholder="First Name" required />
-                <input type="text" name="lname" placeholder="Last Name" required />
+              <div className="forminputs">
+                <input
+                  className="leftin" type="text"
+                  name="fname" placeholder="First Name" required
+                />
+                <input
+                  className="rightin" type="text"
+                  name="lname" placeholder="Last Name" required
+                />
               </div>
-              <div>
-                <input type="text" name="address" placeholder="Address" required />
+              <div className="midinput">
+                <input
+                  className="midin"
+                  type="text" name="address"
+                  placeholder="Address" required
+                />
               </div>
-              {this.state.styles.map(({ style }, idx) => (
-                <div className="hairstyles">
-                  <label htmlFor={style}>
-                    <input
-                      type="checkbox"
-                      id={idx + 1} name={style} value={style}
-                    />
-                    {style}
-                  </label>
-                </div>
-              ))}
-              <input type="submit" value="Submit" />
+              <div className="hairholder">
+                {this.state.styles.map(({ style }, idx) => (
+                  <div className="hairstyles">
+                    <label htmlFor={style}>
+                      <input
+                        type="radio"
+                        id={idx + 1} name={style} value={style}
+                      />
+                      {style}
+                    </label>
+                  </div>
+                ))}
+                <input className="hairstyles" type="submit" value="Submit" />
+              </div>
             </div>
           </form>
         </div>
