@@ -66,8 +66,7 @@ class ClientDashboard extends Component {
               <div className="navmenu-items">Close Snypprs</div>
               <div className="navmenu-items">Favorites</div>
               <div className="navmenu-items">Transactions</div>
-              <div onClick={this.props.logout} href="#" className="navmenu-items">Logout</div>
-              {/* <div onClick={this.props.logout} className="navmenu-items">logout</div> */}
+              <div onClick={this.props.logout} className="navmenu-items">Logout</div>
             </div>
           </div>
           <div className="right-box">
