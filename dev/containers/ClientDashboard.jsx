@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import StripeCheckout from 'react-stripe-checkout';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
+import FavoriteList from '../components/FavoriteList';
 import Header from '../components/PageElements/Header.jsx';
 import Footer from '../components/PageElements/Footer.jsx';
 
@@ -17,19 +17,15 @@ class ClientDashboard extends Component {
       nearbySnypprs: [],
       clientAddress: this.props.profile.address,
       clientConverted: '',
+      favorites: [],
+      toggleSnypprs: true,
+      toggleFavorites: false,
     };
   }
 
   componentDidMount() {
     console.log('profile in dash', this.props.profile);
     this.fetchSnypprs(this.state.clientAddress);
-  }
-  onToken(token) {
-    console.log('token is', { token, snyppr: 'acct_1AFZLMC3YHU2IY7a' });
-    axios.post('/transaction', { token, snyppr: 'acct_1AFZLMC3YHU2IY7a' })
-     .then((response) => {
-       console.log('data is', response);
-     });
   }
   fetchSnypprs(address) {
     axios.get(`${URL}/${address}`)
@@ -46,6 +42,15 @@ class ClientDashboard extends Component {
         console.log('error fucked up ', err);
       });
   }
+  fetchFavorites() {
+    axios.get(`${URL}/favorites`)
+      .then((favorites) => {
+        this.setState({ favorites });
+      })
+      .catch((err) => {
+        console.log('you fucked up fetching your favorites, heres the error ', err);
+      });
+  }
   render() {
     console.log('client dashboards state ', this.state);
     return (
@@ -58,10 +63,11 @@ class ClientDashboard extends Component {
             </div>
             <div className="navmenu">
               <div className="navmenu-items">Profile</div>
-              <div className="navmenu-items">Payment</div>
-              <div className="navmenu-items">favorites</div>
-              <div className="navmenu-items">reviews</div>
-              <div href="#" className="navmenu-items">logout</div>
+              <div className="navmenu-items">Close Snypprs</div>
+              <div className="navmenu-items">Favorites</div>
+              <div className="navmenu-items">Transactions</div>
+              <div href="#" className="navmenu-items">Logout</div>
+              <div onClick={this.props.logout} className="navmenu-items">logout</div>
             </div>
           </div>
           <div className="right-box">
@@ -69,26 +75,13 @@ class ClientDashboard extends Component {
               clientAddress={this.state.clientConverted}
               snypprs={this.state.nearbySnypprs} google={window.google}
             />
-            <SnypprList snypprs={this.state.nearbySnypprs} />
+            <div className={this.state.toggleSnypprs ? '' : 'hidden'}>
+              <SnypprList snypprs={this.state.nearbySnypprs} />
+            </div>
+            <div className={this.state.toggleFavorites ? '' : 'hidden'}>
+              <FavoriteList favorites={this.state.favorites} />
+            </div>
           </div>
-          {/* stripeKey=test api key
-              name= name of barber
-              description=type of cut
-              email=user's email address
-              amount=amount of haircut
-             */}
-          <StripeCheckout
-            token={this.onToken}
-            stripeKey="pk_test_IhZuZuB7uOy8VF5pg4XA54Df"
-            name="Barber"
-            description="Cut"
-            ComponentClass="div"
-            panelLabel="Pay Snyppr"
-            amount={1000000}
-            currency="USD"
-            locale="us"
-            email="insfo@vidhub.co"
-          />
         </div>
         <Footer />
       </div>
@@ -98,8 +91,7 @@ class ClientDashboard extends Component {
 
 ClientDashboard.propTypes = {
   profile: PropTypes.shape.isRequired,
-  //cant put a onclick to div tag for logout
-//  logout: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default ClientDashboard;
