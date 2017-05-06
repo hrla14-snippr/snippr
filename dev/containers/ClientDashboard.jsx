@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
 import FavoriteList from '../components/FavoriteList';
-import Header from '../components/PageElements/Header.jsx';
-import Footer from '../components/PageElements/Footer.jsx';
+import Header from '../components/PageElements/Header';
+import Footer from '../components/PageElements/Footer';
 
 const URL = 'http://localhost:3000/nearbySnypprs';
 const GMAPURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
@@ -15,8 +15,7 @@ class ClientDashboard extends Component {
     super(props);
     this.state = {
       nearbySnypprs: [],
-      clientAddress: this.props.profile.address,
-      clientConverted: '',
+      clientAddress: { lat: props.profile.lat, lng: props.profile.lng },
       favorites: [],
       toggleSnypprs: true,
       toggleFavorites: false,
@@ -25,18 +24,13 @@ class ClientDashboard extends Component {
 
   componentDidMount() {
     console.log('profile in dash', this.props.profile);
-    this.fetchSnypprs(this.state.clientAddress);
+    this.fetchSnypprs(JSON.stringify(this.state.clientAddress));
   }
   fetchSnypprs(address) {
     axios.get(`${URL}/${address}`)
       .then((results) => {
+        console.log('results from fetching my barbers  ', results);
         this.setState({ nearbySnypprs: results });
-      })
-      .then(() => {
-        axios.get(`${GMAPURL}${this.state.clientAddress}`)
-          .then((results) => {
-            this.setState({ clientConverted: results.data.results[0].geometry.location });
-          });
       })
       .catch((err) => {
         console.log('error fucked up ', err);
@@ -53,6 +47,7 @@ class ClientDashboard extends Component {
   }
   render() {
     console.log('client dashboards state ', this.state);
+    console.log('client dashboards props ', this.props);
     return (
       <div className="dashboard">
         <Header />
@@ -66,13 +61,12 @@ class ClientDashboard extends Component {
               <div className="navmenu-items">Close Snypprs</div>
               <div className="navmenu-items">Favorites</div>
               <div className="navmenu-items">Transactions</div>
-              <div href="#" className="navmenu-items">Logout</div>
-              <div onClick={this.props.logout} className="navmenu-items">logout</div>
+              <div onClick={this.props.logout} href="#" className="navmenu-items">Logout</div>
             </div>
           </div>
           <div className="right-box">
             <GoogleMaps
-              clientAddress={this.state.clientConverted}
+              clientAddress={this.state.clientAddress}
               snypprs={this.state.nearbySnypprs} google={window.google}
             />
             <div className={this.state.toggleSnypprs ? '' : 'hidden'}>
