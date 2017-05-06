@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 const axios = require('axios');
 
@@ -11,7 +12,7 @@ class SideBar extends Component {
   handleFav() {
     const snypeeId = JSON.parse(window.localStorage.profile).user_id;
     axios.post('/favorites', {
-      snypprId: 'Fred',
+      snypprId: this.props.snypprId,
       snypeeId,
     })
     .then((response) => {
@@ -48,6 +49,14 @@ class SideBar extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    snypprId: state.currentSnyppr,
+  }
+}
 
-export default SideBar;
+
+export default connect(mapStateToProps)(SideBar);
+
+
 
