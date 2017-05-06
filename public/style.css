@@ -403,3 +403,30 @@ modalimg{
     border: 1px solid lightgray;
     width: 100%;
 }
+
+/*Heart SVG */
+.svgcontainer {
+  margin: 0 auto;
+}
+
+svg#heart {
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  margin: 1em auto;
+}
+
+#heart-path {
+  fill: white;
+  stroke: black;
+  stroke-width: 1px;
+  stroke-linecap: butt;
+}
+
+#heart-path:hover {
+  fill: mediumspringgreen;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 125;
+}

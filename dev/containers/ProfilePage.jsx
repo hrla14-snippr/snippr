@@ -11,7 +11,7 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      portfolio: true,
+      togglePortfolio: true,
       chatVisible: false,
     };
     this.toggleChat = this.toggleChat.bind(this);
@@ -30,9 +30,9 @@ class ProfilePage extends Component {
         <div className="profile-box">
           <SideBar logout={this.props.logout} />
           <div className="profile-body">
-
             <h1>{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
             <p>{this.props.snyppr.address}</p>
+            {/* <div className="portfolio"></div> */}
             <button>Stripe</button>
             <ClientChat name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`} />
           </div>
