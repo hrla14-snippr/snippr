@@ -49,7 +49,7 @@ class UserInfoForm extends Component {
                   <div className="hairstyles">
                     <label htmlFor={style}>
                       <input
-                        type="radio"
+                        type="checkbox"
                         id={idx + 1} name={style} value={style}
                       />
                       {style}

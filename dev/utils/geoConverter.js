@@ -1,4 +1,5 @@
 const axios = require('axios');
+require('dotenv').config();
 
 const URL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 require('dotenv').config();

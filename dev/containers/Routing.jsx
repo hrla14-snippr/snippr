@@ -37,15 +37,15 @@ class Routing extends Component {
     const data = { styles: '' };
     data.id = this.state.auth.getAuthId();
     data.accountType = this.state.auth.getAccountType();
-    Array.prototype.slice.call(e.target.children).forEach((childNode, idx, arr) => {
-      if (idx < 3) {
+    Array.prototype.slice.call(e.target).forEach((childNode, idx, arr) => {
+      if (childNode.name && childNode.type === 'text') {
         data[childNode.name] = childNode.value;
-      } else if (idx < arr.length - 1 && childNode.children[0].checked) {
-        data.styles += childNode.children[0].id;
+      }
+      if (childNode.type === 'checkbox' && childNode.checked) {
+        data.styles += childNode.value;
       }
     });
-    console.log(data);
-
+    console.log(data, 'this is how data looks before axios call');
     // setstate in axios callback
     axios.post('/addProfile', data)
       .then(res => console.log(res))

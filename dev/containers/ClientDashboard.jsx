@@ -7,8 +7,6 @@ import FavoriteList from '../components/FavoriteList';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
 
-const URL = 'http://localhost:3000/nearbySnypprs';
-
 class ClientDashboard extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +24,7 @@ class ClientDashboard extends Component {
     this.fetchSnypprs(JSON.stringify(this.state.clientAddress));
   }
   fetchSnypprs(address) {
-    axios.get(`${URL}/${address}`)
+    axios.get(`/nearbySnypprs/${address}`)
       .then((results) => {
         console.log('results from fetching my barbers  ', results);
         this.setState({ nearbySnypprs: results });
