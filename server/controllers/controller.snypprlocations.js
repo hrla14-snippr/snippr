@@ -8,7 +8,6 @@ exports.fetchSnypprs = (req, res) => {
   db.Snyppr.findAll()
     .then((snypprs) => {
       const filtered = snypprs.filter((snyppr) => {
-        console.log('each snyppr ', snyppr);
         const dist = distFinder(userAddress.lat, userAddress.lng, snyppr.lat, snyppr.lng);
         if (dist < 20) {
           console.log('it was less than 20');

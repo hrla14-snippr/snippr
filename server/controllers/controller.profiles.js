@@ -15,6 +15,7 @@ exports.verifyHasProfile = (req, res) => {
 };
 
 exports.addProfile = (req, res) => {
+  console.log('profile', req.body)
   const str = strConverter(req.body.address);
   geoConverter(str)
     .then((location) => {
