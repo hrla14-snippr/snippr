@@ -34,7 +34,7 @@ class ClientDashboard extends Component {
       });
   }
   fetchFavorites() {
-    axios.get(`${URL}/favorites`)
+    axios.get('/favorites')
       .then((favorites) => {
         this.setState({ favorites });
       })
