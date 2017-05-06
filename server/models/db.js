@@ -147,6 +147,7 @@ Snypee.sync();
 Style.sync();
 Transaction.sync();
 SnypprStyles.sync();
+SnypprStripe.sync();
 Favorite.sync();
 SnypprReview.sync();
 SnypeeReview.sync();
@@ -162,6 +163,7 @@ db.authenticate()
 
 module.exports.Snyppr = Snyppr;
 module.exports.Snypee = Snypee;
+module.exports.SnypprStripe = SnypprStripe;
 module.exports.Style = Style;
 module.exports.Transaction = Transaction;
 module.exports.SnypprStyles = SnypprStyles;
