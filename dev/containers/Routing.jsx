@@ -102,6 +102,7 @@ class Routing extends Component {
         : <UserInfoForm
           submitUserInfo={this.submitUserInfo}
           hasStripeId={this.state.hasStripeId}
+          authId={this.state.auth.getAuthId()}
           accountType={this.state.auth.getAccountType()}
         />;
     }

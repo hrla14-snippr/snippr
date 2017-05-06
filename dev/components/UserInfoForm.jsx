@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 class UserInfoForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = { styles: [] };
   }
 
@@ -18,8 +17,16 @@ class UserInfoForm extends Component {
   }
 
   render() {
+    const stripeURL = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AZdNGhV2VUe0pilvxfh5jkNfsevELTNz&scope=read_write&redirect_uri=http://localhost:3000/stripeId&state=${this.props.authId}`;
     return (
-      <form onSubmit={this.props.submitUserInfo} >
+      (this.props.accountType === 'Snyppr' && !this.props.hasStripeId)
+      ? <div>
+        <a href={stripeURL}>
+          Sign up for a Stripe Account
+        </a>
+        <button>Click here when done</button>
+      </div>
+      : <form onSubmit={this.props.submitUserInfo} >
         <input type="text" name="fname" placeholder="First Name" required />
         <input type="text" name="lname" placeholder="Last Name" required />
         <input type="text" name="address" placeholder="Address" required />
@@ -37,6 +44,9 @@ class UserInfoForm extends Component {
 
 UserInfoForm.propTypes = {
   submitUserInfo: PropTypes.func.isRequired,
+  authId: PropTypes.string.isRequired,
+  accountType: PropTypes.string.isRequired,
+  hasStripeId: PropTypes.bool.isRequired,
 };
 
 export default UserInfoForm;
