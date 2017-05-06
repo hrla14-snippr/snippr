@@ -28,7 +28,9 @@ class Routing extends Component {
   }
 
   componentDidMount() {
-    this.checkUserExists();
+    if (this.state.auth.loggedIn()) {
+      this.checkUserExists();
+    }
   }
 
   submitUserInfo(e) {

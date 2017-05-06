@@ -40,16 +40,16 @@ export default class AuthService extends EventEmitter {
   }
 
   _doAuthentication(authResult) {
+    const context = this;
     // Saves the user token
     this.setToken(authResult.idToken);
-    // navigate to the home route
-    this.history.push('/dashboard');
     // Async loads the user profile data
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
         console.log('Error loading the Profile', error);
       } else {
         this.setProfile(profile);
+        context.history.push('/dashboard');
       }
     });
   }
