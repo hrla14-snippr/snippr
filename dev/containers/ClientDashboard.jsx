@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
 import FavoriteList from '../components/FavoriteList';
+import Header from '../components/PageElements/Header.jsx';
+import Footer from '../components/PageElements/Footer.jsx';
 
 const URL = 'http://localhost:3000/nearbySnypprs';
 const GMAPURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
@@ -53,9 +55,7 @@ class ClientDashboard extends Component {
     console.log('client dashboards state ', this.state);
     return (
       <div className="dashboard">
-        <div className="clientheader">
-          <h1 className="clientheadline">Snyppr</h1>
-        </div>
+        <Header />
         <div className="dashboard-box">
           <div className="navigation">
             <div className="picturebox">
@@ -83,11 +83,7 @@ class ClientDashboard extends Component {
             </div>
           </div>
         </div>
-        <div className="clientfooter" >
-          <span className="footerdet">Refer Friends</span>
-          <span className="footerdet">About Us</span>
-          <span className="footerdet">Become Snyppr</span>
-        </div>
+        <Footer />
       </div>
     );
   }

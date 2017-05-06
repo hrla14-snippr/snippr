@@ -262,7 +262,7 @@ modalimg{
     }
 }
 
-.clientheader{
+.header{
     position: fixed;
     top: 0;
     height: 10vh;
@@ -270,7 +270,7 @@ modalimg{
     background-color: #09091a
 }
 
-.clientheadline{
+.headline{
     font-size: 30px;
     text-align: center;
     color: mediumspringgreen;
@@ -285,7 +285,7 @@ modalimg{
     cursor: pointer;
 }
 
-.clientfooter{
+.footer{
     position: fixed;
     bottom: 0;
     height: 10vh;
@@ -302,7 +302,7 @@ modalimg{
     padding: 5%;
 }
 
-.dashboard-box{
+.dashboard-box, .profile-box {
     position: absolute;
     width: 80%;
     left: 10%;
@@ -310,7 +310,15 @@ modalimg{
     top: 10vh;
 }
 
-.navigation{
+.profile-body{
+    position: absolute;
+    right: 0;
+    width: 80%;
+    height: 80vh;
+    margin: 1em auto;
+}
+
+.navigation, .sidebar{
     position: absolute;
     width: 20%;
     left: 0;
@@ -330,14 +338,14 @@ modalimg{
     width: 100%;
 }
 
-.navmenu{
+.navmenu, .sidebarmenu{
     position: absolute;
     bottom: 0;
     height: 50vh;
     width: 100%;
 }
 
-.navmenu-items{
+.navmenu-items, .sidebar-items{
     text-align: center;
     line-height: 10vh;
     height: 10vh;
@@ -360,7 +368,7 @@ modalimg{
     left: 5%;
 }
 
-.dashboard{
+.dashboard, .profile{
     margin: 0;
     position: relative;
 }
