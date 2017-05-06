@@ -403,3 +403,66 @@ modalimg{
     border: 1px solid lightgray;
     width: 100%;
 }
+
+.form-body{
+    position: absolute;
+    top: 10vh;
+    height: 80vh;
+    width: 100%;
+    background-color: #e8ebef;
+}
+
+.userinfo{
+    position: absolute;
+    right: 15%;
+    height: 60vh;
+    width: 60%;
+    background-color: white;
+    border-radius: 8px;
+    top: 10vh;
+    box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+}
+
+.formheader{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #7691bc;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.formheader h1{
+    font-family: "Brandon Grotesque";
+    font-size: 22px;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+}
+
+.inputbox{
+    position: absolute;
+    top: 50px;
+}
+
+.inputbox input{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding-left: 10%;
+}
+
+.profname{
+    position: absolute;
+    width:80%;
+    left: 10%;
+}
+
+.inputbox label{
+    font-family: "American Typewriter";
+    padding-left: 5px;
+}
+
+
+.hairstyles{
+    border-style: none;
+}
