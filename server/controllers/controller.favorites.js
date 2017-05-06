@@ -17,5 +17,12 @@ exports.fetchFavorites = (req, res) => {
 };
 
 exports.addFavorite = (req, res) => {
+  const favObj = {
+    snypprId: req.body.snypprId,
+    snypeeId: req.body.snypeeId
+  }
+
+  console.log("the favObj is ", favObj);
+
   res.send('add favorites');
 };
