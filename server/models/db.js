@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Sequelize = require('sequelize');
 
-const db = new Sequelize(process.env.ESQL_URL);
+const db = new Sequelize('snyppr', 'root', '');
 
 /*
   MODELS
@@ -27,11 +27,11 @@ const Snyppr = db.define('snyppr', {
     allowNull: false,
   },
   lat: {
-    type: Sequelize.Integer,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
   lng: {
-    type: Sequelize.Integer,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
 }, {
@@ -65,10 +65,14 @@ const Snypee = db.define('snypee', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  // s3url: {
-  //   type: Sequelize.STRING,
-  //   allowNull: false,
-  // },
+  lat: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  },
+  lng: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+  },
 }, {
   timestamps: false,
 });
