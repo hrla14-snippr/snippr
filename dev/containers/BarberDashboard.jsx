@@ -33,11 +33,6 @@ class BarberDashboard extends Component {
                     <List.Header>Profile</List.Header>
                   </List.Content>
                 </List.Item>
-                <List.Item>
-                  <List.Content href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AZdNGhV2VUe0pilvxfh5jkNfsevELTNz&scope=read_write&redirect_uri=http://localhost:3000/stripeId">
-                    <List.Header>Payment Setup</List.Header>
-                  </List.Content>
-                </List.Item>
                 <List.Item onClick={this.props.logout}>
                   <List.Content>
                     <List.Header onClick={this.props.logout} >Log Out</List.Header>
