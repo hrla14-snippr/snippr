@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
 import FavoriteList from '../components/FavoriteList';
-import Header from '../components/PageElements/Header.jsx';
-import Footer from '../components/PageElements/Footer.jsx';
+import Header from '../components/PageElements/Header';
+import Footer from '../components/PageElements/Footer';
 
 const URL = 'http://localhost:3000/nearbySnypprs';
 const GMAPURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
@@ -66,8 +66,8 @@ class ClientDashboard extends Component {
               <div className="navmenu-items">Close Snypprs</div>
               <div className="navmenu-items">Favorites</div>
               <div className="navmenu-items">Transactions</div>
-              <div href="#" className="navmenu-items">Logout</div>
-              <div onClick={this.props.logout} className="navmenu-items">logout</div>
+              <div onClick={this.props.logout} href="#" className="navmenu-items">Logout</div>
+              {/* <div onClick={this.props.logout} className="navmenu-items">logout</div> */}
             </div>
           </div>
           <div className="right-box">

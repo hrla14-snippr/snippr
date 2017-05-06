@@ -28,7 +28,7 @@ class ProfilePage extends Component {
       <div className="profile">
         <Header />
         <div className="profile-box">
-          <SideBar />
+          <SideBar logout={this.props.logout} />
           <div className="profile-body">
             <h1>{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
             <p>{this.props.snyppr.address}</p>
@@ -45,6 +45,7 @@ class ProfilePage extends Component {
 
 ProfilePage.propTypes = {
   snyppr: PropTypes.shape.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

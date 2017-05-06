@@ -39,6 +39,7 @@ class SideBar extends Component {
         <div onClick={this.handleFav} className="sidebar-items svgcontainer">
           <FavoriteIcon />
         </div>
+        <div onClick={this.props.logout} href="#" className="sidebar-items">Logout</div>
       </div>
     </div>
     );
@@ -51,6 +52,7 @@ const mapStateToProps = state => ({
 
 SideBar.propTypes = {
   snypprId: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(SideBar);
