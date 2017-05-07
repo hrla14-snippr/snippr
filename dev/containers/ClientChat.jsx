@@ -103,7 +103,7 @@ class ClientChat extends Component {
   }
   render() {
     return (
-      <div onClick={this.closeModal} className="chat-body">
+      <div className="chat-body" onClick={this.closeModal}>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -129,11 +129,13 @@ class ClientChat extends Component {
           </StripeCheckout>
           <button onClick={this.closeModal} className="declinebutton">Decline</button>
         </Modal>
-        <h3>Snypee Chat</h3>
-        {this.state.messages.map(msg => <p>{msg}</p>)}
-        <form onSubmit={this.handleSubmit}>
-          <input value={this.state.term} onChange={this.handleChange} />
-        </form>
+        <div className="live-chat">
+          <h3>Snypee Chat</h3>
+          {this.state.messages.map(msg => <p>{msg}</p>)}
+          <form onSubmit={this.handleSubmit}>
+            <input value={this.state.term} onChange={this.handleChange} />
+          </form>
+        </div>
       </div>
     );
   }
