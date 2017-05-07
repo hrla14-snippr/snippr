@@ -32,7 +32,7 @@ class BarberDashboard extends Component {
           <div className="profile-body">
             <h1>{this.state.name}</h1>
             <p>some address</p>
-            <div className={this.state.displayBarberChat ? '' : 'hidden'}>
+            <div className={this.state.displayBarberChat ? 'chat-position' : 'hidden'}>
               <BarberChat name={this.state.name} />
             </div>
             <img

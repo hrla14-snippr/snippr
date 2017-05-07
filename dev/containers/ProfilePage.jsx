@@ -32,7 +32,7 @@ class ProfilePage extends Component {
             <h1>{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
             <p>{this.props.snyppr.address}</p>
             {/* <div className="portfolio"></div> */}
-            <div className={this.state.displayClientChat ? '' : 'hidden'}>
+            <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
               <ClientChat
                 snyppr={this.props.snyppr}
                 name={`${this.props.snyppr.fname} ${this.props.snyppr.lname}`}
