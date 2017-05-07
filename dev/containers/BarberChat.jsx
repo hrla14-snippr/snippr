@@ -58,7 +58,7 @@ class BarberChat extends Component {
     socket.emit('join', { name: this.props.name });
     socket.on('private-message', (data) => {
       this.setState({
-        messages: [...this.state.messages, data.msg],
+        messages: [data.msg, ...this.state.messages],
       });
     });
   }
@@ -92,6 +92,14 @@ class BarberChat extends Component {
   render() {
     return (
       <div className="chat-body">
+        <h3>Snyppr Chat</h3>
+        <div className="chat-form-container">
+          <form onSubmit={this.handleSubmit}>
+            <input value={this.state.term} onChange={this.handleChange} />
+          </form>
+          <button onClick={this.openModal}>$</button>
+        </div>
+
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -106,12 +114,9 @@ class BarberChat extends Component {
           </div>
           <input onClick={this.requestPayment} type="submit" />
         </Modal>
-        <h3>Snyppr Chat</h3>
-        {this.state.messages.map(msg => <p>{msg}</p>)}
-        <form onSubmit={this.handleSubmit}>
-          <input value={this.state.term} onChange={this.handleChange} />
-        </form>
-        <button onClick={this.openModal}>$</button>
+        <div className="chat-display">
+          {this.state.messages.map(msg => <p>{msg}</p>)}
+        </div>
       </div>
     );
   }
