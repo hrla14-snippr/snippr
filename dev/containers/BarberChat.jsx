@@ -1,8 +1,36 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 
 const socket = io();
+
+const customStyles = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+  },
+  content: {
+    position: 'absolute',
+    top: '15%',
+    left: '25%',
+    border: 'none',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '7px',
+    outline: 'none',
+    padding: '20px',
+    width: '50%',
+    height: '300px',
+    transition: '1s',
+    animation: 'bounce .40s',
+  },
+};
 
 // import { connect } from 'react-redux';
 
@@ -16,10 +44,14 @@ class BarberChat extends Component {
     this.state = {
       term: '',
       messages: [],
+      amount: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.requestPayment = this.requestPayment.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -42,19 +74,44 @@ class BarberChat extends Component {
   }
 
   requestPayment() {
-    socket.emit('payment-request', { name: this.props.name, amount: 1100 });
+    socket.emit('payment-request', { name: this.props.name, amount: this.state.amount });
+  }
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+  afterOpenModal() {
+    this.subtitle.style.color = 'black';
+  }
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+  handleCharge(amount) {
+    this.setState({ amount });
   }
 
   render() {
     return (
       <div className="chat-body">
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <h1 className="text-center">How much would you like ?</h1>
+          <div className="paymentrequest">
+            <label htmlFor="charge">$</label>
+            <input type="text" name="charge" />
+          </div>
+          <input onClick={this.requestPayment} type="submit" />
+        </Modal>
         <h3>Snyppr Chat</h3>
-
         {this.state.messages.map(msg => <p>{msg}</p>)}
         <form onSubmit={this.handleSubmit}>
           <input value={this.state.term} onChange={this.handleChange} />
         </form>
-        <button onClick={this.requestPayment}>$</button>
+        <button onClick={this.openModal}>$</button>
       </div>
     );
   }

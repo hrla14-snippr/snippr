@@ -57,7 +57,10 @@ class ClientDashboard extends Component {
               <img className="userpic" alt="placeholderimage" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" />
             </div>
             <div className="navmenu">
-              <div className="navmenu-items">Profile</div>
+              <button
+                onClick={this.handleToggle} value="Reviews"
+                className="navmenu-items"
+              >Reviews</button>
               <button
                 onClick={this.handleToggle} value="Nearby"
                 className="navmenu-items"
