@@ -640,7 +640,16 @@ svg#heart {
 
 .paysub{
     position: absolute;
-    width: 50%;
-    left: 25%;
+    width: 60%;
+    left: 30%;
     top: 60%;
+}
+
+.paymentrequest label,input{
+    display: inline-block;
+}
+
+.paymentrequest input{
+    width: 40%;
+    padding-left: 10px;
 }

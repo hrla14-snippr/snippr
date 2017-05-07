@@ -101,10 +101,10 @@ class BarberChat extends Component {
         >
           <h1 className="text-center">How much would you like ?</h1>
           <div className="paymentrequest">
-            <label htmlFor="charge">$charge</label>
+            <label htmlFor="charge">$</label>
             <input type="text" name="charge" />
           </div>
-          <input onClick={this.requestPayment} type="submit">Submit</input>
+          <input onClick={this.requestPayment} type="submit" />
         </Modal>
         <h3>Snyppr Chat</h3>
         {this.state.messages.map(msg => <p>{msg}</p>)}
