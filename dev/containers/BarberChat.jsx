@@ -15,15 +15,27 @@ class BarberChat extends Component {
     super();
     this.state = {
       term: '',
+      messages: [''],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.displayMessages = this.displayMessages.bind(this);
   }
   componentDidMount() {
     socket.emit('join', { name: this.props.name });
     socket.on('private-message', (data) => {
-      console.log(data);
+      console.log(data.msg.msg);
+      const newMessage = data.msg.msg;
+      const msgArray = this.state.messages;
+      msgArray.push(newMessage);
+
+      this.setState({
+        messages: msgArray,
+      });
     });
+  }
+  displayMessages() {
+    return this.state.messages.map(msg => <p>{msg}</p>);
   }
   handleChange(e) {
     this.setState({ term: e.target.value });
@@ -35,9 +47,14 @@ class BarberChat extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input value={this.state.term} onChange={this.handleChange} />
-      </form>
+      <div className="chat-body">
+        <h3>Barber Chat</h3>
+
+        {this.displayMessages()}
+        <form onSubmit={this.handleSubmit}>
+          <input value={this.state.term} onChange={this.handleChange} />
+        </form>
+      </div>
     );
   }
 }
