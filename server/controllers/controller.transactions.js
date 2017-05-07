@@ -1,27 +1,19 @@
 // change test_key
+const db = require('../models/db');
 const stripe = require('stripe')('sk_test_DLdp9uxn2BsYrBMyVsvyvPdv');
 
 exports.fetchTransactions = (req, res) => {
   // TODO: grab from db /:snypprId
-  const token = req.body.token.id;
-  const destination = req.body.snyppr;
-  console.log('token is ', token);
-  console.log('destination is', destination);
-  // Token is created using Stripe.js or Checkout!
-  // Get the payment token submitted by the form:
-  // Create a Charge:
-  stripe.charges.create({
-    amount: 1000,
-    currency: 'usd',
-    source: token,
-    destination: {
-      account: destination,
-    },
-  }).then((charge) => {
-    // asynchronously called
-    console.log(charge);
-    res.send(charge);
-  });
+  const keys = Object.keys(req.query);
+  if (keys.length > 1 && ['Snyppr', 'Snypee'].includes(keys[0])) {
+    res.status(400);
+  } else {
+    const options = { where: {} };
+    options.where[keys[0]] = req.query[keys[0]];
+    db.Transaction
+      .findAll(options)
+      .then(data => res.json(data));
+  }
 };
 
 exports.addTransaction = (req, res) => {
@@ -39,8 +31,15 @@ exports.addTransaction = (req, res) => {
   })
   .then((charge) => {
     console.log('stripe paid', charge);
-    // TODO: add to db
-    res.send(charge);
+    return db.Transaction.create({
+      snypeeId: req.body.snypeeId,
+      snypprId: req.body.snypprId,
+      price: parseFloat(charge.amount / 100).toFixed(2),
+    });
+  })
+  .then((data) => {
+    console.log('transaction data', data);
+    res.status(201);
   })
   .catch(e => console.log('stripe charge error', e));
 };
