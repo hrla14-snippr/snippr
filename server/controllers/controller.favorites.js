@@ -22,7 +22,7 @@ exports.fetchFavorites = (req, res) => {
         })
         .catch((err) => {
           console.log('line 23 of controller favorites ', err);
-          res.send('fuck up on line 23 of controller favorites')
+          res.send('fuck up on line 23 of controller favorites');
         });
     })
     .catch((err) => {
