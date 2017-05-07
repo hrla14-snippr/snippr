@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
+import SnypprReviewsList from '../components/SnypprReviewsList';
 import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
@@ -33,7 +34,7 @@ class ProfilePage extends Component {
           <div className="profile-body">
             <h1>{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
             <p>{this.props.snyppr.address}</p>
-            {/* <div className="portfolio"></div> */}
+            <SnypprReviewsList reviews={this.props.snyppr.snypprreviews} />
             <ClientChat
               snypeeId={this.props.profile.id}
               snyppr={this.props.snyppr}

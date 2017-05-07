@@ -5,7 +5,10 @@ exports.fetchSnypprs = (req, res) => {
   console.log('req params ', req.params.address);
   const userAddress = JSON.parse(req.params.address);
   console.log(userAddress);
-  db.Snyppr.findAll({ include: [db.SnypprStripe, db.SnypprReview] })
+  db.Snyppr.findAll({ include: [db.SnypprStripe, {
+    model: db.SnypprReview,
+    include: db.Snypee,
+  }] })
     .then((snypprs) => {
       const filtered = snypprs.filter(snyppr =>
         distFinder(userAddress.lat, userAddress.lng, snyppr.lat, snyppr.lng) < 20);
