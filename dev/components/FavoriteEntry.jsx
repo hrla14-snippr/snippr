@@ -43,7 +43,7 @@ class FavoriteEntry extends Component {
           <div className="deletefav">
             <button
               onClick={(e) => {
-                e.preventBubble();
+                e.stopPropagation();
                 this.deleteFavorite();
               }} className="delbut"
             ><img
