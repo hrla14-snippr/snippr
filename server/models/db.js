@@ -167,6 +167,8 @@ Snyppr.hasMany(SnypprImage);
 SnypprImage.belongsTo(Snyppr);
 
 const SnypprStyles = db.define('snypprStyles', {}, { timestamps: false });
+
+
 Style.belongsToMany(Snyppr, { through: SnypprStyles });
 Snyppr.belongsToMany(Style, { through: SnypprStyles });
 

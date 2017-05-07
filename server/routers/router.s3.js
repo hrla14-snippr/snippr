@@ -6,7 +6,7 @@ const s3Controller = require('../controllers/controller.s3');
 // memory storage keeps file data in a buffer
 const upload = multer({
   storage: multer.memoryStorage(),
-  // file size limitation in bytes
+  // file size limitation in 54 Megabytes
   limits: { fileSize: 52428800 },
 });
 
