@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
+import ReviewsList from '../components/ReviewsList';
 import FavoriteList from '../components/FavoriteList';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
@@ -24,6 +25,7 @@ class ClientDashboard extends Component {
     this.fetchSnypprs(JSON.stringify(this.state.clientAddress));
     this.fetchFavorites();
   }
+
   fetchSnypprs(address) {
     axios.get(`/nearbySnypprs/${address}`)
       .then((results) => {
@@ -34,6 +36,7 @@ class ClientDashboard extends Component {
         console.log('error fucked up ', err);
       });
   }
+
   fetchFavorites() {
     axios.get(`/favorites/${this.props.profile.id}`)
       .then((favorites) => {
@@ -43,9 +46,11 @@ class ClientDashboard extends Component {
         console.log('you fucked up fetching your favorites, heres the error ', err);
       });
   }
+
   handleToggle(event) {
     this.setState({ currentWindow: event.target.value });
   }
+
   render() {
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
@@ -76,15 +81,20 @@ class ClientDashboard extends Component {
             </div>
           </div>
           <div className="right-box">
-            <GoogleMaps
-              clientAddress={this.state.clientAddress}
-              snypprs={this.state.nearbySnypprs} google={window.google}
-            />
+            <div className={this.state.currentWindow === 'Reviews' ? 'hidden' : ''}>
+              <GoogleMaps
+                clientAddress={this.state.clientAddress}
+                snypprs={this.state.nearbySnypprs} google={window.google}
+              />
+            </div>
             <div className={this.state.currentWindow === 'Nearby' ? '' : 'hidden'}>
               <SnypprList snypprs={this.state.nearbySnypprs} />
             </div>
             <div className={this.state.currentWindow === 'Favorites' ? '' : 'hidden'}>
               <FavoriteList favorites={this.state.favorites} />
+            </div>
+            <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
+              <ReviewsList reviews={this.props.profile.snypeereviews} />
             </div>
           </div>
         </div>

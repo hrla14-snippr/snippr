@@ -1,11 +1,15 @@
-// import React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import ReviewEntry from './ReviewsEntry';
 
-// const ReviewsList = (props) => {
-//   return (
-//     <div>
-//       {props.reviews.map(review => <ReviewEntry review={review}/>)}
-//     </div>
-//   );
-// };
+const ReviewsList = props => (
+  <div>
+    {props.reviews.map(review => <ReviewEntry review={review} />)}
+  </div>
+);
 
-// export default ReviewsList;
+ReviewsList.propTypes = {
+  reviews: PropTypes.shape.isRequired,
+};
+
+export default ReviewsList;

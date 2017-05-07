@@ -1,13 +1,16 @@
-// import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-// class ReviewsEntry extends Component {
-//   render(props) {
-//     return (
-//       <div>
+const ReviewsEntry = props => (
+  <div>
+    <h1>{`${props.review.snyppr.fname} ${props.review.snyppr.lname} gave you a ${props.review.rating} star rating`}</h1>
+    <span>{`At ${props.review.createdAt}`}</span>
+    <p>{`${props.review.description}`}</p>
+  </div>
+  );
 
-//       </div>
-//     );
-//   }
-// }
+ReviewsEntry.propTypes = {
+  review: PropTypes.shape.isRequired,
+};
 
-// export default ReviewsEntry;
+export default ReviewsEntry;
