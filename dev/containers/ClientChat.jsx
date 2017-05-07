@@ -67,7 +67,13 @@ class ClientChat extends Component {
   }
   onToken(token) {
     console.log('token is', { token, stripeId: this.props.snyppr.snypprstripe.id });
-    axios.post('/transaction', { token, stripeId: this.props.snyppr.snypprstripe.id, amount: this.state.charge })
+    axios.post('/transaction', {
+      token,
+      stripeId: this.props.snyppr.snypprstripe.id,
+      amount: this.state.charge,
+      snypprId: this.props.snyppr.id,
+      snypeeId: this.props.snypeeId,
+    })
       .then((response) => {
         console.log('data is', response);
       });
@@ -97,7 +103,7 @@ class ClientChat extends Component {
   }
   render() {
     return (
-      <div onClick={this.closeModal} className="chat-body">
+      <div className="chat-body" onClick={this.closeModal}>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -117,16 +123,19 @@ class ClientChat extends Component {
             locale="us"
             email={this.props.email}
           >
-            <button className="stripebutton"> Accept
+            <h1 className="text-center">{this.props.snyppr.fname} is requesting payment</h1>
+            <button onClick={this.closeModal} className="stripebutton"> Accept
             </button>
           </StripeCheckout>
-          <button className="declinebutton">Decline</button>
+          <button onClick={this.closeModal} className="declinebutton">Decline</button>
         </Modal>
-        <h3>Snypee Chat</h3>
-        {this.state.messages.map(msg => <p>{msg}</p>)}
-        <form onSubmit={this.handleSubmit}>
-          <input value={this.state.term} onChange={this.handleChange} />
-        </form>
+        <div className="live-chat">
+          <h3>Snypee Chat</h3>
+          {this.state.messages.map(msg => <p>{msg}</p>)}
+          <form onSubmit={this.handleSubmit}>
+            <input value={this.state.term} onChange={this.handleChange} />
+          </form>
+        </div>
       </div>
     );
   }
@@ -136,6 +145,7 @@ ClientChat.propTypes = {
   name: PropTypes.string.isRequired,
   snyppr: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  snypeeId: PropTypes.string.isRequired,
 };
 
 export default ClientChat;

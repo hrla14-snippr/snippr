@@ -33,6 +33,7 @@ class ProfilePage extends Component {
             <p>{this.props.snyppr.address}</p>
             {/* <div className="portfolio"></div> */}
             <ClientChat
+              snypeeId={this.props.profile.id}
               snyppr={this.props.snyppr}
               name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`}
               email={this.props.email}
@@ -49,6 +50,7 @@ ProfilePage.propTypes = {
   snyppr: PropTypes.shape.isRequired,
   logout: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
+  profile: PropTypes.shape.isRequired,
 };
 
 const mapStateToProps = state => ({
