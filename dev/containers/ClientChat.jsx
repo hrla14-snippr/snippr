@@ -124,7 +124,7 @@ class ClientChat extends Component {
             email={this.props.email}
           >
             <h1 className="text-center">{this.props.snyppr.fname} is requesting payment</h1>
-            <button className="stripebutton"> Accept
+            <button onClick={this.closeModal} className="stripebutton"> Accept
             </button>
           </StripeCheckout>
           <button onClick={this.closeModal} className="declinebutton">Decline</button>
