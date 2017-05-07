@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
-import S3Uploader from '../components/S3Uploader';
+
 
 
 class UserInfoForm extends Component {
@@ -53,7 +53,6 @@ class UserInfoForm extends Component {
                   placeholder="Address" required
                 />
               </div>
-              <S3Uploader />
               <div className="hairholder">
                 {this.state.styles.map(({ style }, idx) => (
                   <div className="hairstyles">
