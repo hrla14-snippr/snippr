@@ -47,10 +47,10 @@ class BarberChat extends Component {
   }
   render() {
     return (
-      <div>
-        <div>
-          {this.displayMessages()}
-        </div>
+      <div className="chat-body">
+        <h3>Barber Chat</h3>
+
+        {this.displayMessages()}
         <form onSubmit={this.handleSubmit}>
           <input value={this.state.term} onChange={this.handleChange} />
         </form>
