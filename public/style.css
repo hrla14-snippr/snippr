@@ -583,7 +583,7 @@ svg#heart {
 }
 
 .chat-body form{
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 

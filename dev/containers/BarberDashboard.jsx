@@ -12,22 +12,14 @@ class BarberDashboard extends Component {
     console.log('profile', props.profile);
     this.state = {
       name: `${this.props.profile.fname}${this.props.profile.lname}`,
-      displayBarberChat: 'hidden',
+      displayBarberChat: false,
     };
 
     this.handleChatToggle = this.handleChatToggle.bind(this);
   }
 
   handleChatToggle() {
-    if (this.state.displayBarberChat === '') {
-      this.setState({
-        displayBarberChat: 'hidden',
-      });
-    } else if (this.state.displayBarberChat === 'hidden') {
-      this.setState({
-        displayBarberChat: '',
-      });
-    }
+    this.setState({ displayBarberChat: !this.state.displayBarberChat });
   }
 
   render() {
@@ -41,7 +33,7 @@ class BarberDashboard extends Component {
             <h1>{this.state.name}</h1>
             <p>some address</p>
             <img onClick={this.handleChatToggle} alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg" />
-            <BarberChat className={this.state.displayBarberChat} name={this.state.name} />
+            <BarberChat className={this.state.displayBarberChat ? '' : 'hidden'} name={this.state.name} />
           </div>
         </div>
         <Footer />

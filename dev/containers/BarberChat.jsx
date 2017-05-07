@@ -15,45 +15,46 @@ class BarberChat extends Component {
     super();
     this.state = {
       term: '',
-      messages: [''],
+      messages: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.displayMessages = this.displayMessages.bind(this);
+    this.requestPayment = this.requestPayment.bind(this);
   }
+
   componentDidMount() {
     socket.emit('join', { name: this.props.name });
     socket.on('private-message', (data) => {
-      console.log(data.msg.msg);
-      const newMessage = data.msg.msg;
-      const msgArray = this.state.messages;
-      msgArray.push(newMessage);
-
       this.setState({
-        messages: msgArray,
+        messages: [...this.state.messages, data.msg],
       });
     });
   }
-  displayMessages() {
-    return this.state.messages.map(msg => <p>{msg}</p>);
-  }
+
   handleChange(e) {
     this.setState({ term: e.target.value });
   }
+
   handleSubmit(e) {
     e.preventDefault();
     socket.emit('private-message', { name: this.props.name, msg: this.state.term });
     this.setState({ term: '' });
   }
+
+  requestPayment() {
+    socket.emit('payment-request', { name: this.props.name, amount: 1100 });
+  }
+
   render() {
     return (
       <div className="chat-body">
-        <h3>Barber Chat</h3>
+        <h3>Snyppr Chat</h3>
 
-        {this.displayMessages()}
+        {this.state.messages.map(msg => <p>{msg}</p>)}
         <form onSubmit={this.handleSubmit}>
           <input value={this.state.term} onChange={this.handleChange} />
         </form>
+        <button onClick={this.requestPayment}>$</button>
       </div>
     );
   }
