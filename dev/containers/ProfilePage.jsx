@@ -24,8 +24,13 @@ class ProfilePage extends Component {
   }
 
   onToken(token) {
-    console.log('token is', { token, stripeId: this.props.snyppr.snypprstripe.id });
-    axios.post('/transaction', { token, stripeId: this.props.snyppr.snypprstripe.id, amount: this.state.charge })
+    axios.post('/transaction', {
+      token,
+      stripeId: this.props.snyppr.snypprstripe.id,
+      amount: this.state.charge,
+      snypprId: this.props.snyppr.id,
+      snypeeId: this.props.snypeeId,
+    })
      .then((response) => {
        console.log('data is', response);
      });
@@ -77,6 +82,7 @@ class ProfilePage extends Component {
 
 ProfilePage.propTypes = {
   snyppr: PropTypes.shape.isRequired,
+  snypeeId: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
 };

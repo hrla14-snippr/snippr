@@ -42,7 +42,7 @@ class BarberChat extends Component {
   }
 
   requestPayment() {
-    socket.emit('payment-request', { name: this.props.name, amount: 1100 });
+    socket.emit('payment-request', { name: this.props.name, amount: 1150 });
   }
 
   render() {
