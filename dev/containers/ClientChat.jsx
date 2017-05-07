@@ -67,7 +67,13 @@ class ClientChat extends Component {
   }
   onToken(token) {
     console.log('token is', { token, stripeId: this.props.snyppr.snypprstripe.id });
-    axios.post('/transaction', { token, stripeId: this.props.snyppr.snypprstripe.id, amount: this.state.charge })
+    axios.post('/transaction', {
+      token,
+      stripeId: this.props.snyppr.snypprstripe.id,
+      amount: this.state.charge,
+      snypprId: this.props.snyppr.id,
+      snypeeId: this.props.snypeeId,
+    })
       .then((response) => {
         console.log('data is', response);
       });
@@ -136,6 +142,7 @@ ClientChat.propTypes = {
   name: PropTypes.string.isRequired,
   snyppr: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  snypeeId: PropTypes.string.isRequired,
 };
 
 export default ClientChat;
