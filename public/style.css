@@ -357,6 +357,19 @@ modalimg{
     font-size: 16px;
     cursor: pointer;
 }
+.navmenu-items {
+    text-align: center;
+    line-height: 10vh;
+    height: 10vh;
+    font-family: "Brandon Grotesque";
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    border-style: none;
+    border-bottom: 1px solid lightgray;
+    background-color: white;
+}
 
 .navmenu-items:hover{
     background-color: mediumspringgreen;
