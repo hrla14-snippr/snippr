@@ -55,6 +55,7 @@ ProfilePage.propTypes = {
   snyppr: PropTypes.shape.isRequired,
   logout: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
+  profile: PropTypes.shape.isRequired,
 };
 
 const mapStateToProps = state => ({

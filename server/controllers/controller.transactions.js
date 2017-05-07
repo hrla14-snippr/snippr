@@ -1,4 +1,5 @@
 // change test_key
+const db = require('../models/db');
 const stripe = require('stripe')('sk_test_DLdp9uxn2BsYrBMyVsvyvPdv');
 
 exports.fetchTransactions = (req, res) => {
@@ -40,6 +41,9 @@ exports.addTransaction = (req, res) => {
   .then((charge) => {
     console.log('stripe paid', charge);
     // TODO: add to db
+    db.Transaction.create({
+      price: req.body.amount, snypeeId: req.body.snypeeId, snypprId: req.body.snypprId,
+    });
     res.send(charge);
   })
   .catch(e => console.log('stripe charge error', e));
