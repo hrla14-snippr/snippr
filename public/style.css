@@ -3,7 +3,7 @@ body{
 }
 
 .clientDashContainer {
-  margin: 0;  
+  margin: 0;
 }
 
 .landing-page{
@@ -425,6 +425,8 @@ modalimg{
     display: none;
 }
 
+
+
 .right-box{
     position: absolute;
     right: 0;
@@ -562,7 +564,7 @@ svg#heart {
   position: absolute;
   width: 80%;
   left: 10%;
-  margin: 0 auto;
+  margin: 1em auto;
 }
 
 #heart-path {
@@ -620,7 +622,7 @@ svg#heart {
     margin-bottom: .5em;
     bottom: 0;
     left: 3.5em;
-  
+
 }
 
 .barber-form-container {
@@ -638,7 +640,7 @@ svg#heart {
 
 .barber-form-container form {
     float: left;
-    margin: .7em 1em 0 1em; 
+    margin: .7em 1em 0 1em;
 }
 
 .barber-form-container button {
@@ -761,5 +763,3 @@ svg#heart {
     right: 3%;
     top: 3vh;
 }
-
-
