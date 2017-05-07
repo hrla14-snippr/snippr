@@ -57,3 +57,24 @@ exports.addFavorite = (req, res) => {
       console.log('error while posting favorites ', err);
     });
 };
+
+exports.deleteFavorite = (req, res) => {
+  const info = JSON.parse(req.params.favToDelete);
+  db.Favorite.destroy({
+    where: {
+      snypeeId: info.snypeeId,
+      snypprId: info.snypprId,
+    },
+  })
+    .then((affectedRows) => {
+      console.log(affectedRows, 'this is the number of affected rows , ', affectedRows);
+      if (affectedRows === 1) {
+        res.send(true);
+      } else {
+        res.send(false);
+      }
+    })
+    .catch((err) => {
+      res.send('something went wrong deleteing favorites , ', err);
+    });
+};
