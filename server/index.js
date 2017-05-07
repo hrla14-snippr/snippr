@@ -29,10 +29,11 @@ io.on('connection', (socket) => {
   });
   socket.on('private-message', (data) => {
     console.log('message came thru', data);
-    io.sockets.in(data.name).emit('private-message', { msg: data });
+    io.sockets.in(data.name).emit('private-message', data);
   });
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  socket.on('payment-request', (data) => {
+    console.log('payment requested', data);
+    io.sockets.in(data.name).emit('payment-request', data);
   });
 });
 
