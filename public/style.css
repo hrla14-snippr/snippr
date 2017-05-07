@@ -625,3 +625,22 @@ svg#heart {
     right: 15%;
     box-shadow: 3px 3px 3px 1px lightgray;
 }
+
+.text-center{
+    text-align: center;
+    font-family: 'Brandon Grotesque';
+}
+
+.paymentrequest{
+    position: absolute;
+    width: 40%;
+    left: 20%;
+    top: 20%;
+}
+
+.paysub{
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 60%;
+}
