@@ -20,6 +20,7 @@ class ProfilePage extends Component {
     };
     this.toggleChat = this.toggleChat.bind(this);
     this.onToken = this.onToken.bind(this);
+    this.updateCharge = this.updateCharge.bind(this);
   }
 
   onToken(token) {
@@ -34,6 +35,10 @@ class ProfilePage extends Component {
     this.setState({
       portfolio: false,
     });
+  }
+
+  updateCharge(charge) {
+    this.setState({ charge });
   }
 
   render() {
@@ -58,7 +63,10 @@ class ProfilePage extends Component {
               locale="us"
               email={this.props.email}
             />
-            <ClientChat name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`} />
+            <ClientChat
+              name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`}
+              updateCharge={this.updateCharge}
+            />
           </div>
         </div>
         <Footer />
