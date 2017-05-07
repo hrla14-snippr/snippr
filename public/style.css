@@ -612,6 +612,14 @@ svg#heart {
     bottom: 5%;
     left: 15%;
     box-shadow: 3px 3px 3px 1px lightgray;
+    font-family: "Brandon Grotesque";
+    transition: 1s;
+}
+
+.stripebutton:hover{
+    position: absolute;
+    bottom: 7%;
+    box-shadow: 1px 1px 1px 1px lightgray;
 }
 
 .declinebutton{
@@ -624,6 +632,14 @@ svg#heart {
     bottom: 5%;
     right: 15%;
     box-shadow: 3px 3px 3px 1px lightgray;
+    font-family: "Brandon Grotesque";
+    transition: 1s;
+}
+
+.declinebutton:hover{
+    position: absolute;
+    bottom: 7%;
+    box-shadow: 1px 1px 1px 1px lightgray;
 }
 
 .text-center{

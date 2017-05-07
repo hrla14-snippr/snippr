@@ -123,10 +123,11 @@ class ClientChat extends Component {
             locale="us"
             email={this.props.email}
           >
+            <h1 className="text-center">{this.props.snyppr.fname} is requesting payment</h1>
             <button className="stripebutton"> Accept
             </button>
           </StripeCheckout>
-          <button className="declinebutton">Decline</button>
+          <button onClick={this.closeModal} className="declinebutton">Decline</button>
         </Modal>
         <h3>Snypee Chat</h3>
         {this.state.messages.map(msg => <p>{msg}</p>)}
