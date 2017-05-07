@@ -136,4 +136,3 @@ BarberChat.propTypes = {
 
 
 export default BarberChat;
-

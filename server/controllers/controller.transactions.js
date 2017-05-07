@@ -17,14 +17,14 @@ exports.fetchTransactions = (req, res) => {
 };
 
 exports.addTransaction = (req, res) => {
-  const token = req.body.token.id;
-  const destination = req.body.stripeId;
-  const amount = req.body.amount;
+  const token = req.body.id;
   // Charge the user's card:
   stripe.charges.create({
-    amount,
+    amount: 1000,
     currency: 'usd',
+    description: 'Example charge',
     source: token,
+
     destination: {
       account: destination,
     },
