@@ -57,7 +57,7 @@ class ClientChat extends Component {
     socket.emit('join', { name: this.props.name });
     socket.on('private-message', (data) => {
       this.setState({
-        messages: [...this.state.messages, data.msg],
+        messages: [data.msg, ...this.state.messages],
       });
     });
     socket.on('payment-request', (data) => {
@@ -98,6 +98,12 @@ class ClientChat extends Component {
   render() {
     return (
       <div onClick={this.closeModal} className="chat-body">
+        <h3>Snypee Chat</h3>
+        <div className="chat-form-container">
+          <form onSubmit={this.handleSubmit}>
+            <input value={this.state.term} onChange={this.handleChange} />
+          </form>
+        </div>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -122,11 +128,9 @@ class ClientChat extends Component {
           </StripeCheckout>
           <button className="declinebutton">Decline</button>
         </Modal>
-        <h3>Snypee Chat</h3>
-        {this.state.messages.map(msg => <p>{msg}</p>)}
-        <form onSubmit={this.handleSubmit}>
-          <input value={this.state.term} onChange={this.handleChange} />
-        </form>
+        <div className="chat-display">
+          {this.state.messages.map(msg => <p>{msg}</p>)}
+        </div>
       </div>
     );
   }

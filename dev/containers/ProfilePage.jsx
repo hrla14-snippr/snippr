@@ -13,15 +13,15 @@ class ProfilePage extends Component {
     console.log('snyppr', props.snyppr);
     this.state = {
       togglePortfolio: true,
-      chatVisible: false,
+      displayClientChat: false,
     };
-    this.toggleChat = this.toggleChat.bind(this);
+    this.handleChatToggle = this.handleChatToggle.bind(this);
   }
-  toggleChat() {
-    this.setState({
-      portfolio: false,
-    });
+
+  handleChatToggle() {
+    this.setState({ displayClientChat: !this.state.displayClientChat });
   }
+
   render() {
     return (
       <div className="profile">
@@ -32,10 +32,16 @@ class ProfilePage extends Component {
             <h1>{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
             <p>{this.props.snyppr.address}</p>
             {/* <div className="portfolio"></div> */}
-            <ClientChat
-              snyppr={this.props.snyppr}
-              name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`}
-              email={this.props.email}
+            <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
+              <ClientChat
+                snyppr={this.props.snyppr}
+                name={`${this.props.snyppr.fname} ${this.props.snyppr.lname}`}
+                email={this.props.email}
+              />
+            </div>
+            <img
+              onClick={this.handleChatToggle}
+              alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
             />
           </div>
         </div>
