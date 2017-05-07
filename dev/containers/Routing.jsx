@@ -135,6 +135,7 @@ class Routing extends Component {
         email={this.state.auth.getProfile().name}
         logout={this.state.auth.logout}
         snypeeId={this.state.auth.getAuthId()}
+        profile={this.state.profile}
       />
       : <Redirect to="/dashboard" />;
   }
