@@ -14,14 +14,15 @@ class ClientDashboard extends Component {
       nearbySnypprs: [],
       clientAddress: { lat: props.profile.lat, lng: props.profile.lng },
       favorites: [],
-      toggleSnypprs: true,
-      toggleFavorites: false,
+      currentWindow: 'Nearby',
     };
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   componentDidMount() {
     console.log('profile in dash', this.props.profile);
     this.fetchSnypprs(JSON.stringify(this.state.clientAddress));
+    this.fetchFavorites();
   }
   fetchSnypprs(address) {
     axios.get(`/nearbySnypprs/${address}`)
@@ -34,13 +35,16 @@ class ClientDashboard extends Component {
       });
   }
   fetchFavorites() {
-    axios.get('/favorites')
+    axios.get(`/favorites/${this.props.profile.id}`)
       .then((favorites) => {
         this.setState({ favorites });
       })
       .catch((err) => {
         console.log('you fucked up fetching your favorites, heres the error ', err);
       });
+  }
+  handleToggle(event) {
+    this.setState({ currentWindow: event.target.value });
   }
   render() {
     /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -54,10 +58,18 @@ class ClientDashboard extends Component {
             </div>
             <div className="navmenu">
               <div className="navmenu-items">Profile</div>
-              <div className="navmenu-items">Nearby Snypprs</div>
-              <div className="navmenu-items">Favorites</div>
-              <div className="navmenu-items">Transactions</div>
-              <div onClick={this.props.logout} className="navmenu-items">Logout</div>
+              <button
+                onClick={this.handleToggle} value="Nearby"
+                className="navmenu-items"
+              >Nearby Snypprs</button>
+              <button
+                onClick={this.handleToggle} value="Favorites"
+                className="navmenu-items"
+              >Favorites</button>
+              <button
+                onClick={this.handleToggle} value="Transactions" className="navmenu-items"
+              >Transactions</button>
+              <button onClick={this.props.logout} className="navmenu-items">Logout</button>
             </div>
           </div>
           <div className="right-box">
@@ -65,10 +77,10 @@ class ClientDashboard extends Component {
               clientAddress={this.state.clientAddress}
               snypprs={this.state.nearbySnypprs} google={window.google}
             />
-            <div className={this.state.toggleSnypprs ? '' : 'hidden'}>
+            <div className={this.state.currentWindow === 'Nearby' ? '' : 'hidden'}>
               <SnypprList snypprs={this.state.nearbySnypprs} />
             </div>
-            <div className={this.state.toggleFavorites ? '' : 'hidden'}>
+            <div className={this.state.currentWindow === 'Favorites' ? '' : 'hidden'}>
               <FavoriteList favorites={this.state.favorites} />
             </div>
           </div>
