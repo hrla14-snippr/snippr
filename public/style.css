@@ -217,6 +217,7 @@ modalimg{
     border-radius: 8px;
 }
 
+
 .snypprentry{
     width: 100%;
     border-radius: 5px;
@@ -616,6 +617,11 @@ svg#heart {
     margin-bottom: .5em;
     bottom: 0;
     left: 3.5em;
+<<<<<<< HEAD
+=======
+
+}
+>>>>>>> reset HEAD
 
 }
 

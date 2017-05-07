@@ -1,5 +1,8 @@
 const AWS = require('aws-sdk');
+<<<<<<< HEAD
 const db = require('../models/db');
+=======
+>>>>>>> reset HEAD
 
 // Amazon s3 config
 const s3 = new AWS.S3(({ params: { Bucket: 'snyppr' } }));
@@ -13,6 +16,7 @@ AWS.config.update(
 
 exports.uploadPhotos = ((req, res) => {
   // req.file is the 'theseNamesMustMatch' file
+<<<<<<< HEAD
   // console.log(req.f);
   console.log(req.body.authId);
   // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
@@ -41,5 +45,16 @@ exports.getPhotos = ((req, res) => {
   db.SnypprImage.findAll({ where: { snypprId: req.params.authId } })
   .then((data) => {
     res.send(data);
+=======
+   console.log(req.file);
+  // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
+  s3.putObject({
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+    ACL: 'public-read', // your permisions
+  }, (err) => {
+    if (err) return res.status(400).send(err);
+    return res.send('File uploaded to S3');
+>>>>>>> reset HEAD
   });
 });
