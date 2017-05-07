@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { ChangeSnyppr } from '../actions/ChangeSnyppr';
 
 const SnypprEntry = (props) => {
-  console.log(props, 'this is snypprentry');
   return (
     <Link to="/snypprProfile">
       <div onClick={() => props.ChangeSnyppr(props.snyppr)} className="snypprentry">

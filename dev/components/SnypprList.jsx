@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import SnypprEntry from './SnypprEntry';
 
 const SnypprList = (props) => {
-  console.log(props, 'in list');
   if (props.snypprs.data) {
     return (
       <div className="entryholder">

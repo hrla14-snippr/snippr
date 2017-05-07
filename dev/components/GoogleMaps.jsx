@@ -53,7 +53,6 @@ class GoogleMaps extends Component {
       const mapRef = this.refs.map; // eslint-disable-line react/no-string-refs
       const node = ReactDOM.findDOMNode(mapRef); // eslint-disable-line react/no-find-dom-node
       const { initialCenter, zoom } = this.props;
-      console.log(this.state.currentLocation.lat, 'this is currentlat boy', 'this is current long too ', this.state.currentLocation.lng);
       const { lat, lng } =
         !this.state.currentLocation.lat || !this.state.currentLocation.lng ?
           initialCenter : this.state.currentLocation;
