@@ -26,7 +26,6 @@ class UserInfoForm extends Component {
         <a href={stripeURL}>
           Sign up for a Stripe Account
         </a>
-        <button>Click here when done</button>
       </div>
       : <div>
         <Header />
