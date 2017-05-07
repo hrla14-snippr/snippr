@@ -52,6 +52,7 @@ class BarberChat extends Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleCharge = this.handleCharge.bind(this);
   }
 
   componentDidMount() {
@@ -74,7 +75,8 @@ class BarberChat extends Component {
   }
 
   requestPayment() {
-    socket.emit('payment-request', { name: this.props.name, amount: this.state.amount });
+    const amount = `${this.state.amount}00`;
+    socket.emit('payment-request', { name: this.props.name, amount: parseInt(amount, 10) });
   }
   openModal() {
     this.setState({ modalIsOpen: true });
@@ -85,11 +87,12 @@ class BarberChat extends Component {
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
-  handleCharge(amount) {
-    this.setState({ amount });
+  handleCharge(event) {
+    this.setState({ amount: event.target.value });
   }
 
   render() {
+    console.log(this.state.amount);
     return (
       <div className="chat-body">
         <Modal
@@ -100,11 +103,17 @@ class BarberChat extends Component {
           contentLabel="Example Modal"
         >
           <h1 className="text-center">How much would you like ?</h1>
-          <div className="paymentrequest">
-            <label htmlFor="charge">$</label>
-            <input type="text" name="charge" />
-          </div>
-          <input onClick={this.requestPayment} type="submit" />
+          <form
+            onSubmit={() => {
+              this.closeModal();
+            }}
+          >
+            <div className="paymentrequest">
+              <label htmlFor="charge">$</label>
+              <input onChange={this.handleCharge} type="text" name="charge" />
+            </div>
+            <input className="subpay" onClick={this.requestPayment} type="submit" />
+          </form>
         </Modal>
         <h3>Snyppr Chat</h3>
         {this.state.messages.map(msg => <p>{msg}</p>)}

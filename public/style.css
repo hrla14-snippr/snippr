@@ -634,22 +634,38 @@ svg#heart {
 .paymentrequest{
     position: absolute;
     width: 40%;
-    left: 20%;
-    top: 20%;
+    left: 30%;
+    top: 40%;
 }
 
-.paysub{
-    position: absolute;
-    width: 60%;
-    left: 30%;
-    top: 60%;
-}
+
 
 .paymentrequest label,input{
     display: inline-block;
 }
 
 .paymentrequest input{
+    width: 80%;
+    margin-left: 10px;
+    border-radius: 5px;
+    position: absolute;
+    border-style: none;
+    background: lightgray;
+    top: 55%;
+    left: 8%;
+}
+
+.paymentrequest label{
+    position: absolute;
+    top: 55%;
+    left: 6%;
+}
+
+.subpay{
+    position: absolute;
+    border-radius: 5px;
+    bottom: 10%;
     width: 40%;
-    padding-left: 10px;
+    left: 30%;
+    border-style: none;
 }
