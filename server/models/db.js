@@ -146,9 +146,13 @@ Transaction.belongsTo(Snyppr);
 Transaction.belongsTo(Snypee);
 
 Snyppr.hasMany(SnypprReview);
+Snypee.hasMany(SnypprReview);
 SnypprReview.belongsTo(Snyppr);
+SnypprReview.belongsTo(Snypee);
 Snypee.hasMany(SnypeeReview);
+Snyppr.hasMany(SnypeeReview);
 SnypeeReview.belongsTo(Snypee);
+SnypeeReview.belongsTo(Snyppr);
 Transaction.hasOne(SnypprReview, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 Transaction.hasOne(SnypeeReview, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
