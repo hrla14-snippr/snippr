@@ -10,13 +10,13 @@ class ProfilePage extends Component {
 
   constructor(props) {
     super(props);
-    console.log('snyppr', props.snyppr);
     this.state = {
       togglePortfolio: true,
       chatVisible: false,
     };
     this.toggleChat = this.toggleChat.bind(this);
   }
+
   toggleChat() {
     this.setState({
       portfolio: false,
@@ -48,7 +48,6 @@ class ProfilePage extends Component {
 ProfilePage.propTypes = {
   snyppr: PropTypes.shape.isRequired,
   logout: PropTypes.func.isRequired,
-  email: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

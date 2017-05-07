@@ -2,7 +2,6 @@
 const stripe = require('stripe')('sk_test_DLdp9uxn2BsYrBMyVsvyvPdv');
 
 exports.fetchTransactions = (req, res) => {
-  // TODO: grab from db /:snypprId
   const token = req.body.token.id;
   const destination = req.body.snyppr;
   console.log('token is ', token);
@@ -25,22 +24,17 @@ exports.fetchTransactions = (req, res) => {
 };
 
 exports.addTransaction = (req, res) => {
-  const token = req.body.token.id;
-  const destination = req.body.stripeId;
-  const amount = req.body.amount;
+  const token = req.body.id;
   // Charge the user's card:
   stripe.charges.create({
-    amount,
+    amount: 1000,
     currency: 'usd',
+    description: 'Example charge',
     source: token,
-    destination: {
-      account: destination,
-    },
-  })
-  .then((charge) => {
-    console.log('stripe paid', charge);
-    // TODO: add to db
+  }, (err, charge) => {
+    // asynchronously called
     res.send(charge);
-  })
-  .catch(e => console.log('stripe charge error', e));
+  });
+
+  res.send('Successfully made payment');
 };

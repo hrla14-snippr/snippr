@@ -5,11 +5,17 @@ exports.fetchSnypprs = (req, res) => {
   console.log('req params ', req.params.address);
   const userAddress = JSON.parse(req.params.address);
   console.log(userAddress);
-  db.Snyppr.findAll({ include: [db.SnypprStripe] })
+  db.Snyppr.findAll()
     .then((snypprs) => {
-      const filtered = snypprs.filter(snyppr =>
-        distFinder(userAddress.lat, userAddress.lng, snyppr.lat, snyppr.lng) < 20);
+      const filtered = snypprs.filter((snyppr) => {
+        const dist = distFinder(userAddress.lat, userAddress.lng, snyppr.lat, snyppr.lng);
+        if (dist < 20) {
+          console.log('it was less than 20');
+          return snyppr;
+        }
+      });
       res.send(filtered);
+      return filtered;
     })
     .catch((err) => {
       console.log('error during filter process ', err);
