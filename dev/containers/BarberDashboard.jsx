@@ -4,6 +4,7 @@ import BarberChat from './BarberChat';
 import Header from '../components/PageElements/Header';
 import BarberSideBar from '../components/PageElements/BarberSideBar';
 import Footer from '../components/PageElements/Footer';
+import S3Uploader from '../components/S3Uploader';
 
 class BarberDashboard extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class BarberDashboard extends Component {
               alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
             />
             <BarberChat className={this.state.displayBarberChat ? '' : 'hidden'} name={this.state.name} />
+            <S3Uploader authId={this.props.profile.id} />
           </div>
         </div>
         <Footer />
