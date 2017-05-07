@@ -134,7 +134,6 @@ class ClientChat extends Component {
 
 ClientChat.propTypes = {
   name: PropTypes.string.isRequired,
-  updateCharge: PropTypes.func.isRequired,
   snyppr: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
 };
