@@ -586,12 +586,6 @@ svg#heart {
     bottom: 5%;
     width: 400px;
     height: 400px;
-
-}
-
-.chat-svg {
-    width: 40px;
-    height: 40px;
     position: absolute;
     right: 5%;
     bottom: 5%;
