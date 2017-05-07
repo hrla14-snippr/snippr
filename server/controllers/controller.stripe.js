@@ -25,6 +25,7 @@ exports.fetchStripeSnyppr = (req, res) => {
 };
 
 exports.sendPayment = (req, res) => {
+  // req.body.snypprId && snypeeId
   const token = req.body.token.id;
   const destination = req.body.snyppr;
   console.log('token is ', token);
@@ -43,6 +44,15 @@ exports.sendPayment = (req, res) => {
     .then((charge) => {
       // asynchronously called
       console.log(charge);
-      res.send(charge);
-    });
+      return db.Transaction.create({
+        snypeeId: req.body.snypeeId,
+        snypprId: req.body.snypprId,
+        price: charge.amount,
+      });
+    })
+    .then((data) => {
+      console.log(data);
+      res.send('Charge successful');
+    })
+    .catch(e => console.log('error charging', e));
 };
