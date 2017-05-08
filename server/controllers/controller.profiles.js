@@ -40,6 +40,7 @@ exports.addProfile = (req, res) => {
       const accountType = req.body.accountType;
       delete req.body.accountType;
       console.log(req.body, accountType);
+      console.log('adding profile', req.body);
       db[accountType]
         .create(req.body)
         .then((data) => {
