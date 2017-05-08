@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TransactionsEntry from './TransactionsEntry';
 
 const TransactionsList = props => (
-  <div>
+  <div className="transactionholder">
     {props.transactions.map(transaction => <TransactionsEntry transaction={transaction} />)}
   </div>
 );

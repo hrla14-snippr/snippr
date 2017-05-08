@@ -84,7 +84,7 @@ class TransactionsEntry extends Component {
   render() {
     const review = this.props.transaction.snypprreview;
     return (
-      <div>
+      <div className="reviewentry">
         <h1>{`Snypped by ${this.props.transaction.snyppr.fname} ${this.props.transaction.snyppr.lname}`}</h1>
         <p>{`For $${this.props.transaction.price.toFixed(2)}`}</p>
         {

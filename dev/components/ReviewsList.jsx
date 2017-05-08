@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReviewEntry from './ReviewsEntry';
 
 const ReviewsList = props => (
-  <div>
+  <div className="transactionholder">
     {props.reviews.map(review => <ReviewEntry review={review} />)}
   </div>
 );
