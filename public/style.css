@@ -69,7 +69,7 @@ body{
     color: white;
     position: absolute;
     bottom: 30%;
-    left: 15%;
+    left: 20%;
     height: 70px;
     width: 200px;
     box-shadow: 10px 10px white;
@@ -96,7 +96,7 @@ body{
     box-shadow: 10px 10px white;
     position: absolute;
     bottom: 30%;
-    right: 15%;
+    right: 16%;
     height: 70px;
     width: 200px;
     z-index: 15;
