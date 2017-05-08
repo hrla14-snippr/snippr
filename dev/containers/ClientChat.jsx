@@ -104,6 +104,7 @@ class ClientChat extends Component {
   render() {
     return (
       <div className="chat-body" onClick={this.closeModal}>
+        <h3>Snypee Chat</h3>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -130,12 +131,11 @@ class ClientChat extends Component {
           <button onClick={this.closeModal} className="declinebutton">Decline</button>
         </Modal>
         <div className="live-chat">
-          <h3>Snypee Chat</h3>
           {this.state.messages.map(msg => <p>{msg}</p>)}
-          <form onSubmit={this.handleSubmit}>
-            <input value={this.state.term} onChange={this.handleChange} />
-          </form>
         </div>
+        <form className="client-form" onSubmit={this.handleSubmit}>
+          <input value={this.state.term} onChange={this.handleChange} />
+        </form>
       </div>
     );
   }
