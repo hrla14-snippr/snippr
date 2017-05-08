@@ -5,6 +5,7 @@ import Header from '../components/PageElements/Header';
 import BarberSideBar from '../components/PageElements/BarberSideBar';
 import ReviewsList from '../components/ReviewsList';
 import TransactionsList from '../components/TransactionsList';
+import PortfolioList from '../components/PortfolioList';
 import Footer from '../components/PageElements/Footer';
 import S3Uploader from '../components/S3Uploader';
 
@@ -68,6 +69,9 @@ class BarberDashboard extends Component {
             <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
               <center><S3Uploader authId={this.props.profile.id} /></center>
 
+            </div>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+              <PortfolioList images={this.state.barberImages || []} />
             </div>
             <div className="chatbox-container">
               <div className={this.state.displayBarberChat ? '' : 'hidden'}>

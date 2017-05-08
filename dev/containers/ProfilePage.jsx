@@ -4,11 +4,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
 import SnypprReviewsList from '../components/SnypprReviewsList';
+import axios from 'axios';
+import TransactionsList from '../components/TransactionsList';
+import PortfolioList from '../components/PortfolioList';
 import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
 
-const axios = require('axios');
+
 
 class ProfilePage extends Component {
 
@@ -70,6 +73,9 @@ class ProfilePage extends Component {
               <SnypprReviewsList
                 reviews={this.props.snyppr.snypprreviews}
               />
+            </div>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+              <PortfolioList images={this.state.barberImages || []} />
             </div>
             <div className="chatbox-container">
               <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
