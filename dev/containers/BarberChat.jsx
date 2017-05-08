@@ -99,7 +99,7 @@ class BarberChat extends Component {
     console.log(this.state.amount);
     return (
       <div className="chat-body">
-        <h3>Snyppr Chat</h3>
+        <h3 className="text-center">Snyppr Chat</h3>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}

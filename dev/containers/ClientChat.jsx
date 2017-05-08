@@ -104,7 +104,7 @@ class ClientChat extends Component {
   render() {
     return (
       <div className="chat-body" onClick={this.closeModal}>
-        <h3>Snypee Chat</h3>
+        <h3 className="text-center">Snypee Chat</h3>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
