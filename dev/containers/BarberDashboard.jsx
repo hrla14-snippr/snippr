@@ -11,7 +11,7 @@ class BarberDashboard extends Component {
 
     console.log('profile', props.profile);
     this.state = {
-      name: `${this.props.profile.fname} ${this.props.profile.lname}`,
+      name: `${this.props.profile.fname}${this.props.profile.lname}`,
       displayBarberChat: false,
     };
 
