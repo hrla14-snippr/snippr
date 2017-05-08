@@ -9,6 +9,8 @@ import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
 
+const axios = require('axios');
+
 class ProfilePage extends Component {
 
   constructor(props) {
@@ -19,16 +21,35 @@ class ProfilePage extends Component {
       displayClientChat: false,
       transactions: [],
       currentWindow: 'Reviews',
+      barberImages: [],
     };
     this.handleChatToggle = this.handleChatToggle.bind(this);
     this.changeWindow = this.changeWindow.bind(this);
+    this.getBarberImages = this.getBarberImages.bind(this);
   }
 
+  getBarberImages() {
+    const barberId = this.props.snyppr.id;
+    const endpoint = `/images/${barberId}`;
+    axios.get(endpoint)
+    .then((res) => {
+      console.log(res.data);
+      const arr = [];
+      res.data.forEach((image) => {
+        arr.push(image.url);
+      });
+      console.log(arr);
+      this.setState({ barberImages: arr });
+    });
+  }
   handleChatToggle() {
     this.setState({ displayClientChat: !this.state.displayClientChat });
   }
   changeWindow(event) {
     this.setState({ currentWindow: event.target.value });
+    if (event.target.value === 'Portfolio') {
+      this.getBarberImages();
+    }
   }
 
   render() {

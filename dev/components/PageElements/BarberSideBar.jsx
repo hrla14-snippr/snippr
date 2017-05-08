@@ -14,8 +14,8 @@ class BarberSideBar extends Component {
       <div className="sidebarmenu">
         <button
           onClick={this.props.changeWindow}
-          value="Work" className="navmenu-items"
-        >Work</button>
+          value="Upload" className="navmenu-items"
+        >Upload Work</button>
         <button
           onClick={this.props.changeWindow}
           value="Reviews" className="navmenu-items"
@@ -24,6 +24,10 @@ class BarberSideBar extends Component {
           className="navmenu-items"
           onClick={this.props.changeWindow} value="Transactions"
         >Transactions</button>
+        <button
+          onClick={this.props.changeWindow}
+          value="Portfolio" className="navmenu-items"
+        >Portfolio</button>
         <div onClick={this.props.logout} className="sidebar-items">Logout</div>
       </div>
     </div>

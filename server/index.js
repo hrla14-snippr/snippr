@@ -17,6 +17,8 @@ app.use(require('./routers/router.profiles'));
 app.use(require('./routers/router.transactions'));
 app.use(require('./routers/router.stripe'));
 app.use(require('./routers/router.reviews'));
+app.use(require('./routers/router.s3'));
+
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')));
 
