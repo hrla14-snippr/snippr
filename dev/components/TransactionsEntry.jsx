@@ -103,8 +103,15 @@ class TransactionsEntry extends Component {
               contentLabel="Modal"
             >
               <form onSubmit={this.submitReview}>
-                <input type="text" name="description" onChange={this.updateDesc} required />
-                <select name="rating" onChange={this.updateRating} required>
+                <h1 className="text-center">Tell us what you think!</h1>
+                <input
+                  className="someinput"
+                  type="text"
+                  name="description"
+                  onChange={this.updateDesc}
+                  required
+                />
+                <select className="selectinput" name="rating" onChange={this.updateRating} required>
                   <option default disabled selected>Select a value</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -112,7 +119,7 @@ class TransactionsEntry extends Component {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-                <input type="submit" value="Submit" />
+                <input className="reviewsubmit" type="submit" value="Submit" />
               </form>
             </Modal>
           </div>

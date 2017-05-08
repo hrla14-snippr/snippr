@@ -10,15 +10,18 @@ import TransactionsList from '../components/TransactionsList';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
 import { CurrentFavorites } from '../actions/CurrentFavorites';
+import S3Uploader from '../components/S3Uploader';
 
 class ClientDashboard extends Component {
   constructor(props) {
     super(props);
+    const profilePic = this.props.profile.profilepic ? this.props.profile.profilepic.url : 'https://timeforgeography.co.uk/static/img/avatar-placeholder.png';
     this.state = {
       nearbySnypprs: [],
       clientAddress: { lat: props.profile.lat, lng: props.profile.lng },
       favorites: [],
       currentWindow: 'Nearby',
+      profilePic,
     };
     this.handleToggle = this.handleToggle.bind(this);
   }
@@ -52,6 +55,7 @@ class ClientDashboard extends Component {
 
   handleToggle(event) {
     this.setState({ currentWindow: event.target.value });
+    console.log(event);
   }
 
   render() {
@@ -62,7 +66,12 @@ class ClientDashboard extends Component {
         <div className="dashboard-box">
           <div className="navigation">
             <div className="picturebox">
-              <img className="userpic" alt="placeholderimage" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" />
+              <img
+                className="userpic"
+                value="ProfilePic"
+                alt="placeholderimage"
+                src={this.state.profilePic}
+              />
             </div>
             <div className="navmenu">
               <button
@@ -80,11 +89,15 @@ class ClientDashboard extends Component {
               <button
                 onClick={this.handleToggle} value="Transactions" className="navmenu-items"
               >Transactions</button>
-              <button onClick={this.props.logout} className="navmenu-items">Logout</button>
+              <button
+                onClick={this.props.logout}
+                className="navmenu-items"
+                value="Logout"
+              >Logout</button>
             </div>
           </div>
           <div className="right-box">
-            <div className={['Reviews', 'Transactions'].includes(this.state.currentWindow) ? 'hidden' : ''}>
+            <div className={['Reviews', 'ProfilePic', 'Transactions'].includes(this.state.currentWindow) ? 'hidden' : ''}>
               <GoogleMaps
                 clientAddress={this.state.clientAddress}
                 snypprs={this.state.nearbySnypprs}
@@ -100,6 +113,13 @@ class ClientDashboard extends Component {
                 fetchFavorites={this.fetchFavorites}
                 favorites={this.state.favorites}
               />
+            </div>
+            <div className={this.state.currentWindow === 'ProfilePic' ? '' : 'hidden'}>
+              <center><S3Uploader
+                authId={this.props.profile.id}
+                action="profilepic"
+                type="snyppee"
+              /></center>
             </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
               <ReviewsList reviews={this.props.profile.snypeereviews || []} reviewer="snyppr" />

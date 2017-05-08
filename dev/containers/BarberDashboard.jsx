@@ -5,6 +5,7 @@ import Header from '../components/PageElements/Header';
 import BarberSideBar from '../components/PageElements/BarberSideBar';
 import ReviewsList from '../components/ReviewsList';
 import TransactionsList from '../components/TransactionsList';
+import PortfolioList from '../components/PortfolioList';
 import Footer from '../components/PageElements/Footer';
 import S3Uploader from '../components/S3Uploader';
 
@@ -55,7 +56,11 @@ class BarberDashboard extends Component {
       <div className="profile">
         <Header />
         <div className="profile-box">
-          <BarberSideBar changeWindow={this.changeWindow} logout={this.props.logout} />
+          <BarberSideBar
+            changeWindow={this.changeWindow}
+            logout={this.props.logout}
+            profilePic={this.props.profile.profilepic.url}
+          />
           <div className="profile-body">
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
               <ReviewsList reviews={this.props.profile.snypprreviews || []} reviewer="snypee" />
@@ -65,19 +70,34 @@ class BarberDashboard extends Component {
                 transactions={this.props.profile.transactions || []} target="Snypee"
               />
             </div>
-            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
-              <center><S3Uploader authId={this.props.profile.id} /></center>
-
+            <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
+              <center>
+                <S3Uploader
+                  authId={this.props.profile.id}
+                  action="upload"
+                />
+              </center>
             </div>
-            <div className="chatbox-container">
-              <div className={this.state.displayBarberChat ? '' : 'hidden'}>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+              <center>
+                <S3Uploader
+                  authId={this.props.profile.id}
+                  action="profilepic"
+                  type="snyppr"
+                />
+              </center>
+              <PortfolioList images={this.state.barberImages || []} hide={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'} />
+            </div>
+            <div className={`chatbox-container ${this.state.displayBarberChat ? '' : 'hidden'}`}>
+              <div>
                 <BarberChat name={this.state.name} />
               </div>
-              <img
-                onClick={this.handleChatToggle}
-                alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
-              />
+
             </div>
+            <img
+              onClick={this.handleChatToggle}
+              alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
+            />
           </div>
         </div>
         <Footer />

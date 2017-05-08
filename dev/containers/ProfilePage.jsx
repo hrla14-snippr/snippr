@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Notifications from 'react-notify-toast';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
 import SnypprReviewsList from '../components/SnypprReviewsList';
+import PortfolioList from '../components/PortfolioList';
 import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
-
-const axios = require('axios');
 
 class ProfilePage extends Component {
 
@@ -51,7 +51,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log('current snyp', this.props.snyppr);
+    console.log('this is the barbers images state ', this.state);
     return (
       <div className="profile">
         <Notifications />
@@ -62,14 +62,13 @@ class ProfilePage extends Component {
             snyppr={this.props.snyppr} logout={this.props.logout}
           />
           <div className=" profile-body">
-            <div className="profileheader">
-              <h1 className="entryheader">{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
-              <p>{this.props.snyppr.address}</p>
-            </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
               <SnypprReviewsList
                 reviews={this.props.snyppr.snypprreviews}
               />
+            </div>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+              <PortfolioList images={this.state.barberImages || []} />
             </div>
             <div className="chatbox-container">
               <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>

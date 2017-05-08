@@ -33,7 +33,12 @@ class FavoriteEntry extends Component {
         <div onClick={() => this.props.ChangeSnyppr(this.props.favorite)} className="snypprentry">
           <div className="entryimg">
             <img
-              alt="placeholder" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" height="50px"
+              className="miniprofilepic"
+              alt="placeholder"
+              src={this.props.favorite.profilepic
+                  ? this.props.favorite.profilepic.url
+                  : 'https://timeforgeography.co.uk/static/img/avatar-placeholder.png'}
+              height="50px"
               width="50px"
             />
           </div>

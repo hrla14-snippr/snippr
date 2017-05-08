@@ -15,7 +15,7 @@ exports.fetchFavorites = (req, res) => {
         where: {
           id: ids,
         },
-        include: [db.SnypprStripe, {
+        include: [db.SnypprStripe, db.ProfilePic, {
           model: db.SnypprReview,
           include: db.Snypee,
         }],
