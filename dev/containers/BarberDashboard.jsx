@@ -74,23 +74,30 @@ class BarberDashboard extends Component {
               <center>
                 <S3Uploader
                   authId={this.props.profile.id}
-                  action="profilepic"
-                  type="snyppr"
+                  action="upload"
                 />
               </center>
             </div>
             <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
-              <PortfolioList images={this.state.barberImages || []} />
+              <center>
+                <S3Uploader
+                  authId={this.props.profile.id}
+                  action="profilepic"
+                  type="snyppr"
+                />
+              </center>
+              <PortfolioList images={this.state.barberImages || []} hide={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'} />
             </div>
-            <div className="chatbox-container">
-              <div className={this.state.displayBarberChat ? '' : 'hidden'}>
+            <div className={`chatbox-container ${this.state.displayBarberChat ? '' : 'hidden'}`}>
+              <div>
                 <BarberChat name={this.state.name} />
               </div>
-              <img
-                onClick={this.handleChatToggle}
-                alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
-              />
+
             </div>
+            <img
+              onClick={this.handleChatToggle}
+              alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
+            />
           </div>
         </div>
         <Footer />

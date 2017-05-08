@@ -18,11 +18,13 @@ exports.uploadProfilePic = (req, res) => {
     Body: req.file.buffer,
     ACL: 'public-read', // your permisions
   }, (err, data) => {
-    if (err) return res.status(400).send(err);
-    console.log(data.Location);
-    res.send('File uploaded to S3');
-    if (req.params.type === 'snyppr') {
-       db.Snyppr.findOne({ where: { id: req.params.authId } })
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      console.log(data.Location);
+      res.send('File uploaded to S3');
+      if (req.params.type === 'snyppr') {
+        db.Snyppr.findOne({ where: { id: req.params.authId } })
       .then(({ id }) => db.ProfilePic
       .create({
         snypprId: id,
@@ -31,8 +33,8 @@ exports.uploadProfilePic = (req, res) => {
       .then((dat) => {
         console.log(dat);
       });
-    } else {
-      db.Snypee.findOne({ where: { id: req.params.authId } })
+      } else {
+        db.Snypee.findOne({ where: { id: req.params.authId } })
       .then(({ id }) => db.ProfilePic
       .create({
         snypeeId: id,
@@ -41,13 +43,14 @@ exports.uploadProfilePic = (req, res) => {
       .then((dat) => {
         console.log(dat);
       });
+      }
     }
   });
 };
 
 exports.getProfilePic = (req, res) => {
   console.log(req.params);
-  if(req.params.type === 'synppr'){
+  if (req.params.type === 'synppr') {
     db.ProfilePic.findAll({ where: { snypprId: req.params.authId } })
     .then((responseData) => {
       res.send(responseData);
@@ -88,7 +91,7 @@ exports.uploadPhotos = ((req, res) => {
 });
 
 exports.getPhotos = ((req, res) => {
-  console.log(req.params);
+  console.log('params', req.params);
   db.SnypprImage.findAll({ where: { snypprId: req.params.authId } })
   .then((responseData) => {
     res.send(responseData);

@@ -5,7 +5,7 @@ class BarberSideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 1,
+      activeTab: 2,
     };
 
     this.changeActiveTab = this.changeActiveTab.bind(this);
@@ -30,22 +30,25 @@ class BarberSideBar extends Component {
           value="Portfolio" className={`navmenu-items ${this.state.activeTab === 0 ? 'navmenu-active' : ''}`}
         >Portfolio</button>
         <button
-          onClick={this.props.changeWindow}
-          value="Upload" className="navmenu-items"
+          onClick={(e) => {
+            this.props.changeWindow(e);
+            this.changeActiveTab(1);
+          }}
+          value="Upload" className={`navmenu-items ${this.state.activeTab === 1 ? 'navmenu-active' : ''}`}
         >Upload Profile Pic
         </button>
         <button
           onClick={(e) => {
             this.props.changeWindow(e);
-            this.changeActiveTab(1);
+            this.changeActiveTab(2);
           }}
-          value="Reviews" className={`navmenu-items ${this.state.activeTab === 1 ? 'navmenu-active' : ''}`}
+          value="Reviews" className={`navmenu-items ${this.state.activeTab === 2 ? 'navmenu-active' : ''}`}
         >Reviews</button>
         <button
-          className={`navmenu-items ${this.state.activeTab === 2 ? 'navmenu-active' : ''}`}
+          className={`navmenu-items ${this.state.activeTab === 3 ? 'navmenu-active' : ''}`}
           onClick={(e) => {
             this.props.changeWindow(e);
-            this.changeActiveTab(2);
+            this.changeActiveTab(3);
           }} value="Transactions"
         >Transactions</button>
         <div onClick={this.props.logout} className="sidebar-items">Logout</div>
