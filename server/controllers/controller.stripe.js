@@ -28,8 +28,6 @@ exports.sendPayment = (req, res) => {
   // req.body.snypprId && snypeeId
   const token = req.body.token.id;
   const destination = req.body.snyppr;
-  console.log('token is ', token);
-  console.log('destination is', destination);
   // Token is created using Stripe.js or Checkout!
   // Get the payment token submitted by the form:
   // Create a Charge:

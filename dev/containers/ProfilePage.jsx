@@ -13,7 +13,6 @@ class ProfilePage extends Component {
 
   constructor(props) {
     super(props);
-    console.log('snyppr', props.snyppr);
     this.state = {
       togglePortfolio: true,
       favorited: false,
@@ -33,7 +32,6 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log(this.state, 'lookin for that current window brothaaaa');
     return (
       <div className="profile">
         <Notifications />
@@ -59,7 +57,7 @@ class ProfilePage extends Component {
             <div className="chatbox-container">
               <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
                 <ClientChat
-                  snypeeId={this.props.profile.id}
+                  profile={this.props.profile}
                   snyppr={this.props.snyppr}
                   name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`}
                   email={this.props.email}

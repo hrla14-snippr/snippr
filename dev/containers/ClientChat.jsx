@@ -55,6 +55,10 @@ class ClientChat extends Component {
 
   componentDidMount() {
     socket.emit('join', { name: this.props.name });
+    socket.emit('snypee-profile', {
+      name: this.props.name,
+      snypee: this.props.profile,
+    });
     socket.on('private-message', (data) => {
       this.setState({
         messages: [...this.state.messages, data.msg],
@@ -71,7 +75,7 @@ class ClientChat extends Component {
       stripeId: this.props.snyppr.snypprstripe.id,
       amount: this.state.charge,
       snypprId: this.props.snyppr.id,
-      snypeeId: this.props.snypeeId,
+      snypeeId: this.props.profile.snypeeId,
     })
       .then((response) => {
         console.log('data is', response);
@@ -145,7 +149,7 @@ ClientChat.propTypes = {
   name: PropTypes.string.isRequired,
   snyppr: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  snypeeId: PropTypes.string.isRequired,
+  profile: PropTypes.shape.isRequired,
 };
 
 export default ClientChat;
