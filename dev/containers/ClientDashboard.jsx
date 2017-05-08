@@ -21,7 +21,6 @@ class ClientDashboard extends Component {
   }
 
   componentDidMount() {
-    console.log('profile in dash', this.props.profile);
     this.fetchSnypprs(JSON.stringify(this.state.clientAddress));
     this.fetchFavorites();
   }
@@ -29,7 +28,6 @@ class ClientDashboard extends Component {
   fetchSnypprs(address) {
     axios.get(`/nearbySnypprs/${address}`)
       .then((results) => {
-        console.log('results from fetching my barbers  ', results);
         this.setState({ nearbySnypprs: results });
       })
       .catch((err) => {
@@ -91,7 +89,10 @@ class ClientDashboard extends Component {
               <SnypprList snypprs={this.state.nearbySnypprs} />
             </div>
             <div className={this.state.currentWindow === 'Favorites' ? '' : 'hidden'}>
-              <FavoriteList favorites={this.state.favorites} />
+              <FavoriteList
+                snypeeId={this.props.profile.id}
+                fetchFavorites={this.fetchFavorites} favorites={this.state.favorites}
+              />
             </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
               <ReviewsList reviews={this.props.profile.snypeereviews} />
