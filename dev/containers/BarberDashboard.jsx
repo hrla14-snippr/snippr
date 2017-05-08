@@ -32,13 +32,16 @@ class BarberDashboard extends Component {
           <div className="profile-body">
             <h1>{this.state.name}</h1>
             <p>some address</p>
-            <div className={this.state.displayBarberChat ? 'chat-position' : 'hidden'}>
-              <BarberChat name={this.state.name} />
+
+            <div className="chatbox-container">
+              <div className={this.state.displayBarberChat ? 'chat-position' : 'hidden'}>
+                <BarberChat name={this.state.name} />
+              </div>
+              <img
+                onClick={this.handleChatToggle}
+                alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
+              />
             </div>
-            <img
-              onClick={this.handleChatToggle}
-              alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
-            />
           </div>
         </div>
         <Footer />

@@ -33,17 +33,21 @@ class ProfilePage extends Component {
             <p>{this.props.snyppr.address}</p>
             {/* <div className="portfolio"></div> */}
 
-            <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
-              <ClientChat
-                snyppr={this.props.snyppr}
-                name={`${this.props.snyppr.fname} ${this.props.snyppr.lname}`}
-                email={this.props.email}
+            <div className="chatbox-container">
+              <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
+                <ClientChat
+                  snyppr={this.props.snyppr}
+                  name={`${this.props.snyppr.fname} ${this.props.snyppr.lname}`}
+                  email={this.props.email}
+                />
+              </div>
+              <img
+                onClick={this.handleChatToggle}
+                alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
               />
             </div>
-            <img
-              onClick={this.handleChatToggle}
-              alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
-            />
+
+
           </div>
         </div>
         <Footer />

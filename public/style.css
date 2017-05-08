@@ -216,13 +216,6 @@ modalimg{
 .content{
     border-radius: 8px;
 }
-.chat-svg {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    right: 0;
-    bottom: 3em;
-}
 
 .snypprentry{
     width: 100%;
@@ -557,10 +550,28 @@ svg#heart {
   stroke-dasharray: 125;
 }
 
+
+.chatbox-container {
+    position: absolute;
+    right: 0;
+
+}
+
+.chat-svg {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    bottom: 3em;
+}
+
+
 /* Chat Client Box */
 .chat-position {
-    position: relative;
-    left: 58%;
+    position: absolute;
+    right: 11%;
+    top: 15%;
+    /*left: 58%;*/
     width: 300px;
 }
 
