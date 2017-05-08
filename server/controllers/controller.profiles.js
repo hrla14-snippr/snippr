@@ -7,7 +7,13 @@ exports.verifyHasProfile = (req, res) => {
   const accountType = req.body.accountType;
   delete req.body.accountType;
   const options = accountType === 'Snyppr'
-    ? { include: [db.SnypprStripe, db.SnypprReview] }
+    ? { include: [db.SnypprStripe, {
+      model: db.SnypprReview,
+      include: [db.Snypee],
+    }, {
+      model: db.Transaction,
+      include: [db.Snypee, db.SnypeeReview],
+    }] }
     : { include: [{
       model: db.SnypeeReview,
       include: [db.Snyppr],

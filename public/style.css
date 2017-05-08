@@ -326,9 +326,12 @@ modalimg{
     height: 50vh;
     width: 100%;
 }
+
+
 .sidebar-items:hover{
     background-color: mediumspringgreen;
 }
+
 .navmenu-items, .sidebar-items{
     text-align: center;
     line-height: 10vh;
@@ -338,6 +341,7 @@ modalimg{
     font-size: 16px;
     cursor: pointer;
 }
+
 .navmenu-items {
     text-align: center;
     line-height: 10vh;
@@ -350,6 +354,11 @@ modalimg{
     border-style: none;
     border-bottom: 1px solid lightgray;
     background-color: white;
+}
+
+.navmenu-active {
+    background-color: mediumspringgreen;
+    color: white;
 }
 .navmenu-items:hover{
     background-color: mediumspringgreen;
