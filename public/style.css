@@ -477,8 +477,11 @@ modalimg{
     height: 40px;
 }
 .hairstyles{
+    position: absolute;
     border-style: none;
-    margin-left: 5%;
+    width: 50%;
+    left: 25%;
+    top: 45vh;
 }
 .hairholder{
     position: absolute;

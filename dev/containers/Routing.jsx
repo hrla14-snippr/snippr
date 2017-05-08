@@ -36,15 +36,12 @@ class Routing extends Component {
   submitUserInfo(e) {
     e.preventDefault();
 
-    const data = { styles: '' };
+    const data = {};
     data.id = this.state.auth.getAuthId();
     data.accountType = this.state.auth.getAccountType();
     Array.prototype.slice.call(e.target).forEach((childNode) => {
       if (childNode.name && childNode.type === 'text') {
         data[childNode.name] = childNode.value;
-      }
-      if (childNode.type === 'checkbox' && childNode.checked) {
-        data.styles += childNode.value;
       }
     });
     console.log(data, 'this is how data looks before axios call');
@@ -62,22 +59,8 @@ class Routing extends Component {
       .catch(err => console.log('error adding profile', err));
   }
 
-  // checkUserHasStripe() {
-  //   const context = this;
-
-  //   return axios.get('/stripeId')
-  //     .then(({ data }) => {
-  //       if (data) {
-  //         context.setState({
-  //           stripeId: data.stripeId,
-  //         });
-  //       }
-  //     })
-  //     .catch(e => console.log('stripe error', e));
-  // }
-
   checkUserExists() {
-    const context = this;
+    // const context = this;
 
     // TODO: setup stripeId check
     const accountType = this.state.auth.getAccountType();
@@ -88,7 +71,7 @@ class Routing extends Component {
       .then(({ data }) => {
         console.log('verifyprofile res', data);
         if (data && (accountType === 'Snypee' || data.snypprstripe)) {
-          context.setState({
+          this.setState({
             profile: data,
             hasProfile: true,
             hasStripeId: true,
@@ -122,10 +105,10 @@ class Routing extends Component {
     if (this.state.hasProfile && this.state.hasStripeId) {
       const accountType = this.state.auth.getAccountType();
       return accountType === 'Snyppr'
-        ? <BarberDashboard profile={this.state.profile} logout={this.state.auth.logout} />
-        : <ClientDashboard profile={this.state.profile} logout={this.state.auth.logout} />;
+            ? <BarberDashboard profile={this.state.profile} logout={this.state.auth.logout} />
+            : <ClientDashboard profile={this.state.profile} logout={this.state.auth.logout} />;
     }
-      // if not, send to /newUser
+          // if not, send to /newUser
     return <Redirect to="/newUser" />;
   }
 

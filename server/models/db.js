@@ -80,16 +80,6 @@ const Snypee = db.define('snypee', {
   timestamps: false,
 });
 
-const Style = db.define('style', {
-  style: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-  },
-}, {
-  timestamps: false,
-});
-
 const Transaction = db.define('transaction', {
   price: {
     type: Sequelize.FLOAT,
@@ -158,18 +148,12 @@ Transaction.hasOne(SnypeeReview, { foreignKey: { allowNull: false }, onDelete: '
 
 Snyppr.hasOne(SnypprStripe);
 
-const SnypprStyles = db.define('snypprStyles', {}, { timestamps: false });
-Style.belongsToMany(Snyppr, { through: SnypprStyles });
-Snyppr.belongsToMany(Style, { through: SnypprStyles });
-
 Snypee.hasMany(Favorite);
 Favorite.belongsTo(Snypee);
 
 Snyppr.sync();
 Snypee.sync();
-Style.sync();
 Transaction.sync();
-SnypprStyles.sync();
 SnypprStripe.sync();
 Favorite.sync();
 SnypprReview.sync();
@@ -188,9 +172,7 @@ db.authenticate()
 module.exports.Snyppr = Snyppr;
 module.exports.Snypee = Snypee;
 module.exports.SnypprStripe = SnypprStripe;
-module.exports.Style = Style;
 module.exports.Transaction = Transaction;
-module.exports.SnypprStyles = SnypprStyles;
 module.exports.Favorite = Favorite;
 module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
