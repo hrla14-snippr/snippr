@@ -582,6 +582,20 @@ svg#heart {
     box-shadow: 2px 2px 2px 2px lightgray;
 }
 /* End Chat Client Box */
+
+
+/*Stripe Styling*/
+
+.stripesignup {
+    position: absolute;
+    top: 10vh;
+    height: 80vh;
+    width: 100%;
+    padding: 1em;
+    background-color: #e8ebef;
+    padding: 20px 1em 0 1em;
+}
+
 .stripebutton{
     position: absolute;
     border-style: none;

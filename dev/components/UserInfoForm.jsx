@@ -13,10 +13,10 @@ class UserInfoForm extends Component {
     const stripeURL = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AZdNGhV2VUe0pilvxfh5jkNfsevELTNz&scope=read_write&redirect_uri=http://localhost:3000/stripeId&state=${this.props.authId}`;
     return (
       (this.props.accountType === 'Snyppr' && this.props.hasProfile && !this.props.hasStripeId)
-      ? <div>
-        <a href={stripeURL}>
-          Sign up for a Stripe Account
-        </a>
+      ? <div className="stripesignup">
+        <div className="formheader">Sign up for a Stripe Account</div>
+        <p>You will need a Stripe Account to continue using our service.
+          <a href={stripeURL}> Click on the link</a> to sign up for an account!</p>
       </div>
       : <div>
         <Header />
