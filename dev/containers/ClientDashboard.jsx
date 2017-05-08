@@ -102,10 +102,12 @@ class ClientDashboard extends Component {
               />
             </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
-              <ReviewsList reviews={this.props.profile.snypeereviews || []} />
+              <ReviewsList reviews={this.props.profile.snypeereviews || []} reviewer="snyppr" />
             </div>
             <div className={this.state.currentWindow === 'Transactions' ? '' : 'hidden'}>
-              <TransactionsList transactions={this.props.profile.transactions || []} />
+              <TransactionsList
+                transactions={this.props.profile.transactions || []} target="Snyppr"
+              />
             </div>
           </div>
         </div>

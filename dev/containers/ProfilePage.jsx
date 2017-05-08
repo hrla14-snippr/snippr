@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
 import SnypprReviewsList from '../components/SnypprReviewsList';
-import TransactionsList from '../components/TransactionsList';
 import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
@@ -19,7 +18,6 @@ class ProfilePage extends Component {
       togglePortfolio: true,
       favorited: false,
       displayClientChat: false,
-      transactions: [],
       currentWindow: 'Reviews',
       barberImages: [],
     };
@@ -53,6 +51,7 @@ class ProfilePage extends Component {
   }
 
   render() {
+    console.log('current snyp', this.props.snyppr);
     return (
       <div className="profile">
         <Notifications />
@@ -71,9 +70,6 @@ class ProfilePage extends Component {
               <SnypprReviewsList
                 reviews={this.props.snyppr.snypprreviews}
               />
-            </div>
-            <div className={this.state.currentWindow === 'Transactions' ? '' : 'hidden'}>
-              <TransactionsList transactions={this.state.transactions} />
             </div>
             <div className="chatbox-container">
               <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>

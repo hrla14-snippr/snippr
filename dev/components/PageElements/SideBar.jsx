@@ -43,15 +43,11 @@ class SideBar extends Component {
       <div className="sidebarmenu">
         <button
           onClick={this.props.changeWindow}
-          value="Work" className="navmenu-items"
-        >Work</button>
+          value="Portfolio" className="navmenu-items"
+        >Portfolio</button>
         <button
           onClick={this.props.changeWindow} value="Reviews" className="navmenu-items"
         >Reviews</button>
-        <button
-          onClick={this.props.changeWindow}
-          value="Portfolio" className="navmenu-items"
-        >Portfolio</button>
         <div onClick={this.handleFav} className="navmenu-items svgcontainer">
           <FavoriteIcon />
         </div>
