@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
 
-
 class UserInfoForm extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +26,6 @@ class UserInfoForm extends Component {
         <a href={stripeURL}>
           Sign up for a Stripe Account
         </a>
-        <button>Click here when done</button>
       </div>
       : <div>
         <Header />
