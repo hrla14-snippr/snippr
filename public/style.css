@@ -2,8 +2,16 @@ body{
     margin: 0;
 }
 
+html, body {
+    min-height: 100vh;
+}
+
 .clientDashContainer {
   margin: 0;  
+}
+
+.wholepage{
+    min-height: 100vh;
 }
 
 .landing-page{
@@ -19,6 +27,17 @@ body{
     left: 0;
     content: "";
     z-index: 0;
+    min-height: 100vh;
+}
+
+.takeupspace{
+    position: relative;
+    height: 100vh;
+}
+
+.about-us{
+    margin-top: 100px;
+    z-index: 1000;
 }
 
 .left-overlay {
@@ -77,7 +96,7 @@ body{
     color: white;
     position: absolute;
     bottom: 30%;
-    left: 15%;
+    left: 20%;
     height: 70px;
     width: 200px;
     box-shadow: 10px 10px white;
@@ -107,7 +126,7 @@ body{
     box-shadow: 10px 10px white;
     position: absolute;
     bottom: 30%;
-    right: 15%;
+    right: 16%;
     height: 70px;
     width: 200px;
     z-index: 15;
@@ -761,5 +780,8 @@ svg#heart {
     right: 3%;
     top: 3vh;
 }
+
+
+
 
 

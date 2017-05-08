@@ -27,20 +27,27 @@ class LandingPage extends Component {
     const SNYPEE = 'Snypee';
     const SNYPPR = 'Snyppr';
     return (
-      <div className="landing-page">
-        <button onClick={this.typedSignup} value={SNYPEE} className="snypee-but">
-          Click here to be a snypee
-        </button>
-        <button onClick={this.typedSignup} value={SNYPPR} className="snyppr-but">
-          Click here to be a snyppr
-        </button>
-        <button onClick={this.state.auth.login} className="login">Login</button>
-        <div className="logo">Snyppr</div>
-        <div className="left-overlay" >
-          <div className="left-text">Are you a Snypee?</div>
+      <div className="wholepage">
+        <div className="takeupspace">
+          <div className="landing-page">
+            <button onClick={this.typedSignup} value={SNYPEE} className="snypee-but">
+              Click here to be a snypee
+            </button>
+            <button onClick={this.typedSignup} value={SNYPPR} className="snyppr-but">
+              Click here to be a snyppr
+            </button>
+            <button onClick={this.state.auth.login} className="login">Login</button>
+            <div className="logo">Snyppr</div>
+            <div className="left-overlay" >
+              <div className="text-center left-text">Are you a Snypee?</div>
+            </div>
+            <div className="right-overlay" >
+              <div className="text-center right-text">Are you a Snyppr?</div>
+            </div>
+          </div>
         </div>
-        <div className="right-overlay" >
-          <div className="right-text">Are you a Snyppr?</div>
+        <div className="about-us">
+          <h1 className="text-center">ABOUT US!!!</h1>
         </div>
       </div>
     );
