@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Loader from 'react-loaders';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import AuthService from '../utils/AuthService';
@@ -57,7 +56,6 @@ class Routing extends Component {
         this.setState(stateOptions, function () {
           this.props.history.push('/dashboard');
         });
-        this.setState({ loading: false });
       })
       .catch(err => console.log('error adding profile', err));
   }
@@ -127,12 +125,6 @@ class Routing extends Component {
   }
   render() {
     const { history } = this.props; // eslint-disable-line no-unused-vars
-    if (this.state.loading) {
-      console.log('submitting user info');
-      return (
-        <Loader type="line-scale" active />
-      );
-    }
     return (
       <Switch>
         <Route exact path="/">

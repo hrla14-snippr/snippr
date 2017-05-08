@@ -24,6 +24,7 @@ class ClientDashboard extends Component {
       profilePic,
     };
     this.handleToggle = this.handleToggle.bind(this);
+    // this.openProfilePicModal = this.openProfilePicModal.bind(this);
   }
 
   componentDidMount() {
@@ -67,6 +68,7 @@ class ClientDashboard extends Component {
           <div className="navigation">
             <div className="picturebox">
               <img
+                // onClick={this.openProfilePicModal}
                 className="userpic"
                 value="ProfilePic"
                 alt="placeholderimage"
@@ -118,7 +120,7 @@ class ClientDashboard extends Component {
               <center><S3Uploader
                 authId={this.props.profile.id}
                 action="profilepic"
-                type="snyppee"
+                type="snypee"
               /></center>
             </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
