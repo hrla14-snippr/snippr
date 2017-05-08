@@ -125,7 +125,14 @@ const SnypeeReview = db.define('snypeereview', {
     allowNull: false,
   },
 });
-
+const SnypprImage = db.define('snypprimage', {
+  url: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+}, {
+  timestamps: true,
+});
 /*
   RELATIONSHIPS
 */
@@ -151,6 +158,9 @@ Snyppr.hasOne(SnypprStripe);
 Snypee.hasMany(Favorite);
 Favorite.belongsTo(Snypee);
 
+Snyppr.hasMany(SnypprImage);
+SnypprImage.belongsTo(Snyppr);
+
 Snyppr.sync();
 Snypee.sync();
 Transaction.sync();
@@ -159,7 +169,7 @@ Favorite.sync();
 SnypprReview.sync();
 SnypeeReview.sync();
 SnypprStripe.sync();
-
+SnypprImage.sync();
 
 db.authenticate()
   .then(() => {
@@ -177,3 +187,4 @@ module.exports.Favorite = Favorite;
 module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
 module.exports.SnypprStripe = SnypprStripe;
+module.exports.SnypprImage = SnypprImage;
