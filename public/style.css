@@ -587,13 +587,33 @@ svg#heart {
 /*Stripe Styling*/
 
 .stripesignup {
-    position: absolute;
+    position: relative;
+    margin: 0 auto;
     top: 10vh;
-    height: 80vh;
-    width: 100%;
-    padding: 1em;
+    height: 60vh;
+    width: 70%;
     background-color: #e8ebef;
-    padding: 20px 1em 0 1em;
+}
+
+.stripesignheader {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #7691bc;
+    height: 70px;
+    border-radius: 3px;
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+.stripesignheader h1 {
+    color: white;
+}
+
+.stripesigncontent {
+    padding: 2em;
+    position: relative;
+    top: 23%;
 }
 
 .stripebutton{
