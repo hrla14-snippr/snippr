@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Notifications from 'react-notify-toast';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
@@ -29,6 +30,7 @@ class ProfilePage extends Component {
     console.log(this.props, 'these are the current props that the client has access to inside of props');
     return (
       <div className="profile">
+        <Notifications />
         <Header />
         <div className="profile-box">
           <SideBar snyppr={this.props.snyppr} logout={this.props.logout} />

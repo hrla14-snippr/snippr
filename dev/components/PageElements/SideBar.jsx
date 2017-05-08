@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import { notify } from 'react-notify-toast';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FavoriteIcon from './FavoriteIcon';
 
+
 const axios = require('axios');
+
 
 class SideBar extends Component {
   constructor(props) {
     super(props);
     this.handleFav = this.handleFav.bind(this);
   }
-  // componentDidMount() {
-  //   this.checkFavorites();
-  // }
 
   handleFav() {
     console.log('inside handleFav click');
@@ -25,16 +25,16 @@ class SideBar extends Component {
     })
       .then((response) => {
         console.log(response);
+        if (response.data === 'created already') {
+          notify.show('already in your favorites!!', 'error');
+        } else {
+          notify.show('added to favorites!', 'success');
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  // checkFavorites() {
-  //   const bool =
-  //     this.props.currentFavorites.data.some(favorite => favorite.id === this.props.snyppr.id);
-  //   this.setState({ favorited: bool });
-  // }
   render() {
     return (<div className="sidebar">
       <div className="picturebox">
@@ -55,13 +55,11 @@ class SideBar extends Component {
 
 const mapStateToProps = state => ({
   snypprId: state.currentSnyppr,
-  currentFavorites: state.currentFavorites,
 });
 
 SideBar.propTypes = {
   snypprId: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
-  // currentFavorites: PropTypes.shape.isRequired,
 };
 
 export default connect(mapStateToProps)(SideBar);
