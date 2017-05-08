@@ -2,9 +2,7 @@ const db = require('../models/db');
 const distFinder = require('../../dev/utils/distFinder');
 
 exports.fetchSnypprs = (req, res) => {
-  console.log('req params ', req.params.address);
   const userAddress = JSON.parse(req.params.address);
-  console.log(userAddress);
   db.Snyppr.findAll({ include: [db.SnypprStripe, {
     model: db.SnypprReview,
     include: db.Snypee,

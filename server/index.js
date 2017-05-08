@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('./routers/router.snypprLocations'));
 app.use(require('./routers/router.favorites'));
 app.use(require('./routers/router.profiles'));
-app.use(require('./routers/router.styles'));
 app.use(require('./routers/router.transactions'));
 app.use(require('./routers/router.stripe'));
 app.use(require('./routers/router.reviews'));

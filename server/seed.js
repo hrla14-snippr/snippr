@@ -7,13 +7,7 @@ db.Snyppr.destroy({ where: {} })
     db.Snypee.destroy({ where: {} });
   })
   .then(() => {
-    db.Style.destroy({ where: {} });
-  })
-  .then(() => {
     db.Transaction.destroy({ where: {} });
-  })
-  .then(() => {
-    db.SnypprStyles.destroy({ where: {} });
   })
   .then(() => {
     db.Favorite.destroy({ where: {} });
@@ -24,10 +18,6 @@ db.Snyppr.destroy({ where: {} })
   .then(() => {
     db.SnypeeReview.destroy({ where: {} });
   })
-  .then(() => db.Style.bulkCreate(StylesSeed.HAIRSTYLES, { returning: true }))
-  .then(data => console.log('bulk created', data))
-  .then(() => db.Style.findAll())
-  .then(data => console.log('findall styles', data))
   .then(() => db.Snyppr.bulkCreate(StylesSeed.SNYPPRS))
   .then(data => console.log('bulk created', data))
   .then(() => db.Snyppr.findAll())
