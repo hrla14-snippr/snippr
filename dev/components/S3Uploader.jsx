@@ -17,7 +17,7 @@ export default class S3Uploader extends React.Component {
     .attach('theseNamesMustMatch', files[0])
     .end((err) => {
       if (err) console.log(err);
-      return console.log('File uploaded!');
+      return console.log('File uploaded!', this.props.action);
     });
   }
   render() {

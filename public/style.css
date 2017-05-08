@@ -385,6 +385,7 @@ modalimg{
 .hidden{
     display: none;
     z-index: -1;
+    top: 100%;
 }
 .right-box{
     position: absolute;

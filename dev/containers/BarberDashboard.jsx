@@ -70,7 +70,7 @@ class BarberDashboard extends Component {
                 transactions={this.props.profile.transactions || []} target="Snypee"
               />
             </div>
-            <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
               <center>
                 <S3Uploader
                   authId={this.props.profile.id}
@@ -78,7 +78,7 @@ class BarberDashboard extends Component {
                 />
               </center>
             </div>
-            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+            <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
               <center>
                 <S3Uploader
                   authId={this.props.profile.id}
