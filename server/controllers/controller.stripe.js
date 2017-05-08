@@ -2,8 +2,7 @@
 const db = require('../models/db');
 const axios = require('axios');
 const stripe = require('stripe')('sk_test_DLdp9uxn2BsYrBMyVsvyvPdv');
-// db.Snyppr.findOne({ where: { id: authId } })
-//         .then(({ id }) =>
+
 exports.fetchStripeSnyppr = (req, res) => {
   // res.send(req.query);
   axios.post('https://connect.stripe.com/oauth/token', {
@@ -14,11 +13,12 @@ exports.fetchStripeSnyppr = (req, res) => {
     .then((response) => {
       const authId = req.query.state;
       const stripeId = response.data.stripe_user_id;
-      return db.SnypprStripe
+      return db.Snyppr.findOne({ where: { id: authId } })
+        .then(({ id }) => db.SnypprStripe
         .create({
           id: stripeId,
-          snypprId: authId,
-        });
+          snypprId: id,
+        }));
     }).then(() => {
       res.redirect('/client/newUser');
     }).catch(e => console.log('stripe network err', e));
