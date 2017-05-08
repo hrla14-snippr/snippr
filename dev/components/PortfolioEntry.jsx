@@ -13,6 +13,6 @@ const PortfolioEntry = (props) => {
 
 PortfolioEntry.propTypes = {
   image: PropTypes.string.isRequired,
-}
+};
 
 export default PortfolioEntry;
