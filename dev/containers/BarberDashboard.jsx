@@ -34,7 +34,7 @@ class BarberDashboard extends Component {
             <p>some address</p>
 
             <div className="chatbox-container">
-              <div className={this.state.displayBarberChat ? 'chat-position' : 'hidden'}>
+              <div className={this.state.displayBarberChat ? '' : 'hidden'}>
                 <BarberChat name={this.state.name} />
               </div>
               <img
