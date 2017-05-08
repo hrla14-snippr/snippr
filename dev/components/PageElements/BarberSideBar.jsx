@@ -4,8 +4,18 @@ import PropTypes from 'prop-types';
 class BarberSideBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      activeTab: 1,
+    };
+
+    this.changeActiveTab = this.changeActiveTab.bind(this);
   }
+
+  changeActiveTab(idx) {
+    console.log('active tab', idx);
+    this.setState({ activeTab: idx });
+  }
+
   render() {
     return (<div className="sidebar">
       <div className="picturebox">
@@ -13,21 +23,26 @@ class BarberSideBar extends Component {
       </div>
       <div className="sidebarmenu">
         <button
-          onClick={this.props.changeWindow}
-          value="Upload" className="navmenu-items"
-        >Upload Work</button>
+          onClick={(e) => {
+            this.props.changeWindow(e);
+            this.changeActiveTab(0);
+          }}
+          value="Portfolio" className={`navmenu-items ${this.state.activeTab === 0 ? 'navmenu-active' : ''}`}
+        >Portfolio</button>
         <button
-          onClick={this.props.changeWindow}
-          value="Reviews" className="navmenu-items"
+          onClick={(e) => {
+            this.props.changeWindow(e);
+            this.changeActiveTab(1);
+          }}
+          value="Reviews" className={`navmenu-items ${this.state.activeTab === 1 ? 'navmenu-active' : ''}`}
         >Reviews</button>
         <button
-          className="navmenu-items"
-          onClick={this.props.changeWindow} value="Transactions"
+          className={`navmenu-items ${this.state.activeTab === 2 ? 'navmenu-active' : ''}`}
+          onClick={(e) => {
+            this.props.changeWindow(e);
+            this.changeActiveTab(2);
+          }} value="Transactions"
         >Transactions</button>
-        <button
-          onClick={this.props.changeWindow}
-          value="Portfolio" className="navmenu-items"
-        >Portfolio</button>
         <div onClick={this.props.logout} className="sidebar-items">Logout</div>
       </div>
     </div>

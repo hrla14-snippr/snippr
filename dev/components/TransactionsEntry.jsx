@@ -71,7 +71,7 @@ class TransactionsEntry extends Component {
       description: this.state.desc,
       rating: this.state.rating,
       transactionId: this.props.transaction.id,
-      model: 'SnypprReview',
+      model: `${this.props.target}Review`,
       snypprId: this.props.transaction.snypprId,
       snypeeId: this.props.transaction.snypeeId,
     })
@@ -82,19 +82,19 @@ class TransactionsEntry extends Component {
   // req.body.description, snypprId, snypeeId, rating
   // transactionId, model: SnypprReview or SnypeeReview
   render() {
-    const review = this.props.transaction.snypprreview;
+    const review = this.props.transaction[`${this.props.target.toLowerCase()}review`];
     return (
       <div className="reviewentry">
-        <h1>{`Snypped by ${this.props.transaction.snyppr.fname} ${this.props.transaction.snyppr.lname}`}</h1>
+        <h1>{`Snypped with ${this.props.transaction[this.props.target.toLowerCase()].fname} ${this.props.transaction[this.props.target.toLowerCase()].lname}`}</h1>
         <p>{`For $${this.props.transaction.price.toFixed(2)}`}</p>
         {
           (review)
           ? <div>
-            <p>{`You've given this Snyppr a rating of ${review.rating} for this transaction`}</p>
+            <p>{`You've given this ${this.props.target} a rating of ${review.rating} for this transaction`}</p>
             <p>{`"${review.description}"`}</p>
           </div>
           : <div>
-            <p>{'You haven\'t reviewed this Snyppr transaction yet.'}</p>
+            <p>{'You haven\'t reviewed this transaction yet.'}</p>
             <button onClick={this.openReviewModal}>Review this transaction</button>
             <Modal
               isOpen={this.state.modalIsOpen}
@@ -124,6 +124,7 @@ class TransactionsEntry extends Component {
 
 TransactionsEntry.propTypes = {
   transaction: PropTypes.shape.isRequired,
+  target: PropTypes.string.isRequired,
 };
 
 export default TransactionsEntry;
