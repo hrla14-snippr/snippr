@@ -87,7 +87,8 @@ class ClientDashboard extends Component {
             <div className={['Reviews', 'Transactions'].includes(this.state.currentWindow) ? 'hidden' : ''}>
               <GoogleMaps
                 clientAddress={this.state.clientAddress}
-                snypprs={this.state.nearbySnypprs} google={window.google}
+                snypprs={this.state.nearbySnypprs}
+                google={window.google}
               />
             </div>
             <div className={this.state.currentWindow === 'Nearby' ? '' : 'hidden'}>
@@ -96,7 +97,8 @@ class ClientDashboard extends Component {
             <div className={this.state.currentWindow === 'Favorites' ? '' : 'hidden'}>
               <FavoriteList
                 snypeeId={this.props.profile.id}
-                fetchFavorites={this.fetchFavorites} favorites={this.state.favorites}
+                fetchFavorites={this.fetchFavorites}
+                favorites={this.state.favorites}
               />
             </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>

@@ -57,7 +57,7 @@ class ProfilePage extends Component {
             <div className="chatbox-container">
               <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
                 <ClientChat
-                  snypeeId={this.props.profile.id}
+                  profile={this.props.profile}
                   snyppr={this.props.snyppr}
                   name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`}
                   email={this.props.email}

@@ -27,6 +27,9 @@ io.on('connection', (socket) => {
     console.log(data);
     socket.join(data.name);
   });
+  socket.on('snypee-profile', (data) => {
+    io.sockets.in(data.name).emit('snypee-profile', data);
+  });
   socket.on('private-message', (data) => {
     console.log('message came thru', data);
     io.sockets.in(data.name).emit('private-message', data);

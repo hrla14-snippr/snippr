@@ -45,6 +45,7 @@ class BarberChat extends Component {
       term: '',
       messages: [],
       amount: 0,
+      snypee: {},
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,6 +62,9 @@ class BarberChat extends Component {
       this.setState({
         messages: [...this.state.messages, data.msg],
       });
+    });
+    socket.on('snypee-profile', (data) => {
+      this.setState({ snypee: data.snypee });
     });
   }
 
@@ -96,7 +100,6 @@ class BarberChat extends Component {
   }
 
   render() {
-    console.log(this.state.amount);
     return (
       <div className="chat-body">
         <h3 className="text-center">Snyppr Chat</h3>
