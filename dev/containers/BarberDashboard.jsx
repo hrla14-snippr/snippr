@@ -46,7 +46,7 @@ class BarberDashboard extends Component {
   }
   changeWindow(event) {
     this.setState({ currentWindow: event.target.value });
-    if (event.target.value === 'Upload') {
+    if (event.target.value === 'Portfolio') {
       this.getImages();
     }
   }
@@ -65,7 +65,7 @@ class BarberDashboard extends Component {
                 transactions={this.props.profile.transactions || []} target="Snypee"
               />
             </div>
-            <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
               <center><S3Uploader authId={this.props.profile.id} /></center>
 
             </div>
