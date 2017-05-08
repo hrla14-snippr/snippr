@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Notifications from 'react-notify-toast';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
 import SnypprReviewsList from '../components/SnypprReviewsList';
-import axios from 'axios';
-import TransactionsList from '../components/TransactionsList';
 import PortfolioList from '../components/PortfolioList';
 import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
-
-
 
 class ProfilePage extends Component {
 
