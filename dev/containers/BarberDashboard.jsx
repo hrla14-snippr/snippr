@@ -19,8 +19,6 @@ class BarberDashboard extends Component {
       name: `${this.props.profile.fname}${this.props.profile.lname}`,
       displayBarberChat: false,
       currentWindow: 'Reviews',
-      reviews: [],
-      transactions: [],
       work: [],
       images: [],
     };
@@ -59,15 +57,13 @@ class BarberDashboard extends Component {
         <div className="profile-box">
           <BarberSideBar changeWindow={this.changeWindow} logout={this.props.logout} />
           <div className="profile-body">
-            <div className="profileheader">
-              <h1 className="entryheader">{this.state.name}</h1>
-              <p>some address</p>
-            </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
-              <ReviewsList reviews={this.state.reviews} />
+              <ReviewsList reviews={this.props.profile.snypprreviews || []} reviewer="snypee" />
             </div>
             <div className={this.state.currentWindow === 'Transactions' ? '' : 'hidden'}>
-              <TransactionsList transactions={this.state.transactions} />
+              <TransactionsList
+                transactions={this.props.profile.transactions || []} target="Snypee"
+              />
             </div>
             <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
               <center><S3Uploader authId={this.props.profile.id} /></center>
