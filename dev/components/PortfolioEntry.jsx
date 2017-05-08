@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PortfolioEntry = props => (
+const PortfolioEntry = () => (
   <div>
     HIII IMAGES ARE RENDERING!!
     <img className="portimg" alt="thumbnail" />

@@ -128,7 +128,7 @@ class Routing extends Component {
   render() {
     const { history } = this.props; // eslint-disable-line no-unused-vars
     if (this.state.loading) {
-      console.log('submitting user info')
+      console.log('submitting user info');
       return (
         <Loader type="line-scale" active />
       );
