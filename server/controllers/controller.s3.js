@@ -35,3 +35,11 @@ exports.uploadPhotos = ((req, res) => {
     });
   });
 });
+
+exports.getPhotos = ((req, res) => {
+  console.log(req.params);
+  db.SnypprImage.findAll({ where: { snypprId: req.params.authId } })
+  .then((data) => {
+    res.send(data);
+  });
+});

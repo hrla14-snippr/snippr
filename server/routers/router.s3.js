@@ -11,5 +11,5 @@ const upload = multer({
 });
 
 Router.post('/upload', upload.single('theseNamesMustMatch'), s3Controller.uploadPhotos);
-
+Router.get('/images/:authId', s3Controller.getPhotos);
 module.exports = Router;

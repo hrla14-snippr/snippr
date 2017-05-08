@@ -28,8 +28,7 @@ class BarberDashboard extends Component {
       <div className="profile">
         <Header />
         <div className="profile-box">
-
-          <BarberSideBar logout={this.props.logout} />
+          <BarberSideBar logout={this.props.logout} authId={this.props.profile.id} />
           <div className="profile-body">
             <h1>{this.state.name}</h1>
             <p>some address</p>
