@@ -15,6 +15,10 @@ exports.fetchFavorites = (req, res) => {
         where: {
           id: ids,
         },
+        include: [db.SnypprStripe, {
+          model: db.SnypprReview,
+          include: db.Snypee,
+        }],
       })
         .then((favs) => {
           console.log(favs, 'these are the favorites after final query ');
