@@ -582,6 +582,62 @@ svg#heart {
     box-shadow: 2px 2px 2px 2px lightgray;
 }
 /* End Chat Client Box */
+
+
+/*Stripe Styling*/
+
+.stripesignup {
+    font-family: "Brandon Grotesque";
+    position: relative;
+    margin: 0 auto;
+    top: 10vh;
+    height: 60vh;
+    width: 70%;
+    background-color: #e8ebef;
+    border-radius: 15px;
+}
+
+.stripesignheader {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #7691bc;
+    height: 70px;
+    border-radius: 15px 15px 0 0;
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+.stripesignheader h1 {
+    color: white;
+}
+
+.stripesigncontent {
+    padding: 2em;
+    position: relative;
+    top: 23%;
+}
+
+button.stripeacctbtn:hover {
+    background-color: mediumspringgreen;
+    box-shadow: 3px 0 3px 0 lightgrey;
+}
+
+button.stripeacctbtn {
+    border-style: none;
+    transition: 1s;
+    color: black;
+    /* background-color: mediumspringgreen; */
+    box-shadow: 3px 3px 3px 1px lightgrey;
+    background-color: white;
+    border-radius: 5px;
+
+}
+/*end stripe login */
+
+
+
+
 .stripebutton{
     position: absolute;
     border-style: none;
