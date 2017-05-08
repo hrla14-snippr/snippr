@@ -41,9 +41,18 @@ class SideBar extends Component {
         <img className="userpic" alt="placeholderimage" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" />
       </div>
       <div className="sidebarmenu">
-        <div className="sidebar-items">Work</div>
-        <div className="sidebar-items">Reviews</div>
-        <div onClick={this.handleFav} className="sidebar-items svgcontainer">
+        <button
+          onClick={this.props.changeWindow}
+          value="Work" className="navmenu-items"
+        >Work</button>
+        <button
+          onClick={this.props.changeWindow} value="Reviews" className="navmenu-items"
+        >Reviews</button>
+        <button
+          onClick={this.props.changeWindow}
+          value="Transactions" className="navmenu-items"
+        >Transactions</button>
+        <div onClick={this.handleFav} className="navmenu-items svgcontainer">
           <FavoriteIcon />
         </div>
         <div onClick={this.props.logout} href="#" className="sidebar-items">Logout</div>
@@ -60,6 +69,7 @@ const mapStateToProps = state => ({
 SideBar.propTypes = {
   snypprId: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
+  changeWindow: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(SideBar);

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
 import SnypprReviewsList from '../components/SnypprReviewsList';
+import TransactionsList from '../components/TransactionsList';
 import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
@@ -17,28 +18,44 @@ class ProfilePage extends Component {
       togglePortfolio: true,
       favorited: false,
       displayClientChat: false,
+      transactions: [],
+      currentWindow: 'Reviews',
     };
     this.handleChatToggle = this.handleChatToggle.bind(this);
+    this.changeWindow = this.changeWindow.bind(this);
   }
 
   handleChatToggle() {
     this.setState({ displayClientChat: !this.state.displayClientChat });
   }
+  changeWindow(event) {
+    this.setState({ currentWindow: event.target.value });
+  }
 
   render() {
-    console.log(this.props, 'these are the current props that the client has access to inside of props');
+    console.log(this.state, 'lookin for that current window brothaaaa');
     return (
       <div className="profile">
         <Notifications />
         <Header />
         <div className="profile-box">
-          <SideBar snyppr={this.props.snyppr} logout={this.props.logout} />
+          <SideBar
+            changeWindow={this.changeWindow}
+            snyppr={this.props.snyppr} logout={this.props.logout}
+          />
           <div className=" profile-body">
             <div className="profileheader">
               <h1 className="entryheader">{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
               <p>{this.props.snyppr.address}</p>
             </div>
-            <SnypprReviewsList reviews={this.props.snyppr.snypprreviews} />
+            <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
+              <SnypprReviewsList
+                reviews={this.props.snyppr.snypprreviews}
+              />
+            </div>
+            <div className={this.state.currentWindow === 'Transactions' ? '' : 'hidden'}>
+              <TransactionsList transactions={this.state.transactions} />
+            </div>
             <div className="chatbox-container">
               <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
                 <ClientChat
