@@ -10,6 +10,57 @@ AWS.config.update(
     subregion: 'us-east-1',
   });
 
+exports.uploadProfilePic = (req, res) => {
+  console.log(req.params.authId);
+  // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
+  s3.upload({
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+    ACL: 'public-read', // your permisions
+  }, (err, data) => {
+    if (err) return res.status(400).send(err);
+    console.log(data.Location);
+    res.send('File uploaded to S3');
+    if (req.params.type === 'snyppr') {
+       db.Snyppr.findOne({ where: { id: req.params.authId } })
+      .then(({ id }) => db.ProfilePic
+      .create({
+        snypprId: id,
+        url: data.Location,
+      }))
+      .then((dat) => {
+        console.log(dat);
+      });
+    } else {
+      db.Snypee.findOne({ where: { id: req.params.authId } })
+      .then(({ id }) => db.ProfilePic
+      .create({
+        snypeeId: id,
+        url: data.Location,
+      }))
+      .then((dat) => {
+        console.log(dat);
+      });
+    }
+  });
+};
+
+exports.getProfilePic = (req, res) => {
+  console.log(req.params);
+  if(req.params.type === 'synppr'){
+    db.ProfilePic.findAll({ where: { snypprId: req.params.authId } })
+    .then((responseData) => {
+      res.send(responseData);
+      console.log(responseData);
+    });
+  } else {
+    db.ProfilePic.findAll({ where: { snypeeId: req.params.authId } })
+    .then((responseData) => {
+      res.send(responseData);
+      console.log(responseData);
+    });
+  }
+};
 
 exports.uploadPhotos = ((req, res) => {
   // req.file is the 'theseNamesMustMatch' file

@@ -57,7 +57,7 @@ class BarberDashboard extends Component {
       <div className="profile">
         <Header />
         <div className="profile-box">
-          <BarberSideBar changeWindow={this.changeWindow} logout={this.props.logout} />
+          <BarberSideBar changeWindow={this.changeWindow} logout={this.props.logout} profilePic={this.props.profile.profilepic.url} />
           <div className="profile-body">
             <div className="profileheader">
               <h1 className="entryheader">{this.state.name}</h1>
@@ -70,8 +70,11 @@ class BarberDashboard extends Component {
               <TransactionsList transactions={this.state.transactions} />
             </div>
             <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
-              <center><S3Uploader authId={this.props.profile.id} /></center>
-
+              <center><S3Uploader
+                        authId={this.props.profile.id}
+                        action="profilepic"
+                        type="snyppr" />
+              </center>
             </div>
             <div className="chatbox-container">
               <div className={this.state.displayBarberChat ? '' : 'hidden'}>

@@ -7,7 +7,7 @@ exports.verifyHasProfile = (req, res) => {
   const accountType = req.body.accountType;
   delete req.body.accountType;
   const options = accountType === 'Snyppr'
-    ? { include: [db.SnypprStripe, db.SnypprReview] }
+    ? { include: [db.SnypprStripe, db.SnypprReview, db.ProfilePic] }
     : { include: [{
       model: db.SnypeeReview,
       include: [db.Snyppr],
@@ -15,7 +15,7 @@ exports.verifyHasProfile = (req, res) => {
     {
       model: db.Transaction,
       include: [db.Snyppr, db.SnypprReview],
-    }] };
+    }, db.ProfilePic ] };
   options.where = { id: req.body.id };
   db[accountType]
     .find(options)
