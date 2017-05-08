@@ -3,7 +3,7 @@ body{
 }
 
 .clientDashContainer {
-  margin: 0;  
+  margin: 0;
 }
 
 .landing-page{
@@ -216,38 +216,15 @@ modalimg{
 .content{
     border-radius: 8px;
 }
+.chat-svg {
+    width: 70px;
+    height: 70px;
+}
 
 .snypprentry{
     width: 100%;
     border-radius: 5px;
     height: 10vh;
-    color: black;
-    font-family: "Brandon Grotesque";
-    text-align: center;
-    padding-top: 2vh;
-    border-bottom: 2px solid lightgray;
-    background-color: rgba(255, 255, 255, 0.5);
-    animation: fadein 1s;
-    transition: 1s;
-    position: relative;
-}
-
-.profileheader{
-    text-align: center;
-    font-family: "Brandon Grotesque";
-    border-bottom: 2px solid lightgray;
-    background-color: rgba(255, 255, 255, 0.5);
-    animation: fadein 1s;
-    width: 100%;
-    height: 20vh;
-    font-size: 24px;
-    color: grey;
-}
-
-.reviewentry{
-    width: 100%;
-    border-radius: 5px;
-    height: 20vh;
     color: black;
     font-family: "Brandon Grotesque";
     text-align: center;
@@ -346,7 +323,6 @@ modalimg{
     width: 80%;
     height: 80vh;
     margin: 1em auto;
-    padding: 1.5em;
 }
 
 .navigation, .sidebar{
@@ -374,10 +350,6 @@ modalimg{
     bottom: 0;
     height: 50vh;
     width: 100%;
-}
-
-.sidebar-items:hover{
-    background-color: mediumspringgreen;
 }
 
 .navmenu-items, .sidebar-items{
@@ -424,6 +396,8 @@ modalimg{
 .hidden{
     display: none;
 }
+
+
 
 .right-box{
     position: absolute;
@@ -562,7 +536,7 @@ svg#heart {
   position: absolute;
   width: 80%;
   left: 10%;
-  margin: 0 auto;
+  margin: 1em auto;
 }
 
 #heart-path {
@@ -573,7 +547,7 @@ svg#heart {
 }
 
 #heart-path:hover {
-  fill: red;
+  fill: mediumspringgreen;
   stroke-dashoffset: 0;
   stroke-dasharray: 125;
 }
@@ -584,12 +558,6 @@ svg#heart {
     bottom: 5%;
     width: 400px;
     height: 400px;
-
-}
-
-.chat-svg {
-    width: 40px;
-    height: 40px;
     position: absolute;
     right: 5%;
     bottom: 5%;
@@ -609,19 +577,25 @@ svg#heart {
 }
 
 .live-chat{
-    position: relative;
-    top: 2%;
-    overflow-y: scroll;
-    height: 180px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    background-color: lightgray;
 }
 
-.client-form{
-    position: absolute;
-    margin-bottom: .5em;
-    bottom: 0;
-    left: 3.5em;
-  
+.chat-display{
+    overflow-y: scroll;
 }
+
+.chatformheader{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #09091a;
+    height: 50px;
+    border-radius: 3px;
+}
+
 
 .barber-form-container {
     position: absolute;
@@ -638,7 +612,7 @@ svg#heart {
 
 .barber-form-container form {
     float: left;
-    margin: .7em 1em 0 1em; 
+    margin: .7em 1em 0 1em;
 }
 
 .barber-form-container button {
@@ -761,5 +735,3 @@ svg#heart {
     right: 3%;
     top: 3vh;
 }
-
-

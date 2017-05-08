@@ -4,6 +4,7 @@ import BarberChat from './BarberChat';
 import Header from '../components/PageElements/Header';
 import BarberSideBar from '../components/PageElements/BarberSideBar';
 import Footer from '../components/PageElements/Footer';
+import S3Uploader from '../components/S3Uploader';
 
 class BarberDashboard extends Component {
   constructor(props) {
@@ -27,15 +28,14 @@ class BarberDashboard extends Component {
       <div className="profile">
         <Header />
         <div className="profile-box">
-
-          <BarberSideBar logout={this.props.logout} />
+          <BarberSideBar logout={this.props.logout} authId={this.props.profile.id} />
           <div className="profile-body">
             <h1>{this.state.name}</h1>
             <p>some address</p>
-
             <div className="chatbox-container">
               <div className={this.state.displayBarberChat ? '' : 'hidden'}>
                 <BarberChat name={this.state.name} />
+                <S3Uploader authId={this.props.profile.id} />
               </div>
               <img
                 onClick={this.handleChatToggle}

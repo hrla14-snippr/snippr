@@ -48,7 +48,6 @@ const SnypprStripe = db.define('snypprstripe', {
 }, {
   timestamps: true,
 });
-
 const Snypee = db.define('snypee', {
   id: {
     type: Sequelize.STRING,
@@ -135,7 +134,14 @@ const SnypeeReview = db.define('snypeereview', {
     allowNull: false,
   },
 });
-
+const SnypprImage = db.define('snypprimage', {
+  url: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+}, {
+  timestamps: true,
+});
 /*
   RELATIONSHIPS
 */
@@ -157,8 +163,12 @@ Transaction.hasOne(SnypprReview, { foreignKey: { allowNull: false }, onDelete: '
 Transaction.hasOne(SnypeeReview, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
 Snyppr.hasOne(SnypprStripe);
+Snyppr.hasMany(SnypprImage);
+SnypprImage.belongsTo(Snyppr);
 
 const SnypprStyles = db.define('snypprStyles', {}, { timestamps: false });
+
+
 Style.belongsToMany(Snyppr, { through: SnypprStyles });
 Snyppr.belongsToMany(Style, { through: SnypprStyles });
 
@@ -173,8 +183,8 @@ SnypprStyles.sync();
 SnypprStripe.sync();
 Favorite.sync();
 SnypprReview.sync();
-SnypeeReview.sync();
 SnypprStripe.sync();
+SnypprImage.sync();
 
 
 db.authenticate()
@@ -194,4 +204,4 @@ module.exports.SnypprStyles = SnypprStyles;
 module.exports.Favorite = Favorite;
 module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
-module.exports.SnypprStripe = SnypprStripe;
+module.exports.SnypprImage = SnypprImage;

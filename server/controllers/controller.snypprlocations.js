@@ -10,9 +10,15 @@ exports.fetchSnypprs = (req, res) => {
     include: db.Snypee,
   }] })
     .then((snypprs) => {
-      const filtered = snypprs.filter(snyppr =>
-        distFinder(userAddress.lat, userAddress.lng, snyppr.lat, snyppr.lng) < 20);
+      const filtered = snypprs.filter((snyppr) => {
+        const dist = distFinder(userAddress.lat, userAddress.lng, snyppr.lat, snyppr.lng);
+        if (dist < 20) {
+          console.log('it was less than 20');
+          return snyppr;
+        }
+      });
       res.send(filtered);
+      return filtered;
     })
     .catch((err) => {
       console.log('error during filter process ', err);
