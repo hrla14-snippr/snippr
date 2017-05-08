@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import GoogleMaps from '../components/GoogleMaps';
@@ -7,6 +8,7 @@ import ReviewsList from '../components/ReviewsList';
 import FavoriteList from '../components/FavoriteList';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
+import { CurrentFavorites } from '../actions/CurrentFavorites';
 
 class ClientDashboard extends Component {
   constructor(props) {
@@ -38,7 +40,9 @@ class ClientDashboard extends Component {
   fetchFavorites() {
     axios.get(`/favorites/${this.props.profile.id}`)
       .then((favorites) => {
-        this.setState({ favorites });
+        this.setState({ favorites }, () => {
+          this.props.CurrentFavorites(this.state.favorites);
+        });
       })
       .catch((err) => {
         console.log('you fucked up fetching your favorites, heres the error ', err);
@@ -108,6 +112,7 @@ class ClientDashboard extends Component {
 ClientDashboard.propTypes = {
   profile: PropTypes.shape.isRequired,
   logout: PropTypes.func.isRequired,
+  CurrentFavorites: PropTypes.func.isRequired,
 };
 
-export default ClientDashboard;
+export default connect(null, { CurrentFavorites })(ClientDashboard);

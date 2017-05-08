@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { notify } from 'react-notify-toast';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FavoriteIcon from './FavoriteIcon';
 
+
 const axios = require('axios');
+
 
 class SideBar extends Component {
   constructor(props) {
@@ -20,14 +23,18 @@ class SideBar extends Component {
       snypprId,
       snypeeId,
     })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        console.log(response);
+        if (response.data === 'created already') {
+          notify.show('already in your favorites!!', 'error');
+        } else {
+          notify.show('added to favorites!', 'success');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-
   render() {
     return (<div className="sidebar">
       <div className="picturebox">

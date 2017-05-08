@@ -232,6 +232,33 @@ modalimg{
     position: relative;
 }
 
+.profileheader{
+    text-align: center;
+    font-family: "Brandon Grotesque";
+    border-bottom: 2px solid lightgray;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: fadein 1s;
+    width: 100%;
+    height: 20vh;
+    font-size: 24px;
+    color: grey;
+}
+
+.reviewentry{
+    width: 100%;
+    border-radius: 5px;
+    height: 20vh;
+    color: black;
+    font-family: "Brandon Grotesque";
+    text-align: center;
+    padding-top: 2vh;
+    border-bottom: 2px solid lightgray;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: fadein 1s;
+    transition: 1s;
+    position: relative;
+}
+
 .snypprentry:hover{
     box-shadow: 2px 2px 2px gray;
     background-color: aliceblue;
@@ -347,6 +374,10 @@ modalimg{
     bottom: 0;
     height: 50vh;
     width: 100%;
+}
+
+.sidebar-items:hover{
+    background-color: mediumspringgreen;
 }
 
 .navmenu-items, .sidebar-items{
@@ -545,7 +576,7 @@ svg#heart {
 }
 
 #heart-path:hover {
-  fill: mediumspringgreen;
+  fill: red;
   stroke-dashoffset: 0;
   stroke-dasharray: 125;
 }
