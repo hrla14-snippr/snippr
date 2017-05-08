@@ -10,6 +10,9 @@ class SideBar extends Component {
     super(props);
     this.handleFav = this.handleFav.bind(this);
   }
+  // componentDidMount() {
+  //   this.checkFavorites();
+  // }
 
   handleFav() {
     console.log('inside handleFav click');
@@ -20,14 +23,18 @@ class SideBar extends Component {
       snypprId,
       snypeeId,
     })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-
+  // checkFavorites() {
+  //   const bool =
+  //     this.props.currentFavorites.data.some(favorite => favorite.id === this.props.snyppr.id);
+  //   this.setState({ favorited: bool });
+  // }
   render() {
     return (<div className="sidebar">
       <div className="picturebox">
@@ -48,11 +55,13 @@ class SideBar extends Component {
 
 const mapStateToProps = state => ({
   snypprId: state.currentSnyppr,
+  currentFavorites: state.currentFavorites,
 });
 
 SideBar.propTypes = {
   snypprId: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
+  // currentFavorites: PropTypes.shape.isRequired,
 };
 
 export default connect(mapStateToProps)(SideBar);
