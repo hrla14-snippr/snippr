@@ -10,6 +10,10 @@ const upload = multer({
   limits: { fileSize: 52428800 },
 });
 
-Router.post('/upload/:authId', upload.single('theseNamesMustMatch'), s3Controller.uploadPhotos);
-Router.get('/images/:authId', s3Controller.getPhotos);
+Router.post('/upload/:authId/:type', upload.single('theseNamesMustMatch'), s3Controller.uploadPhotos);
+Router.get('/images/:authId/:type', s3Controller.getPhotos);
+Router.post('/profilepic/:authId/:type', upload.single('theseNamesMustMatch'), s3Controller.uploadProfilePic);
+Router.get('/profilepic/:authId/:type', s3Controller.getProfilePic);
+
+
 module.exports = Router;

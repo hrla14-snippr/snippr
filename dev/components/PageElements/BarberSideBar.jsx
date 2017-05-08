@@ -19,7 +19,7 @@ class BarberSideBar extends Component {
   render() {
     return (<div className="sidebar">
       <div className="picturebox">
-        <img className="userpic" alt="placeholderimage" src="https://timeforgeography.co.uk/static/img/avatar-placeholder.png" />
+        <img className="userpic" alt="placeholderimage" src={this.props.profilePic} />
       </div>
       <div className="sidebarmenu">
         <button
@@ -29,6 +29,11 @@ class BarberSideBar extends Component {
           }}
           value="Portfolio" className={`navmenu-items ${this.state.activeTab === 0 ? 'navmenu-active' : ''}`}
         >Portfolio</button>
+        <button
+          onClick={this.props.changeWindow}
+          value="Upload" className="navmenu-items"
+        >Upload Profile Pic
+        </button>
         <button
           onClick={(e) => {
             this.props.changeWindow(e);
@@ -53,6 +58,7 @@ class BarberSideBar extends Component {
 BarberSideBar.propTypes = {
   logout: PropTypes.func.isRequired,
   changeWindow: PropTypes.func.isRequired,
+  profilePic: PropTypes.string.isRequired,
 };
 
 
