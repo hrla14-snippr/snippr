@@ -3,7 +3,7 @@ const distFinder = require('../../dev/utils/distFinder');
 
 exports.fetchSnypprs = (req, res) => {
   const userAddress = JSON.parse(req.params.address);
-  db.Snyppr.findAll({ include: [db.SnypprStripe, {
+  db.Snyppr.findAll({ include: [db.SnypprStripe, db.ProfilePic, {
     model: db.SnypprReview,
     include: db.Snypee,
   }] })

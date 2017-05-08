@@ -15,12 +15,13 @@ import S3Uploader from '../components/S3Uploader';
 class ClientDashboard extends Component {
   constructor(props) {
     super(props);
+    const profilePic = this.props.profile.profilepic ? this.props.profile.profilepic.url : 'https://timeforgeography.co.uk/static/img/avatar-placeholder.png';
     this.state = {
       nearbySnypprs: [],
       clientAddress: { lat: props.profile.lat, lng: props.profile.lng },
       favorites: [],
       currentWindow: 'Nearby',
-      profilePic: this.props.profile.profilepic.url,
+      profilePic,
     };
     this.handleToggle = this.handleToggle.bind(this);
   }
@@ -65,15 +66,12 @@ class ClientDashboard extends Component {
         <div className="dashboard-box">
           <div className="navigation">
             <div className="picturebox">
-              <a
-                onClick={this.handleToggle}
-                value="ProfilePic" >
-                <img className="userpic"
-                  value="ProfilePic"
-                  alt="placeholderimage"
-                  src={this.state.profilePic}
-                />
-            </a>
+              <img
+                className="userpic"
+                value="ProfilePic"
+                alt="placeholderimage"
+                src={this.state.profilePic}
+              />
             </div>
             <div className="navmenu">
               <button
@@ -91,7 +89,11 @@ class ClientDashboard extends Component {
               <button
                 onClick={this.handleToggle} value="Transactions" className="navmenu-items"
               >Transactions</button>
-              <button onClick={this.props.logout} className="navmenu-items" value="Logout">Logout</button>
+              <button
+                onClick={this.props.logout}
+                className="navmenu-items"
+                value="Logout"
+              >Logout</button>
             </div>
           </div>
           <div className="right-box">
