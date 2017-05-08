@@ -6,7 +6,8 @@ const StripeSignUp = props => (
     <div className="stripesignheader"><h1>Sign up for a Stripe Account</h1></div>
     <div className="stripesigncontent">
       <p>You will need a Stripe Account to continue using our service.</p>
-      <a href={props.stripeURL}>Click on the link to sign up for an account!</a>
+      <a className="stripeacctbtn" href={props.stripeURL}>
+        <button>Click on the link to sign up for an account!</button></a>
     </div>
     <div className="formheader">Sign up for a Stripe Account</div>
     <p>You will need a Stripe Account to continue using our service.

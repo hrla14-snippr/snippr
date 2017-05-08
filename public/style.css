@@ -587,12 +587,14 @@ svg#heart {
 /*Stripe Styling*/
 
 .stripesignup {
+    font-family: "Brandon Grotesque";
     position: relative;
     margin: 0 auto;
     top: 10vh;
     height: 60vh;
     width: 70%;
     background-color: #e8ebef;
+    border-radius: 15px;
 }
 
 .stripesignheader {
@@ -601,7 +603,7 @@ svg#heart {
     width: 100%;
     background-color: #7691bc;
     height: 70px;
-    border-radius: 3px;
+    border-radius: 15px 15px 0 0;
     padding-top: 1em;
     padding-left: 1em;
 }
@@ -615,6 +617,26 @@ svg#heart {
     position: relative;
     top: 23%;
 }
+
+.stripeacctbtn:hover {
+    background-color: mediumspringgreen;
+    box-shadow: 3px 0 3px 0 lightgrey;
+}
+
+.stripeacctbtn {
+    border-style: none;
+    transition: 1s;
+    color: black;
+    /* background-color: mediumspringgreen; */
+    box-shadow: 3px 3px 3px 1px lightgrey;
+    background-color: white;
+    border-radius: 5px;
+
+}
+/*end stripe login */
+
+
+
 
 .stripebutton{
     position: absolute;
