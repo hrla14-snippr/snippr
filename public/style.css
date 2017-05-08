@@ -1,11 +1,9 @@
 body{
     margin: 0;
 }
-
 .clientDashContainer {
-  margin: 0;  
+    margin: 0;
 }
-
 .landing-page{
     background-image: url('/public/assets/snyp.jpeg');
     background-size: cover;
@@ -20,7 +18,6 @@ body{
     content: "";
     z-index: 0;
 }
-
 .left-overlay {
     position: absolute;
     top: 0;
@@ -30,7 +27,6 @@ body{
     background-color: black;
     opacity: 0.7;
 }
-
 .right-overlay {
     position: absolute;
     top: 0;
@@ -40,7 +36,6 @@ body{
     background-color: mediumspringgreen;
     opacity: 0.7;
 }
-
 .right-text{
     position: absolute;
     top: 40%;
@@ -50,7 +45,6 @@ body{
     z-index: 10;
     font-family: "Brandon Grotesque";
 }
-
 .left-text{
     position: absolute;
     top: 40%;
@@ -60,7 +54,6 @@ body{
     z-index: 100;
     font-family: "Brandon Grotesque";
 }
-
 .logo{
     position: absolute;
     top: 3%;
@@ -71,7 +64,6 @@ body{
     z-index: 11;
     border-bottom: 2px solid mediumspringgreen;
 }
-
 .snypee-but{
     background-color: mediumspringgreen;
     color: white;
@@ -88,19 +80,16 @@ body{
     font-family: "Brandon Grotesque";
     transition: 1s;
 }
-
 .snypee-but:hover{
     box-shadow: 0px 0px;
     color:mediumspringgreen;
     background-color: white;
 }
-
 .snyppr-but:hover{
     box-shadow: 0px 0px;
     color:black;
     background-color: white;
 }
-
 .snyppr-but{
     background-color: black;
     color: white;
@@ -117,12 +106,10 @@ body{
     font-family: "Brandon Grotesque";
     transition: 1s;
 }
-
 .snyp-menu {
     height: 60px;
     background-color: black;
 }
-
 .snyp-footer {
     height: 30px;
     background-color: black;
@@ -131,7 +118,6 @@ body{
     bottom:0px;
     width:100%;
 }
-
 .login{
     position: absolute;
     top: 3%;
@@ -146,22 +132,18 @@ body{
     font-size: 15px;
     transition: 1s;
 }
-
 .login:hover{
     color: white;
     border: 1px solid white;
 }
-
 @font-face {
     font-family: "Brandon Grotesque";
     src: url('./assets/Brandon_bld.otf');
 }
-
 @font-face {
     font-family: "Operator Mono";
     src: url('./assets/OperatorMono-Medium.otf');
 }
-
 .dash-contain{
     position: absolute;
     width: 80%;
@@ -169,54 +151,43 @@ body{
     top: 20%;
     border: 2px solid lavender;
 }
-
 .dash-menu{
     position: absolute;
     width: 20%;
     left:0;
 }
-
 .dash-menu-items{
     text-align: center;
 }
-
 .padding{
     padding-bottom: 15%;
 }
-
 .welcome{
     text-align: center;
 }
-
 .profpic{
     margin-bottom: 6%;
 }
-
 .modalname{
     font-family: "Brandon Grotesque";
     font-size: 18px;
     text-align: center;
     color: black;
 }
-
 .bodyContent{
     text-align: center;
     color: mediumspringgreen;
     font-size: 14px;
 }
-
 modalimg{
     margin-left: 10%;
 }
-
 .imagehold{
     padding-left: 30%
 }
-
 .content{
     border-radius: 8px;
 }
-
 .snypprentry{
     width: 100%;
     border-radius: 5px;
@@ -231,7 +202,6 @@ modalimg{
     transition: 1s;
     position: relative;
 }
-
 .profileheader{
     text-align: center;
     font-family: "Brandon Grotesque";
@@ -243,7 +213,6 @@ modalimg{
     font-size: 24px;
     color: grey;
 }
-
 .reviewentry{
     width: 100%;
     border-radius: 5px;
@@ -258,12 +227,10 @@ modalimg{
     transition: 1s;
     position: relative;
 }
-
 .snypprentry:hover{
     box-shadow: 2px 2px 2px gray;
     background-color: aliceblue;
 }
-
 .entryimg{
     display: inline;
     padding-right: 20px;
@@ -271,11 +238,9 @@ modalimg{
     left: 40px;
     top: 15px;
 }
-
 .entryheader{
     font-size: 18px;
 }
-
 @keyframes fadein {
     from {
         opacity:0;
@@ -284,14 +249,12 @@ modalimg{
         opacity:1;
     }
 }
-
 @keyframes bounce {
     0%{ -moz-transform:scale(0); opacity:0;}
     50%{ -moz-transform:scale(1.3); opacity:0.4; }
     75%{ -moz-transform:scale(0.9); opacity:0.7;}
     100%{ -moz-transform:scale(1); opacity:1;}
 }
-
 .header{
     position: fixed;
     top: 0;
@@ -299,7 +262,6 @@ modalimg{
     width: 100%;
     background-color: #09091a
 }
-
 .headline{
     font-size: 30px;
     text-align: center;
@@ -307,14 +269,12 @@ modalimg{
     font-family: "Brandon Grotesque";
     padding-top: 20px;
 }
-
 .header-logout{
     position: absolute;
     right: 2%;
     color: lightgray;
     cursor: pointer;
 }
-
 .footer{
     position: fixed;
     bottom: 0;
@@ -325,13 +285,9 @@ modalimg{
     color: white;
     font-family: "Fira Code";
 }
-
-
-
 .footerdet{
     padding: 5%;
 }
-
 .dashboard-box, .profile-box {
     position: absolute;
     width: 80%;
@@ -339,7 +295,6 @@ modalimg{
     height: 80vh;
     top: 10vh;
 }
-
 .profile-body{
     position: absolute;
     right: 0;
@@ -348,7 +303,6 @@ modalimg{
     margin: 1em auto;
     padding: 1.5em;
 }
-
 .navigation, .sidebar{
     position: absolute;
     width: 20%;
@@ -356,30 +310,25 @@ modalimg{
     height: 80vh;
     border: 1px solid lightgray;
 }
-
 .class div{
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
 }
-
 .picturebox{
     position: absolute;
     top: 0;
     height: 30vh;
     width: 100%;
 }
-
 .navmenu, .sidebarmenu{
     position: absolute;
     bottom: 0;
     height: 50vh;
     width: 100%;
 }
-
 .sidebar-items:hover{
     background-color: mediumspringgreen;
 }
-
 .navmenu-items, .sidebar-items{
     text-align: center;
     line-height: 10vh;
@@ -402,12 +351,10 @@ modalimg{
     border-bottom: 1px solid lightgray;
     background-color: white;
 }
-
 .navmenu-items:hover{
     background-color: mediumspringgreen;
     color: white;
 }
-
 .userpic{
     position: absolute;
     width: 90%;
@@ -415,23 +362,19 @@ modalimg{
     top: 5%;
     left: 5%;
 }
-
 .dashboard, .profile{
     margin: 0;
     position: relative;
 }
-
 .hidden{
     display: none;
 }
-
 .right-box{
     position: absolute;
     right: 0;
     width: 80%;
     height: 80vh;
 }
-
 .gmap{
     position: absolute;
     top:0;
@@ -440,7 +383,6 @@ modalimg{
     animation: fadein 1s;
     transition: 1s;
 }
-
 .entryholder{
     position: absolute;
     bottom: 0;
@@ -449,7 +391,14 @@ modalimg{
     border: 1px solid lightgray;
     width: 100%;
 }
-
+.transactionholder{
+    position: absolute;
+    bottom: 0;
+    overflow: auto;
+    height: 80vh;
+    border: 1px solid lightgray;
+    width: 100%;
+}
 .form-body{
     position: absolute;
     top: 10vh;
@@ -457,7 +406,6 @@ modalimg{
     width: 100%;
     background-color: #e8ebef;
 }
-
 .userinfo{
     position: absolute;
     right: 15%;
@@ -468,7 +416,6 @@ modalimg{
     top: 10vh;
     box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
 }
-
 .formheader{
     position: absolute;
     top: 0;
@@ -477,7 +424,6 @@ modalimg{
     height: 50px;
     border-radius: 3px;
 }
-
 .formheader h1{
     font-family: "Brandon Grotesque";
     font-size: 22px;
@@ -485,37 +431,31 @@ modalimg{
     color: white;
     padding-top: 10px;
 }
-
 .inputbox input{
     border-style: none;
     border-radius: 5px;
     background-color: #dee3ea;
 }
-
 .profname{
     position: absolute;
     width:80%;
     left: 10%;
 }
-
 .inputbox label{
     font-family: "Brandon Grotesque";
     padding-left: 5px;
 }
-
 .forminputs{
     position: absolute;
     top: 9vh;
     width: 100%;
 }
-
 .midinput{
     position: absolute;
     top: 20vh;
     width:  100%;
     height: 40px;
 }
-
 .leftin{
     position: absolute;
     left: 5%;
@@ -523,7 +463,6 @@ modalimg{
     margin-right: 30px;
     height: 40px;
 }
-
 .rightin{
     position: absolute;
     right: 5%;
@@ -531,62 +470,52 @@ modalimg{
     margin-left: 30px;
     height: 40px;
 }
-
 .midin{
     position: absolute;
     left: 5%;
     width: 90%;
     height: 40px;
 }
-
 .hairstyles{
     border-style: none;
     margin-left: 5%;
 }
-
 .hairholder{
     position: absolute;
     top: 30vh;
     width: 100%;
     height: 30vh;
 }
-
 /*Heart SVG */
 .svgcontainer {
-  margin: 0 auto;
+    margin: 0 auto;
 }
-
 svg#heart {
-  height: 70px;
-  width: 70px;
-  position: absolute;
-  width: 80%;
-  left: 10%;
-  margin: 0 auto;
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    margin: 0 auto;
 }
-
 #heart-path {
-  fill: white;
-  stroke: black;
-  stroke-width: 1px;
-  stroke-linecap: butt;
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
+    stroke-linecap: butt;
 }
-
 #heart-path:hover {
-  fill: red;
-  stroke-dashoffset: 0;
-  stroke-dasharray: 125;
+    fill: red;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 125;
 }
-
 .chatbox-container {
     position: absolute;
     right: 0;
     bottom: 5%;
     width: 400px;
     height: 400px;
-
 }
-
 .chat-svg {
     width: 40px;
     height: 40px;
@@ -594,7 +523,6 @@ svg#heart {
     right: 5%;
     bottom: 5%;
 }
-
 /* Chat Client Box */
 .chat-body{
     top: 12%;
@@ -607,27 +535,23 @@ svg#heart {
     transition: 1s;
     animation: bounce .40s;
 }
-
 .live-chat{
     position: relative;
     top: 2%;
     overflow-y: scroll;
     height: 180px;
 }
-
 .client-form{
     position: absolute;
     margin-bottom: .5em;
     bottom: 0;
     left: 3.5em;
-  
-}
 
+}
 .barber-form-container {
     position: absolute;
     bottom: 0;
 }
-
 .chat-body input{
     border-style: none;
     border-radius: 5px;
@@ -635,12 +559,10 @@ svg#heart {
     width: 200px;
     height: 2em;
 }
-
 .barber-form-container form {
     float: left;
-    margin: .7em 1em 0 1em; 
+    margin: .7em 1em 0 1em;
 }
-
 .barber-form-container button {
     float: right;
     margin-bottom: .5em;
@@ -653,13 +575,10 @@ svg#heart {
     border-style: none;
     transition: 1s;
 }
-
 .barber-form-container button:hover{
     box-shadow: 2px 2px 2px 2px lightgray;
 }
-
 /* End Chat Client Box */
-
 .stripebutton{
     position: absolute;
     border-style: none;
@@ -673,13 +592,11 @@ svg#heart {
     font-family: "Brandon Grotesque";
     transition: 1s;
 }
-
 .stripebutton:hover{
     position: absolute;
     bottom: 7%;
     box-shadow: 1px 1px 1px 1px lightgray;
 }
-
 .declinebutton{
     position: absolute;
     border-style: none;
@@ -693,31 +610,24 @@ svg#heart {
     font-family: "Brandon Grotesque";
     transition: 1s;
 }
-
 .declinebutton:hover{
     position: absolute;
     bottom: 7%;
     box-shadow: 1px 1px 1px 1px lightgray;
 }
-
 .text-center{
     text-align: center;
     font-family: 'Brandon Grotesque';
 }
-
 .paymentrequest{
     position: absolute;
     width: 40%;
     left: 30%;
     top: 40%;
 }
-
-
-
 .paymentrequest label,input{
     display: inline-block;
 }
-
 .paymentrequest input{
     width: 80%;
     margin-left: 10px;
@@ -728,13 +638,11 @@ svg#heart {
     top: 55%;
     left: 8%;
 }
-
 .paymentrequest label{
     position: absolute;
     top: 55%;
     left: 6%;
 }
-
 .subpay{
     position: absolute;
     border-radius: 5px;
@@ -743,23 +651,18 @@ svg#heart {
     left: 30%;
     border-style: none;
 }
-
 .deletefav{
     position: absolute;
     right: 3%;
     top:4vh;
     transition: .40s;
 }
-
 .delbut{
     border-style:none;
     background-color: transparent;
 }
-
 .deletefav:hover{
     position: absolute;
     right: 3%;
     top: 3vh;
 }
-
-
