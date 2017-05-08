@@ -735,4 +735,26 @@ button.stripeacctbtn {
     top: 3vh;
 }
 
+.imghold{
+    width: 250px;
+    height: 250px;
+    display: inline-block;
+    padding: 30px;
+    box-shadow: 0px 0px 5px  lightgray;
+    text-align: center;
+    margin-left: 30px;
+    transition: 1s;
+    margin-top: 5px;
+}
+
+.imghold:hover{
+    box-shadow: 0px  0px 8px 4px lightgray;
+}
+
+.portimg{
+    width: 150px;
+    height: 150px;
+}
+
+
 button:focus {outline:0;}
