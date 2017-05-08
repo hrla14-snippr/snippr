@@ -32,9 +32,11 @@ class ProfilePage extends Component {
         <Header />
         <div className="profile-box">
           <SideBar snyppr={this.props.snyppr} logout={this.props.logout} />
-          <div className="profile-body">
-            <h1>{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
-            <p>{this.props.snyppr.address}</p>
+          <div className=" profile-body">
+            <div className="profileheader">
+              <h1 className="entryheader">{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
+              <p>{this.props.snyppr.address}</p>
+            </div>
             <SnypprReviewsList reviews={this.props.snyppr.snypprreviews} />
             <ClientChat
               snypeeId={this.props.profile.id}
