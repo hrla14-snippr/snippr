@@ -717,4 +717,22 @@ svg#heart {
     border-style: none;
 }
 
+.deletefav{
+    position: absolute;
+    right: 3%;
+    top:4vh;
+    transition: .40s;
+}
+
+.delbut{
+    border-style:none;
+    background-color: transparent;
+}
+
+.deletefav:hover{
+    position: absolute;
+    right: 3%;
+    top: 3vh;
+}
+
 
