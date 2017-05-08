@@ -47,7 +47,7 @@ class ClientChat extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
+    // this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.onToken = this.onToken.bind(this);
     this.updateCharge = this.updateCharge.bind(this);
@@ -75,7 +75,7 @@ class ClientChat extends Component {
       stripeId: this.props.snyppr.snypprstripe.id,
       amount: this.state.charge,
       snypprId: this.props.snyppr.id,
-      snypeeId: this.props.profile.snypeeId,
+      snypeeId: this.props.profile.id,
     })
       .then((response) => {
         console.log('data is', response);
@@ -84,9 +84,9 @@ class ClientChat extends Component {
   openModal() {
     this.setState({ modalIsOpen: true });
   }
-  afterOpenModal() {
-    this.subtitle.style.color = 'black';
-  }
+  // afterOpenModal() {
+  //   this.subtitle.style.color = 'black';
+  // }
   closeModal() {
     this.setState({ modalIsOpen: false });
   }

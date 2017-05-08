@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import BarberChat from './BarberChat';
 import Header from '../components/PageElements/Header';
 import BarberSideBar from '../components/PageElements/BarberSideBar';
+import ReviewsList from '../components/ReviewsList';
+import TransactionsList from '../components/TransactionsList';
 import Footer from '../components/PageElements/Footer';
 
 class BarberDashboard extends Component {
@@ -13,26 +15,38 @@ class BarberDashboard extends Component {
     this.state = {
       name: `${this.props.profile.fname}${this.props.profile.lname}`,
       displayBarberChat: false,
+      currentWindow: 'Reviews',
+      reviews: [],
+      transactions: [],
+      work: [],
     };
 
     this.handleChatToggle = this.handleChatToggle.bind(this);
+    this.changeWindow = this.changeWindow.bind(this);
   }
-
   handleChatToggle() {
     this.setState({ displayBarberChat: !this.state.displayBarberChat });
   }
-
+  changeWindow(event) {
+    this.setState({ currentWindow: event.target.value });
+  }
   render() {
     return (
       <div className="profile">
         <Header />
         <div className="profile-box">
-
-          <BarberSideBar logout={this.props.logout} />
+          <BarberSideBar changeWindow={this.changeWindow} logout={this.props.logout} />
           <div className="profile-body">
-            <h1>{this.state.name}</h1>
-            <p>some address</p>
-
+            <div className="profileheader">
+              <h1 className="entryheader">{this.state.name}</h1>
+              <p>some address</p>
+            </div>
+            <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
+              <ReviewsList reviews={this.state.reviews} />
+            </div>
+            <div className={this.state.currentWindow === 'Transactions' ? '' : 'hidden'}>
+              <TransactionsList transactions={this.state.transactions} />
+            </div>
             <div className="chatbox-container">
               <div className={this.state.displayBarberChat ? '' : 'hidden'}>
                 <BarberChat name={this.state.name} />

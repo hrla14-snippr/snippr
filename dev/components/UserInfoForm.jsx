@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
@@ -7,15 +6,7 @@ import Footer from '../components/PageElements/Footer';
 class UserInfoForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { styles: [] };
-  }
-
-  componentDidMount() {
-    const context = this;
-
-    axios.get('/styles')
-      .then(({ data }) => context.setState({ styles: data }))
-      .catch(e => console.log('error fetching styles: ', e));
+    this.state = {};
   }
 
   render() {
@@ -50,20 +41,7 @@ class UserInfoForm extends Component {
                   placeholder="Address" required
                 />
               </div>
-              <div className="hairholder">
-                {this.state.styles.map(({ style }, idx) => (
-                  <div className="hairstyles">
-                    <label htmlFor={style}>
-                      <input
-                        type="checkbox"
-                        id={idx + 1} name={style} value={style}
-                      />
-                      {style}
-                    </label>
-                  </div>
-                  ))}
-                <input className="hairstyles" type="submit" value="Submit" />
-              </div>
+              <input className="hairstyles" type="submit" value="Submit" />
             </div>
           </form>
         </div>

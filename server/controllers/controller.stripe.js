@@ -39,15 +39,13 @@ exports.sendPayment = (req, res) => {
       account: destination,
     },
   })
-    .then((charge) => {
+    .then(charge =>
       // asynchronously called
-      console.log(charge);
-      return db.Transaction.create({
-        snypeeId: req.body.snypeeId,
-        snypprId: req.body.snypprId,
-        price: charge.amount,
-      });
-    })
+       db.Transaction.create({
+         snypeeId: req.body.snypeeId,
+         snypprId: req.body.snypprId,
+         price: charge.amount,
+       }))
     .then((data) => {
       console.log(data);
       res.send('Charge successful');
