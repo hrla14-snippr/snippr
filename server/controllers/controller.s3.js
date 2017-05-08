@@ -1,12 +1,5 @@
 const AWS = require('aws-sdk');
-<<<<<<< HEAD
-<<<<<<< HEAD
 const db = require('../models/db');
-=======
->>>>>>> reset HEAD
-=======
-const db = require('../models/db');
->>>>>>> image upload feature working+ db
 
 // Amazon s3 config
 const s3 = new AWS.S3(({ params: { Bucket: 'snyppr' } }));
@@ -46,8 +39,8 @@ exports.uploadPhotos = ((req, res) => {
 exports.getPhotos = ((req, res) => {
   console.log(req.params);
   db.SnypprImage.findAll({ where: { snypprId: req.params.authId } })
-  .then((data) => {
-    res.send(data);
+  .then((responseData) => {
+    res.send(responseData);
     console.log(req.body.authId);
   // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
     s3.upload({
@@ -67,5 +60,6 @@ exports.getPhotos = ((req, res) => {
       .then((dat) => {
         console.log(dat);
       });
+    });
   });
 });

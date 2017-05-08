@@ -552,7 +552,6 @@ svg#heart {
   stroke-dasharray: 125;
 }
 
-<<<<<<< HEAD
 .chatbox-container {
     position: absolute;
     right: 0;
@@ -572,12 +571,6 @@ svg#heart {
     background-color: #e8ebef;
     border-radius: 10px;
     padding: 1em;
-=======
-
-/* Chat Client Box */
-
-.chat-body{
->>>>>>> image save and fetch
     position: absolute;
     transition: 1s;
     animation: bounce .40s;
@@ -603,29 +596,15 @@ svg#heart {
     border-radius: 3px;
 }
 
-<<<<<<< HEAD
+
 .barber-form-container {
     position: absolute;
     bottom: 0;
-=======
-.chatformheader h3{
-    font-family: "Brandon Grotesque";
-    font-size: 22px;
-    text-align: center;
-    color: mediumspringgreen;
-    padding-top: 10px;
-}
-
-.chat-body form{
-  position: relative;
-  bottom: 0;
->>>>>>> image save and fetch
 }
 
 .chat-body input{
     border-style: none;
     border-radius: 5px;
-<<<<<<< HEAD
     background-color: white;
     width: 200px;
     height: 2em;
@@ -655,13 +634,6 @@ svg#heart {
 
 /* End Chat Client Box */
 
-=======
-    background-color: pink;
-    width: 300px;
-    height: 2em;
-}
-
->>>>>>> image save and fetch
 .stripebutton{
     position: absolute;
     border-style: none;
@@ -763,5 +735,3 @@ svg#heart {
     right: 3%;
     top: 3vh;
 }
-
-
