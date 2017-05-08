@@ -56,7 +56,11 @@ class BarberDashboard extends Component {
       <div className="profile">
         <Header />
         <div className="profile-box">
-          <BarberSideBar changeWindow={this.changeWindow} logout={this.props.logout} />
+          <BarberSideBar
+            changeWindow={this.changeWindow}
+            logout={this.props.logout}
+            profilePic={this.props.profile.profilepic.url}
+          />
           <div className="profile-body">
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
               <ReviewsList reviews={this.props.profile.snypprreviews || []} reviewer="snypee" />
@@ -66,9 +70,14 @@ class BarberDashboard extends Component {
                 transactions={this.props.profile.transactions || []} target="Snypee"
               />
             </div>
-            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
-              <center><S3Uploader authId={this.props.profile.id} /></center>
-
+            <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
+              <center>
+                <S3Uploader
+                  authId={this.props.profile.id}
+                  action="profilepic"
+                  type="snyppr"
+                />
+              </center>
             </div>
             <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
               <PortfolioList images={this.state.barberImages || []} />

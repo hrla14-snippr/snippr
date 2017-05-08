@@ -133,6 +133,15 @@ const SnypprImage = db.define('snypprimage', {
 }, {
   timestamps: true,
 });
+
+const ProfilePic = db.define('profilepic', {
+  url: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+}, {
+  timestamps: true,
+});
 /*
   RELATIONSHIPS
 */
@@ -161,6 +170,11 @@ Favorite.belongsTo(Snypee);
 Snyppr.hasMany(SnypprImage);
 SnypprImage.belongsTo(Snyppr);
 
+Snyppr.hasOne(ProfilePic);
+Snypee.hasOne(ProfilePic);
+ProfilePic.belongsTo(Snypee);
+ProfilePic.belongsTo(Snyppr);
+
 Snyppr.sync();
 Snypee.sync();
 Transaction.sync();
@@ -170,6 +184,7 @@ SnypprReview.sync();
 SnypeeReview.sync();
 SnypprStripe.sync();
 SnypprImage.sync();
+ProfilePic.sync();
 
 db.authenticate()
   .then(() => {
@@ -188,3 +203,4 @@ module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
 module.exports.SnypprStripe = SnypprStripe;
 module.exports.SnypprImage = SnypprImage;
+module.exports.ProfilePic = ProfilePic;
