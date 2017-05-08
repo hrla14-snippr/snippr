@@ -48,10 +48,6 @@ class SideBar extends Component {
         <button
           onClick={this.props.changeWindow} value="Reviews" className="navmenu-items"
         >Reviews</button>
-        <button
-          onClick={this.props.changeWindow}
-          value="Transactions" className="navmenu-items"
-        >Transactions</button>
         <div onClick={this.handleFav} className="navmenu-items svgcontainer">
           <FavoriteIcon />
         </div>
