@@ -11,6 +11,10 @@ exports.verifyHasProfile = (req, res) => {
     : { include: [{
       model: db.SnypeeReview,
       include: [db.Snyppr],
+    },
+    {
+      model: db.Transaction,
+      include: [db.Snyppr, db.SnypprReview],
     }] };
   options.where = { id: req.body.id };
   db[accountType]

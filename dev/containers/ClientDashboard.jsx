@@ -6,6 +6,7 @@ import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
 import ReviewsList from '../components/ReviewsList';
 import FavoriteList from '../components/FavoriteList';
+import TransactionsList from '../components/TransactionsList';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
 import { CurrentFavorites } from '../actions/CurrentFavorites';
@@ -83,7 +84,7 @@ class ClientDashboard extends Component {
             </div>
           </div>
           <div className="right-box">
-            <div className={this.state.currentWindow === 'Reviews' ? 'hidden' : ''}>
+            <div className={['Reviews', 'Transactions'].includes(this.state.currentWindow) ? 'hidden' : ''}>
               <GoogleMaps
                 clientAddress={this.state.clientAddress}
                 snypprs={this.state.nearbySnypprs} google={window.google}
@@ -100,6 +101,9 @@ class ClientDashboard extends Component {
             </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
               <ReviewsList reviews={this.props.profile.snypeereviews} />
+            </div>
+            <div className={this.state.currentWindow === 'Transactions' ? '' : 'hidden'}>
+              <TransactionsList transactions={this.props.profile.transactions} />
             </div>
           </div>
         </div>
