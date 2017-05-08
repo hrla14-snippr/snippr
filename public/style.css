@@ -618,12 +618,12 @@ svg#heart {
     top: 23%;
 }
 
-.stripeacctbtn:hover {
+button.stripeacctbtn:hover {
     background-color: mediumspringgreen;
     box-shadow: 3px 0 3px 0 lightgrey;
 }
 
-.stripeacctbtn {
+button.stripeacctbtn {
     border-style: none;
     transition: 1s;
     color: black;
