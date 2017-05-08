@@ -13,7 +13,6 @@ class ProfilePage extends Component {
 
   constructor(props) {
     super(props);
-    console.log('snyppr', props.snyppr);
     this.state = {
       togglePortfolio: true,
       favorited: false,
@@ -33,7 +32,6 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log(this.state, 'lookin for that current window brothaaaa');
     return (
       <div className="profile">
         <Notifications />
