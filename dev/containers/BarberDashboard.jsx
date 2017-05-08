@@ -59,7 +59,7 @@ class BarberDashboard extends Component {
           <BarberSideBar
             changeWindow={this.changeWindow}
             logout={this.props.logout}
-            profilePic={this.props.profile.profilepic.url}
+            profilePic={this.props.profile.profilepic ? this.props.profile.profilepic.url : 'https://timeforgeography.co.uk/static/img/avatar-placeholder.png'}
           />
           <div className="profile-body">
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
