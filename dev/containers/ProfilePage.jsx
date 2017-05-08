@@ -12,7 +12,6 @@ class ProfilePage extends Component {
 
   constructor(props) {
     super(props);
-    console.log('snyppr', props.snyppr);
     this.state = {
       togglePortfolio: true,
       favorited: false,
@@ -26,7 +25,6 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log(this.props, 'these are the current props that the client has access to inside of props');
     return (
       <div className="profile">
         <Notifications />
