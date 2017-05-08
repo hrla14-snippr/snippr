@@ -15,15 +15,14 @@ class ProfilePage extends Component {
     console.log('snyppr', props.snyppr);
     this.state = {
       togglePortfolio: true,
-      chatVisible: false,
       favorited: false,
+      displayClientChat: false,
     };
-    this.toggleChat = this.toggleChat.bind(this);
+    this.handleChatToggle = this.handleChatToggle.bind(this);
   }
-  toggleChat() {
-    this.setState({
-      portfolio: false,
-    });
+
+  handleChatToggle() {
+    this.setState({ displayClientChat: !this.state.displayClientChat });
   }
 
   render() {
@@ -40,12 +39,20 @@ class ProfilePage extends Component {
               <p>{this.props.snyppr.address}</p>
             </div>
             <SnypprReviewsList reviews={this.props.snyppr.snypprreviews} />
-            <ClientChat
-              snypeeId={this.props.profile.id}
-              snyppr={this.props.snyppr}
-              name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`}
-              email={this.props.email}
-            />
+            <div className="chatbox-container">
+              <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
+                <ClientChat
+                  snypeeId={this.props.profile.id}
+                  snyppr={this.props.snyppr}
+                  name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`}
+                  email={this.props.email}
+                />
+              </div>
+              <img
+                onClick={this.handleChatToggle}
+                alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
+              />
+            </div>
           </div>
         </div>
         <Footer />

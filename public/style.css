@@ -216,13 +216,6 @@ modalimg{
 .content{
     border-radius: 8px;
 }
-.chat-svg {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    right: 0;
-    bottom: 3em;
-}
 
 .snypprentry{
     width: 100%;
@@ -353,6 +346,7 @@ modalimg{
     width: 80%;
     height: 80vh;
     margin: 1em auto;
+    padding: 1.5em;
 }
 
 .navigation, .sidebar{
@@ -588,54 +582,87 @@ svg#heart {
 }
 
 
+.chatbox-container {
+    position: absolute;
+    right: 0;
+
+}
+
+.chat-svg {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    bottom: 3em;
+}
+
 
 /* Chat Client Box */
+.chat-position {
+    position: absolute;
+    right: 11%;
+    top: 15%;
+    /*left: 58%;*/
+    width: 300px;
+}
 
 .chat-body{
+    top: 10vh;
+    height: 80vh;
+    width: 300px;
+    height: 300px;
+    background-color: #e8ebef;
+    border-radius: 10px;
+    padding: 1em;
     position: absolute;
     width: 100%;
 }
 
 .live-chat{
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    background-color: lightgray;
-}
-
-.chat-display{
+    position: relative;
+    top: 2%;
     overflow-y: scroll;
+    height: 180px;
 }
 
-.chatformheader{
+.client-form{
     position: absolute;
-    top: 0;
-    width: 100%;
-    background-color: #09091a;
-    height: 50px;
-    border-radius: 3px;
+    margin-bottom: .5em;
+    bottom: 0;
+    left: 3.5em;
+  
 }
 
-.chatformheader h3{
-    font-family: "Brandon Grotesque";
-    font-size: 22px;
-    text-align: center;
-    color: mediumspringgreen;
-    padding-top: 10px;
-}
 
-.chat-body form{
-  position: relative;
-  bottom: 0;
+.barber-form-container {
+    position: absolute;
+    bottom: 0;
 }
 
 .chat-body input{
     border-style: none;
     border-radius: 5px;
     background-color: pink;
-    width: 300px;
+    width: 200px;
     height: 2em;
 }
+
+
+.barber-form-container form {
+    float: left;
+    margin: 0 1em .5em 1em;
+
+  
+}
+
+.barber-form-container button {
+    float: right;
+    margin-bottom: .5em;
+
+}
+
+/* End Chat Client Box */
+
 
 .stripebutton{
     position: absolute;

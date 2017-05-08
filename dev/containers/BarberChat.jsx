@@ -99,6 +99,7 @@ class BarberChat extends Component {
     console.log(this.state.amount);
     return (
       <div className="chat-body">
+        <h3>Snyppr Chat</h3>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -119,12 +120,15 @@ class BarberChat extends Component {
             <input className="subpay" onClick={this.requestPayment} type="submit" />
           </form>
         </Modal>
-        <h3>Snyppr Chat</h3>
-        {this.state.messages.map(msg => <p>{msg}</p>)}
-        <form onSubmit={this.handleSubmit}>
-          <input value={this.state.term} onChange={this.handleChange} />
-        </form>
-        <button onClick={this.openModal}>$</button>
+        <div className="live-chat">
+          {this.state.messages.map(msg => <p>{msg}</p>)}
+        </div>
+        <div className="barber-form-container">
+          <form onSubmit={this.handleSubmit}>
+            <input value={this.state.term} onChange={this.handleChange} />
+          </form>
+          <button onClick={this.openModal}>$</button>
+        </div>
       </div>
     );
   }
@@ -134,6 +138,4 @@ BarberChat.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-
 export default BarberChat;
-
