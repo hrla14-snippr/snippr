@@ -666,3 +666,5 @@ svg#heart {
     right: 3%;
     top: 3vh;
 }
+
+button:focus {outline:0;}
