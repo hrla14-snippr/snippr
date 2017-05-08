@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PortfolioEntry from './TransactionsEntry';
+import PortfolioEntry from './PortfolioEntry';
 
 const PortfolioList = props => (
   <div className="transactionholder">

@@ -51,7 +51,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log('current snyp', this.props.snyppr);
+    console.log('this is the barbers images state ', this.state);
     return (
       <div className="profile">
         <Notifications />
@@ -62,10 +62,6 @@ class ProfilePage extends Component {
             snyppr={this.props.snyppr} logout={this.props.logout}
           />
           <div className=" profile-body">
-            <div className="profileheader">
-              <h1 className="entryheader">{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
-              <p>{this.props.snyppr.address}</p>
-            </div>
             <div className={this.state.currentWindow === 'Reviews' ? '' : 'hidden'}>
               <SnypprReviewsList
                 reviews={this.props.snyppr.snypprreviews}
