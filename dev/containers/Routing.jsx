@@ -132,8 +132,10 @@ class Routing extends Component {
   renderProfile() {
     return this.state.auth.loggedIn() && this.state.hasProfile
       ? <ProfilePage
+        email={this.state.auth.getProfile().name}
+        logout={this.state.auth.logout}
+        snypeeId={this.state.auth.getAuthId()}
         profile={this.state.profile}
-        email={this.state.auth.getProfile().name} logout={this.state.auth.logout}
       />
       : <Redirect to="/dashboard" />;
   }

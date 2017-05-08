@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
+import SnypprReviewsList from '../components/SnypprReviewsList';
 import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
@@ -32,12 +33,13 @@ class ProfilePage extends Component {
             <h1>{this.props.snyppr.fname} {this.props.snyppr.lname}</h1>
             <p>{this.props.snyppr.address}</p>
             {/* <div className="portfolio"></div> */}
-
+            <SnypprReviewsList reviews={this.props.snyppr.snypprreviews} />
             <div className="chatbox-container">
               <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
                 <ClientChat
+                  snypeeId={this.props.profile.id}
                   snyppr={this.props.snyppr}
-                  name={`${this.props.snyppr.fname} ${this.props.snyppr.lname}`}
+                  name={`${this.props.snyppr.fname}${this.props.snyppr.lname}`}
                   email={this.props.email}
                 />
               </div>
@@ -46,8 +48,6 @@ class ProfilePage extends Component {
                 alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
               />
             </div>
-
-
           </div>
         </div>
         <Footer />

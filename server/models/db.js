@@ -3,7 +3,6 @@ const Sequelize = require('sequelize');
 
 const db = new Sequelize(process.env.ESQL_URL);
 
-// 'postgres://sxjybake:4jt8-uIF_tZz1akG8t7pQDGvViRC7yys@stampy.db.elephantsql.com:5432/sxjybake'
 /*
   MODELS
 */
@@ -108,7 +107,7 @@ const Favorite = db.define('favorite', {
 });
 
 const SnypprReview = db.define('snypprreview', {
-  snypprId: {
+  snypeeId: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -123,7 +122,7 @@ const SnypprReview = db.define('snypprreview', {
 });
 
 const SnypeeReview = db.define('snypeereview', {
-  snypeeId: {
+  snypprId: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -145,14 +144,26 @@ Snyppr.hasMany(Transaction);
 Snypee.hasMany(Transaction);
 Transaction.belongsTo(Snyppr);
 Transaction.belongsTo(Snypee);
-Snyppr.hasOne(SnypprStripe);
-const SnypprStyles = db.define('snypprStyles', {}, { timestamps: false });
 
+Snyppr.hasMany(SnypprReview);
+Snypee.hasMany(SnypprReview);
+SnypprReview.belongsTo(Snyppr);
+SnypprReview.belongsTo(Snypee);
+Snypee.hasMany(SnypeeReview);
+Snyppr.hasMany(SnypeeReview);
+SnypeeReview.belongsTo(Snypee);
+SnypeeReview.belongsTo(Snyppr);
+Transaction.hasOne(SnypprReview, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+Transaction.hasOne(SnypeeReview, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+
+Snyppr.hasOne(SnypprStripe);
+
+const SnypprStyles = db.define('snypprStyles', {}, { timestamps: false });
 Style.belongsToMany(Snyppr, { through: SnypprStyles });
 Snyppr.belongsToMany(Style, { through: SnypprStyles });
+
 Snypee.hasMany(Favorite);
 Favorite.belongsTo(Snypee);
-
 
 Snyppr.sync();
 Snypee.sync();

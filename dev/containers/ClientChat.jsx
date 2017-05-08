@@ -66,7 +66,6 @@ class ClientChat extends Component {
     });
   }
   onToken(token) {
-    console.log('token is', { token, stripeId: this.props.snyppr.snypprstripe.id });
     axios.post('/transaction', {
       token,
       stripeId: this.props.snyppr.snypprstripe.id,
@@ -101,6 +100,7 @@ class ClientChat extends Component {
   updateCharge(charge) {
     this.setState({ charge });
   }
+
   render() {
     return (
       <div className="chat-body" onClick={this.closeModal}>

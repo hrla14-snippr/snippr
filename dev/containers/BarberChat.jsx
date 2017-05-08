@@ -78,15 +78,19 @@ class BarberChat extends Component {
     const amount = `${this.state.amount}00`;
     socket.emit('payment-request', { name: this.props.name, amount: parseInt(amount, 10) });
   }
+
   openModal() {
     this.setState({ modalIsOpen: true });
   }
+
   afterOpenModal() {
     this.subtitle.style.color = 'black';
   }
+
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
+
   handleCharge(event) {
     this.setState({ amount: event.target.value });
   }
