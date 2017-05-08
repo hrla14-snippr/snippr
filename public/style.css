@@ -670,4 +670,9 @@ svg#heart {
     top: 3vh;
 }
 
+.portimg{
+    width: 200px;
+    height: 200px;
+}
+
 button:focus {outline:0;}

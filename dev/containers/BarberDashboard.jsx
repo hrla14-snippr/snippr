@@ -5,6 +5,7 @@ import Header from '../components/PageElements/Header';
 import BarberSideBar from '../components/PageElements/BarberSideBar';
 import ReviewsList from '../components/ReviewsList';
 import TransactionsList from '../components/TransactionsList';
+import PortfolioList from '../components/PortfolioList';
 import Footer from '../components/PageElements/Footer';
 
 class BarberDashboard extends Component {
@@ -46,6 +47,9 @@ class BarberDashboard extends Component {
             </div>
             <div className={this.state.currentWindow === 'Transactions' ? '' : 'hidden'}>
               <TransactionsList transactions={this.state.transactions} />
+            </div>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+              <PortfolioList images={this.state.barberImages || []} />
             </div>
             <div className="chatbox-container">
               <div className={this.state.displayBarberChat ? '' : 'hidden'}>

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ClientChat from './ClientChat';
 import SnypprReviewsList from '../components/SnypprReviewsList';
 import TransactionsList from '../components/TransactionsList';
+import PortfolioList from '../components/PortfolioList';
 import Header from '../components/PageElements/Header';
 import SideBar from '../components/PageElements/SideBar';
 import Footer from '../components/PageElements/Footer';
@@ -53,6 +54,9 @@ class ProfilePage extends Component {
             </div>
             <div className={this.state.currentWindow === 'Transactions' ? '' : 'hidden'}>
               <TransactionsList transactions={this.state.transactions} />
+            </div>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+              <PortfolioList images={this.state.barberImages || []} />
             </div>
             <div className="chatbox-container">
               <div className={this.state.displayClientChat ? 'chat-position' : 'hidden'}>
