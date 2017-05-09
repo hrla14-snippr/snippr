@@ -28,7 +28,7 @@ Snyppr is a fullstack web applicaiton for getting on demand hair cuts. If you're
   - Google Maps Geocoding and Places APIs
 
 ## Deploying
-- Deploy to aws and add the following keys to your .env file with these variable names: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+- Deploy to aws and add the following keys to your .env file with these variable names: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
   - Or your choice of hosting service and replace the aforementioned variables in the code.
 
 ## Current Snyppr issues
