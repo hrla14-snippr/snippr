@@ -11,23 +11,6 @@ Snyppr is a fullstack web applicaiton for getting on demand hair cuts. If you're
 
 ## Quick start
 
-
-NECESSARY APIS
-auth0
-stripe
-google maps (geocoding and places)
-deploy to aws and add the following keys to your .env file with these variable names: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
-or your choice of hosting service and replace the aforementioned variables in the code.
-
-FOR LOCAL MACHINE SETUP
-fork and clone
-get a sql dialect installed on your machine, or use a database management system for SQL.
-have npm
-npm install in the repo directory
-npm run seed
-npm start and go to localhost3000
-
-
 - Fork a copy of the repo and then clone the repo locally to your computer by forking via the Github GUI, and then entering the following command into the Terminal: `$ git clone https://github.com/[your_username_here]/snippr`
 - Make sure you have [npm](https://www.npmjs.com) installed.
 - Once npm is installed, run the following commands in separate Terminal tabs:
