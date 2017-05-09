@@ -13,11 +13,11 @@ export default class S3Uploader extends React.Component {
   onDrop(files) {
     console.log(this.props);
     // console.log(props)
-    superagent.post(`/${this.props.action}/${this.props.authId}/${this.props.type}`)
+    superagent.post(`/${this.props.action}/${this.props.authId}/${this.props.type || ''}`)
     .attach('theseNamesMustMatch', files[0])
     .end((err) => {
       if (err) console.log(err);
-      return console.log('File uploaded!');
+      return console.log('File uploaded!', this.props.action);
     });
   }
   render() {
