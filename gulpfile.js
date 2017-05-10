@@ -66,7 +66,7 @@ gulp.task('webpackhot', (callback) => {
     clientLogLevel: 'info',
     proxy: [
       {
-        context: ['/client', '/addProfile', '/stripeId'],
+        context: ['/client', '/addProfile', '/stripeId', '/verifyProfile'],
         target: 'http://localhost:5000',
       },
     ],

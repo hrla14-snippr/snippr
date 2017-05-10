@@ -21,6 +21,8 @@ module.exports = {
     "globals": {
       "AUTH0_DOMAIN": false,
       "AUTH0_CLIENT_ID": false,
-      "SITE_URL": false
+      "SITE_URL": false,
+      "STRIPE_CLIENT_ID": false,
+      "G_MAPKEY": false
     }
 };

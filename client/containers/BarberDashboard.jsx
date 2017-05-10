@@ -96,7 +96,7 @@ class BarberDashboard extends Component {
             </div>
             <img
               onClick={this.handleChatToggle}
-              alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
+              alt="chat-svg" className="chat-svg" src="/assets/speech-bubble.svg"
             />
           </div>
         </div>
