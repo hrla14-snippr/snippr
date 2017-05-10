@@ -78,11 +78,5 @@
     "stripe": "^4.18.0",
     "superagent": "^3.5.2",
     "webpack": "^2.4.1"
-  },
-  "eslintConfig": {
-    "globals": {
-      "AUTH0_DOMAIN": false,
-      "AUTH0_CLIENT_ID": false
-    }
   }
 }
