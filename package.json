@@ -33,6 +33,9 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "gulp": "^3.9.1",
+    "gulp-env": "^0.4.0",
+    "gulp-nodemon": "^2.2.1",
     "lint-staged": "^3.4.1",
     "pre-commit": "^1.2.2"
   },
@@ -75,5 +78,11 @@
     "stripe": "^4.18.0",
     "superagent": "^3.5.2",
     "webpack": "^2.4.1"
+  },
+  "eslintConfig": {
+    "globals": {
+      "AUTH0_DOMAIN": false,
+      "AUTH0_CLIENT_ID": false
+    }
   }
 }
