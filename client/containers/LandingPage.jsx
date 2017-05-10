@@ -49,7 +49,7 @@ class LandingPage extends Component {
           </div>
         </div>
         <div className="about-us">
-          <h1 className="text-center">ABOUT US!!!!!</h1>
+          <h1 className="text-center">ABOUT US!!</h1>
         </div>
       </div>
     );

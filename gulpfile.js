@@ -58,8 +58,8 @@ gulp.task('webpackhot', (callback) => {
   const compiler = webpack(webpackDevConfig);
 
   new WebpackDevServer(compiler, {
-    contentBase: './public',
-    publicPath: '/',
+    contentBase: './public/',
+    publicPath: '/public/',
     hot: true,
     inline: true,
     stats: true,
