@@ -190,6 +190,5 @@ module.exports.Transaction = Transaction;
 module.exports.Favorite = Favorite;
 module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
-module.exports.SnypprStripe = SnypprStripe;
 module.exports.SnypprImage = SnypprImage;
 module.exports.ProfilePic = ProfilePic;
