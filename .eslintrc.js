@@ -13,6 +13,7 @@ module.exports = {
         "no-underscore-dangle": [2, { "allowAfterThis": true, allow: ["_*"] }],
         "class-methods-use-this": 0,
         "no-static-element-interactions": 0,
+        "jsx-a11y/no-static-element-interactions": 0
     },
     "globals": {
       "AUTH0_DOMAIN": false,

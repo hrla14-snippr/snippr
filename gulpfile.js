@@ -56,10 +56,11 @@ gulp.task('webpackhot', (callback) => {
 
   new WebpackDevServer(compiler, {
     contentBase: './public',
-    publicPath: '/public',
-    // hot: true,
-    // inline: true,
+    publicPath: '/',
+    hot: true,
+    inline: true,
     stats: true,
+    clientLogLevel: 'info',
   }).listen(8080, 'localhost', (err) => {
     if (err) throw new gutil.PluginError('webpack-dev-server', err);
     // Server listening

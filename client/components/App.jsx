@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -7,22 +7,15 @@ import Reducers from '../reducers';
 import Routing from '../containers/Routing';
 
 
-class App extends Component {
-  constructor() {
-    super();
+const createStoreWithMiddleware = applyMiddleware(Promise)(createStore);
 
-    this.createStoreWithMiddleware = applyMiddleware(Promise)(createStore);
-  }
-
-  render() {
-    return (
-      <Provider store={this.createStoreWithMiddleware(Reducers)}>
-        <BrowserRouter basename="/client">
-          <Routing />
-        </BrowserRouter>
-      </Provider>
+const App = () => (
+  <Provider store={createStoreWithMiddleware(Reducers)}>
+    <BrowserRouter basename="/client">
+      <Routing />
+    </BrowserRouter>
+  </Provider>
     );
-  }
-}
+
 
 export default App;
