@@ -1,6 +1,6 @@
 const db = require('../models/db');
-const strConverter = require('../../dev/utils/stringConverter');
-const geoConverter = require('../../dev/utils/geoConverter');
+const strConverter = require('../../client/utils/stringConverter');
+const geoConverter = require('../../client/utils/geoConverter');
 // store whether user is snypee or snyppr in auth0 profile
 
 exports.verifyHasProfile = (req, res) => {
