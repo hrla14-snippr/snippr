@@ -9,7 +9,7 @@ class LandingPage extends Component {
 
     this.state = {
       accountType: '',
-      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, props.accountType),
+      auth: new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, props.history, props.accountType),
     };
 
     this.typedSignup = this.typedSignup.bind(this);
@@ -17,7 +17,7 @@ class LandingPage extends Component {
 
   typedSignup(e) {
     this.setState({
-      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', this.props.history, e.target.value),
+      auth: new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, this.props.history, e.target.value),
     }, () => this.state.auth.signup());
   }
 
