@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */
+
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
 const env = require('gulp-env');
@@ -8,7 +10,7 @@ env({
 });
 
 gulp.task('nodemon', () => {
-  nodemon({
+  const stream = nodemon({
     script: 'server/index.js',
     watch: ['server/**'],
     ignore: ['client/**'],
