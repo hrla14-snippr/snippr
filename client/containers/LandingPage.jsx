@@ -9,7 +9,7 @@ class LandingPage extends Component {
 
     this.state = {
       accountType: '',
-      auth: new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN,
+      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN,
         props.history, props.accountType),
     };
 
@@ -18,7 +18,7 @@ class LandingPage extends Component {
 
   typedSignup(e) {
     this.setState({
-      auth: new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN,
+      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN,
         this.props.history, e.target.value),
     }, () => this.state.auth.signup());
   }
