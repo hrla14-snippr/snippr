@@ -3,7 +3,11 @@
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
 const env = require('gulp-env');
+const gutil = require('gulp-util');
 const sequelizeFixtures = require('sequelize-fixtures');
+const webpack = require('webpack');
+const webpackDevConfig = require('./webpack.config');
+const WebpackDevServer = require('webpack-dev-server');
 
 env({
   file: './.env',
@@ -44,3 +48,26 @@ gulp.task('nodemon', () => {
     ignore: ['client/**'],
   });
 });
+
+
+gulp.task('webpackhot', (callback) => {
+  // Start a webpack-dev-server
+  const compiler = webpack(webpackDevConfig);
+
+  new WebpackDevServer(compiler, {
+    contentBase: './public',
+    publicPath: '/public',
+    // hot: true,
+    // inline: true,
+    stats: true,
+  }).listen(8080, 'localhost', (err) => {
+    if (err) throw new gutil.PluginError('webpack-dev-server', err);
+    // Server listening
+    // gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+
+    // keep the server alive or continue?
+    //  callback();
+  });
+});
+
+gulp.task('default', ['nodemon']);
