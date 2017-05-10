@@ -1,6 +1,6 @@
 // change test_key
 const db = require('../models/db');
-const stripe = require('stripe')('sk_test_DLdp9uxn2BsYrBMyVsvyvPdv');
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 exports.fetchTransactions = (req, res) => {
   // TODO: grab from db /:snypprId
