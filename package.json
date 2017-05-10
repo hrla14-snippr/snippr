@@ -37,7 +37,8 @@
     "gulp-env": "^0.4.0",
     "gulp-nodemon": "^2.2.1",
     "lint-staged": "^3.4.1",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "sequelize-fixtures": "^0.5.6"
   },
   "dependencies": {
     "auth0-lock": "^10.15.1",
