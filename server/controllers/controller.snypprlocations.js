@@ -1,5 +1,5 @@
 const db = require('../models/db');
-const distFinder = require('../../dev/utils/distFinder');
+const distFinder = require('../../client/utils/distFinder');
 
 exports.fetchSnypprs = (req, res) => {
   const userAddress = JSON.parse(req.params.address);

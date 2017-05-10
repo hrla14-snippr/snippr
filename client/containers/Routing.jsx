@@ -14,7 +14,7 @@ class Routing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, 'prefill'),
+      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN, props.history, 'prefill'),
       hasProfile: false,
       hasStripeId: false,
       profile: {},

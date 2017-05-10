@@ -175,17 +175,6 @@ Snypee.hasOne(ProfilePic);
 ProfilePic.belongsTo(Snypee);
 ProfilePic.belongsTo(Snyppr);
 
-Snyppr.sync();
-Snypee.sync();
-Transaction.sync();
-SnypprStripe.sync();
-Favorite.sync();
-SnypprReview.sync();
-SnypeeReview.sync();
-SnypprStripe.sync();
-SnypprImage.sync();
-ProfilePic.sync();
-
 db.authenticate()
   .then(() => {
     console.log('database connected successfully!');
@@ -201,6 +190,5 @@ module.exports.Transaction = Transaction;
 module.exports.Favorite = Favorite;
 module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
-module.exports.SnypprStripe = SnypprStripe;
 module.exports.SnypprImage = SnypprImage;
 module.exports.ProfilePic = ProfilePic;
