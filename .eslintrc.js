@@ -20,6 +20,7 @@ module.exports = {
     },
     "globals": {
       "AUTH0_DOMAIN": false,
-      "AUTH0_CLIENT_ID": false
+      "AUTH0_CLIENT_ID": false,
+      "SITE_URL": false
     }
 };

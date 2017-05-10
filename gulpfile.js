@@ -61,14 +61,20 @@ gulp.task('webpackhot', (callback) => {
     inline: true,
     stats: true,
     clientLogLevel: 'info',
+    proxy: [
+      {
+        context: ['/client', '/addProfile', '/stripeId'],
+        target: 'http://localhost:5000',
+      },
+    ],
   }).listen(8080, 'localhost', (err) => {
     if (err) throw new gutil.PluginError('webpack-dev-server', err);
     // Server listening
-    // gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
+    gutil.log('[webpack-dev-server]', 'Dev server listening on http://localhost:8080');
 
     // keep the server alive or continue?
     //  callback();
   });
 });
 
-gulp.task('default', ['nodemon']);
+gulp.task('default', ['nodemon', 'webpackhot']);

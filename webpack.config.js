@@ -48,6 +48,7 @@ module.exports = {
     new webpack.DefinePlugin({
       AUTH0_CLIENT_ID: JSON.stringify(process.env.AUTH0_CLIENT_ID),
       AUTH0_DOMAIN: JSON.stringify(process.env.AUTH0_DOMAIN),
+      SITE_URL: JSON.stringify(process.env.SITE_URL),
     }),
   ],
 };
