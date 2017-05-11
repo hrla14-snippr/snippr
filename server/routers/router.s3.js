@@ -14,6 +14,7 @@ Router.post('/upload/:authId', upload.single('theseNamesMustMatch'), s3Controlle
 Router.get('/images/:authId', s3Controller.getPhotos);
 Router.post('/profilepic/:authId/:type', upload.single('theseNamesMustMatch'), s3Controller.uploadProfilePic);
 Router.get('/profilepic/:authId/:type', s3Controller.getProfilePic);
-
+Router.post('/certificatepic/:authId/:type', upload.single('theseNamesMustMatch'), s3Controller.uploadCertificatePic);
+Router.get('/verify/:snypprId/', s3Controller.getCertificatePic);
 
 module.exports = Router;
