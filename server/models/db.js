@@ -35,6 +35,11 @@ const Snyppr = db.define('snyppr', {
     type: Sequelize.FLOAT,
     allowNull: false,
   },
+  certified: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
 }, {
   timestamps: false,
 });
@@ -125,6 +130,7 @@ const SnypeeReview = db.define('snypeereview', {
     allowNull: false,
   },
 });
+
 const SnypprImage = db.define('snypprimage', {
   url: {
     type: Sequelize.STRING,
@@ -142,6 +148,16 @@ const ProfilePic = db.define('profilepic', {
 }, {
   timestamps: true,
 });
+
+const CertificatePic = db.define('certificatepic', {
+  url: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+}, {
+  timestamps: true,
+});
+
 /*
   RELATIONSHIPS
 */
@@ -172,8 +188,10 @@ SnypprImage.belongsTo(Snyppr);
 
 Snyppr.hasOne(ProfilePic);
 Snypee.hasOne(ProfilePic);
+Snyppr.hasOne(CertificatePic);
 ProfilePic.belongsTo(Snypee);
 ProfilePic.belongsTo(Snyppr);
+CertificatePic.belongsTo(Snyppr);
 
 db.authenticate()
   .then(() => {
@@ -192,3 +210,4 @@ module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
 module.exports.SnypprImage = SnypprImage;
 module.exports.ProfilePic = ProfilePic;
+module.exports.CertificatePic = CertificatePic;
