@@ -30,6 +30,7 @@ gulp.task('seed:wipe', (cb) => {
     .then(() => db.SnypprStripe.sync({ force: true }))
     .then(() => db.SnypprImage.sync({ force: true }))
     .then(() => db.ProfilePic.sync({ force: true }))
+    .then(() => db.CertificatePic.sync({ force: true }))
     .then(() => { cb(); })
     .catch((err) => { cb(err); });
 });
@@ -66,7 +67,7 @@ gulp.task('webpackhot', (callback) => {
     clientLogLevel: 'info',
     proxy: [
       {
-        context: ['/client', '/addProfile', '/stripeId', '/verifyProfile', '/favorites', '/nearbySnypprs', '/images'],
+        context: ['/client', '/addProfile', '/stripeId', '/verifyProfile', '/favorites', '/nearbySnypprs', '/images', '/verify', '/certificatepic', '/cloud'],
         target: 'http://localhost:5000',
       },
     ],
