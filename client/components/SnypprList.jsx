@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SnypprEntry from './SnypprEntry';
+import _ from 'underscore';
 
 const SnypprList = (props) => {
   if (props.snypprs.data) {
+    const certifiedSnypprs = [];
+    _.each(props.snypprs.data, (snyppr) => {
+      snyppr.certified === true ? certifiedSnypprs.push(snyppr) : null;
+    })
     return (
       <div className="entryholder">
-        {props.snypprs.data.map(snyppr =>
+        {certifiedSnypprs.map(snyppr =>
           <SnypprEntry snyppr={snyppr} />)}
       </div>
     );
