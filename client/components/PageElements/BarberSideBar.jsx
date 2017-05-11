@@ -40,6 +40,14 @@ class BarberSideBar extends Component {
         <button
           onClick={(e) => {
             this.props.changeWindow(e);
+            this.changeActiveTab(6);
+          }}
+          value="Certification" className={`navmenu-items ${this.state.activeTab === 6 ? 'navmenu-active' : ''}`}
+        >Certification
+        </button>
+        <button
+          onClick={(e) => {
+            this.props.changeWindow(e);
             this.changeActiveTab(2);
           }}
           value="Reviews" className={`navmenu-items ${this.state.activeTab === 2 ? 'navmenu-active' : ''}`}
