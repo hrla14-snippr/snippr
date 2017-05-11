@@ -38,10 +38,13 @@ Snyppr is a fullstack web applicaiton for getting on demand hair cuts. If you're
   - Sequelize ORM
 - Express
 - React
-- Node
+- React Redux
+- React Router
+- NodeJS
 - Auth0
 - GoogleMaps Geocoding and Places API
-- Stripe
+- Socket.io
+- Stripe Connect
 - Amazon Web Services
   - S3 for image storage
 
