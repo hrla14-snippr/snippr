@@ -5,3 +5,4 @@ bundle.js
 npm-debug.log
 .idea
 yarn.lock
+cloud.json

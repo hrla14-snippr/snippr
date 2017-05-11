@@ -7,6 +7,12 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+const gcloud = require('google-cloud')({
+  projectId: 'Snypper',
+  keyFilename: 'cloud.json',
+});
+
+const vision = gcloud.vision();
 
 app.use('/public', express.static('public'));
 app.use(bodyParser.json());
@@ -19,6 +25,15 @@ app.use(require('./routers/router.stripe'));
 app.use(require('./routers/router.reviews'));
 app.use(require('./routers/router.s3'));
 
+app.post('/cloud/:image', (req, res, next) => {
+  vision.detectText(req.params.image, (err, text, apiResponse) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(201).send(text);
+    }
+  });
+});
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')));
 

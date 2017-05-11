@@ -24,25 +24,28 @@ class GoogleMaps extends Component {
   }
   setMarkers(map) {
     const maps = this.props.google.maps;
+    // console.log(this.props.snypprs.data)
     _.each(this.props.snypprs.data, (snyppr) => {
-      const marker = new maps.Marker({
-        position: { lat: snyppr.lat, lng: snyppr.lng },
-        map,
-      });
-      const contentString = `<div> 
-        <h1 class="modalname">${snyppr.fname} ${snyppr.lname}</h1> 
-        <div class="imagehold"><image wrapped size="small" class="modalimg" src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png" height="65" width="65"/></div>
-        <div><h3 class="bodyContent">This is where ratings will go</h3></div></div>`;
-      const infoWindow = new maps.InfoWindow({
-        content: contentString,
-      });
-      infoWindow.addListener('click', (e) => {
-        console.log(e, 'all the info i need rightchea');
-      });
-      marker.addListener('click', (e) => {
-        console.log(e, 'console log marker add listener');
-        infoWindow.open(map, marker);
-      });
+      if (snyppr.certified === true) {
+        const marker = new maps.Marker({
+          position: { lat: snyppr.lat, lng: snyppr.lng },
+          map,
+        });
+        const contentString = `<div> 
+          <h1 class="modalname">${snyppr.fname} ${snyppr.lname}</h1> 
+          <div class="imagehold"><image wrapped size="small" class="modalimg" src="http://fuuse.net/wp-content/uploads/2016/02/avatar-placeholder.png" height="65" width="65"/></div>
+          <div><h3 class="bodyContent">This is where ratings will go</h3></div></div>`;
+        const infoWindow = new maps.InfoWindow({
+          content: contentString,
+        });
+        infoWindow.addListener('click', (e) => {
+          console.log(e, 'all the info i need rightchea');
+        });
+        marker.addListener('click', (e) => {
+          console.log(e, 'console log marker add listener');
+          infoWindow.open(map, marker);
+        });
+      }
     });
   }
   loadMap() {

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Form, Button, ButtonControl } from 'react-bootstrap';
+import _ from 'underscore';
 import PropTypes from 'prop-types';
 import BarberChat from './BarberChat';
 import Header from '../components/PageElements/Header';
@@ -27,7 +29,10 @@ class BarberDashboard extends Component {
     this.handleChatToggle = this.handleChatToggle.bind(this);
     this.changeWindow = this.changeWindow.bind(this);
     this.getImages = this.getImages.bind(this);
+    this.getVerified = this.getVerified.bind(this);
+    this.certificateVerified = this.certificateVerified.bind(this);
   }
+
   getImages() {
     console.log(this.props.profile.id);
     const endpoint = `/images/${this.props.profile.id}`;
@@ -42,6 +47,22 @@ class BarberDashboard extends Component {
       this.setState({ images: arr });
     });
   }
+  getVerified() {
+    console.log('we in getverified profile id', this.props.profile.id)
+    console.log('we in getverified ', localStorage);
+    axios.get(`/verify/${this.props.profile.id}`)
+         .then((res) => {
+           const image = encodeURIComponent(res.data.url);
+           return axios.post(`/cloud/${image}`)
+         })
+        .then((response) => {
+          console.log(response);
+          console.log(this.certificateVerified(response.data));
+        })
+        .catch(err => {
+          console.log(err);
+        })
+  }
   handleChatToggle() {
     this.setState({ displayBarberChat: !this.state.displayBarberChat });
   }
@@ -50,6 +71,12 @@ class BarberDashboard extends Component {
     if (event.target.value === 'Portfolio') {
       this.getImages();
     }
+  }
+  certificateVerified(words) {
+    const keyWords = ['CERTIFICATE', 'BARBER', 'COSMETOLOGY', 'HAIRCUTTER', 'BEAUTY']
+    return _.some(words, (word) => {
+      return keyWords.includes(word.toUpperCase());
+    });
   }
   render() {
     return (
@@ -78,6 +105,25 @@ class BarberDashboard extends Component {
                 />
               </center>
             </div>
+            <div className={this.state.currentWindow === 'Certification' ? '' : 'hidden'}>
+              <center>
+                <S3Uploader
+                  authId={this.props.profile.id}
+                  action="certificatepic"
+                  type="snyppr"
+                />
+                <br />
+                <Form>
+                  <input type="text" placeholder="First Name" />
+                  <br />
+                  <input type="text" placeholder="Last Name" />
+                  <br />
+                </Form>
+                <Button onClick={this.getVerified} bsStyle="primary">
+                  Get Verified
+                </Button>
+              </center>
+            </div>
             <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
               <center>
                 <S3Uploader
@@ -92,11 +138,10 @@ class BarberDashboard extends Component {
               <div>
                 <BarberChat name={this.state.name} />
               </div>
-
             </div>
             <img
               onClick={this.handleChatToggle}
-              alt="chat-svg" className="chat-svg" src="/assets/speech-bubble.svg"
+              alt="chat-svg" className="chat-svg" src="/public/assets/speech-bubble.svg"
             />
           </div>
         </div>

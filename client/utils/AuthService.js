@@ -3,10 +3,10 @@ import Auth0Lock from 'auth0-lock';
 import { isTokenExpired } from './jwtHelper';
 
 export default class AuthService extends EventEmitter {
-  constructor(clientId, domain, history, prefill) {
+  constructor(clientID, domain, history, prefill) {
     super();
     // Configure Auth0
-    this.lock = new Auth0Lock(clientId, domain, {
+    this.lock = new Auth0Lock(clientID, domain, {
       auth: {
         redirectUrl: `${window.location.origin}/client/loggingIn`,
         responseType: 'token',

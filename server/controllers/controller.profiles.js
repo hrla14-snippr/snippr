@@ -53,3 +53,18 @@ exports.addProfile = (req, res) => {
       console.log('error during geoconversion, heres the error ', err);
     });
 };
+
+exports.updateCertified = (req, res) => {
+  db.Snyppr.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((data) => {
+    data.updateAttributes({
+      certified: true,
+    });
+    res.status(200).send(data);
+  }).catch((err) => {
+    res.status(404).send(err);
+  });
+};

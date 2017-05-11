@@ -47,7 +47,46 @@ exports.uploadProfilePic = (req, res) => {
     }
   });
 };
-
+////////////////////////////////////
+exports.uploadCertificatePic = (req, res) => {
+  console.log(req.params.authId);
+  // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
+  s3.upload({
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+    ACL: 'public-read', // your permisions
+  }, (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      console.log('datalocation', data.Location);
+      res.send('File uploaded to S3');
+      if (req.params.type === 'snyppr') {
+        db.Snyppr.findOne({ where: { id: req.params.authId } })
+      .then(({ id }) => db.CertificatePic
+      .create({
+        snypprId: id,
+        url: data.Location,
+      }))
+      .then((datum) => {
+        console.log('this is the datum', datum._previousDataValues.url);
+      });
+      }
+    }
+  });
+};
+////////////////////////////////////
+exports.getCertificatePic = (req, res) => {
+  db.CertificatePic.findOne({
+    where: {
+      snypprId: req.params.snypprId,
+    },
+  })
+  .then((data) => {
+    res.status(200).send(data);
+  });
+};
+////////////////////////////////////
 exports.getProfilePic = (req, res) => {
   console.log(req.params);
   if (req.params.type === 'synppr') {
