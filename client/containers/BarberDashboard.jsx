@@ -103,9 +103,11 @@ class BarberDashboard extends Component {
   }
   certificateVerified(words) {
     const keyWords = ['CERTIFICATE', 'BARBER', 'COSMETOLOGY', 'HAIRCUTTER', 'BEAUTY']
-    return _.some(words, (word) => {
-      return keyWords.includes(word.toUpperCase());
-    });
+    const upperCase = (word) => {
+      return word.toUpperCase();
+    }
+    let upperWords = words.map(upperCase);
+    return (upperWords.includes('CERTIFICATE') || upperWords.includes('LICENSE')) && (words.includes('BARBER') || words.includes('BARBERS') || words.includes('COSMETOLOGY') || words.includes('BEAUTY') || words.includes('HAIRCUTTER'))
   }
   getResults(){
     console.log('we in getresults', this.props.profile.id)
