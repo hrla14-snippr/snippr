@@ -5,7 +5,7 @@ import _ from 'underscore';
 const PerfectList = (props) => {
   const perfectSnypprs = [];
   _.each(props.snypprs, (snyppr) => {
-    if (snyppr.personality && props.certified) {
+    if (snyppr.personality && snyppr.certified) {
       (Math.abs(props.profile.personality - snyppr.personality) < 30) ? perfectSnypprs.push(snyppr) : null;
     };
   });
