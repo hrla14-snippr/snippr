@@ -15,7 +15,7 @@ class BarberSideBar extends Component {
     console.log('active tab', idx);
     this.setState({ activeTab: idx });
   }
-
+  // Added Certification and Train tabs
   render() {
     return (<div className="sidebar">
       <div className="picturebox">

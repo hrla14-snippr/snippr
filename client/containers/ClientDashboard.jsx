@@ -36,12 +36,12 @@ class ClientDashboard extends Component {
   }
 
   componentDidMount() {
-    console.log('CLIENT DASHBOARD', this.props.profile)
     this.fetchSnypprs(JSON.stringify(this.state.clientAddress));
     this.fetchFavorites();
     this.fetchAllSnypprs();
   }
 
+  // Begin - Fetches all snypprs so that I can determine who is a good fit for the client
   fetchAllSnypprs() {
     axios.get('/fetchAllSnypprs')
          .then((data) => {
@@ -50,8 +50,9 @@ class ClientDashboard extends Component {
          })
          .catch((err) => {
            console.log(err);
-         })
+         });
   }
+  // End
   fetchSnypprs(address) {
     axios.get(`/nearbySnypprs/${address}`)
       .then((results) => {
@@ -78,23 +79,23 @@ class ClientDashboard extends Component {
     this.setState({ currentWindow: event.target.value });
     console.log(event);
   }
-
+  // Anaylsis of client personality. Same thing as barber side
   analyzePersonality(event) {
     event.preventDefault();
     if (this.state.text.split(' ').length < 100) {
       swal({
-        title: "We need atleast 100 words minimum!",
-        text: "You have " + (100 - this.state.text.split(' ').length) + " words left!",
-        type: "error"
+        title: 'We need atleast 100 words minimum!',
+        text: 'You have ' + (100 - this.state.text.split(' ').length) + ' words left!',
+        type: 'error',
       });
     }
     axios.post(`/personality/${this.state.text}`)
         .then((res) => {
           console.log(res.data.personality[2].percentile);
           swal({
-            title: "Personality Assessed!",
-            text: "We Know All Your Secrets..",
-            type: "success"
+            title: 'Personality Assessed!',
+            text: 'We Know All Your Secrets..',
+            type: 'success',
           });
           return axios.put(`/updateSnypee/${this.props.profile.id}`, {
             personality: res.data.personality[2].percentile,
@@ -105,8 +106,9 @@ class ClientDashboard extends Component {
         })
         .catch((err) => {
           console.log(err);
-        })
-    }
+        });
+  }
+  // Sets state of text to use in IBM Watson API
   handleText(event) {
     event.preventDefault();
     this.setState({ text: event.target.value });
@@ -168,7 +170,13 @@ class ClientDashboard extends Component {
             <div style={{ textAlign: 'center' }} className={this.state.currentWindow === 'Perfect' ? '' : 'hidden'}>
               <br /><br />
               <FormGroup controlId="formControlsTextarea">
-                <ControlLabel>Tell Us About Yourself</ControlLabel>
+                Favorite activity?
+                <br />
+                Favorite memory?
+                <br />
+                What do you love/hate?
+                <br />
+                <ControlLabel>We Need Atleast 100 Words</ControlLabel>
                 <FormControl onChange={this.handleText} componentClass="textarea" placeholder="Tell Us About Yourself" />
               </FormGroup>
               <Button onClick={this.analyzePersonality} bsStyle="primary">

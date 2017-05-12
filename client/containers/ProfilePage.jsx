@@ -25,16 +25,11 @@ class ProfilePage extends Component {
     this.handleChatToggle = this.handleChatToggle.bind(this);
     this.changeWindow = this.changeWindow.bind(this);
     this.getBarberImages = this.getBarberImages.bind(this);
+    this.fetchCertificate = this.fetchCertificate.bind(this);
   }
-
+  // Fetches certificate of the barber the client is looking at
   componentDidMount() {
-    axios.get(`/verify/${this.props.profile.id}`)
-         .then((res) => {
-           this.setState({ certificatePic: res.data.url });
-         })
-         .catch((err) => {
-           console.log(err)
-         })
+    this.fetchCertificate();
   }
   getBarberImages() {
     const barberId = this.props.snyppr.id;
@@ -59,7 +54,18 @@ class ProfilePage extends Component {
       this.getBarberImages();
     }
   }
-
+  // Fetches the certificate from the db for the snyppr the snypee is looking at
+  fetchCertificate() {
+    axios.get(`/verify/${this.props.snyppr.id}`)
+         .then((res) => {
+           console.log(res);
+           this.setState({ certificatePic: res.data.url });
+         })
+         .catch((err) => {
+           console.log(err);
+         });
+  }
+  // Added image for certificate pic on line 87
   render() {
     console.log('this is the barbers images state ', this.state);
     return (

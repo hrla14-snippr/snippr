@@ -53,7 +53,8 @@ exports.addProfile = (req, res) => {
       console.log('error during geoconversion, heres the error ', err);
     });
 };
-
+// J6K Changes
+// Finds the snyppr by ID and changes them to certified so that they can be rendered on the map
 exports.updateCertified = (req, res) => {
   db.Snyppr.findOne({
     where: {
@@ -68,7 +69,7 @@ exports.updateCertified = (req, res) => {
     res.status(500).send(err);
   });
 };
-
+// Updates personality with raw score of extraversion from IBM Watson
 exports.updatePersonalitySnyppr = (req, res) => {
   db.Snyppr.findOne({
     where: {
@@ -81,8 +82,8 @@ exports.updatePersonalitySnyppr = (req, res) => {
     res.status(201).send(data);
   }).catch((err) => {
     res.status(500).send(err);
-  })
-}
+  });
+};
 
 exports.updatePersonalitySnypee = (req, res) => {
   db.Snypee.findOne({
@@ -96,9 +97,9 @@ exports.updatePersonalitySnypee = (req, res) => {
     res.status(201).send(data);
   }).catch((err) => {
     res.status(500).send(err);
-  })
-}
-
+  });
+};
+// Updates personality with raw score of extraversion from IBM Watson
 exports.fetchAllSnypprs = (req, res) => {
   db.Snyppr.findAll()
            .then((data) => {
@@ -106,5 +107,6 @@ exports.fetchAllSnypprs = (req, res) => {
            })
            .catch((err) => {
              res.status(500).send(err);
-           })
-}
+           });
+};
+// J6K Changes

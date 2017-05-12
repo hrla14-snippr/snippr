@@ -4,11 +4,12 @@ import SnypprEntry from './SnypprEntry';
 import _ from 'underscore';
 
 const SnypprList = (props) => {
+  // Checks if the snypprs are certified
   if (props.snypprs.data) {
     const certifiedSnypprs = [];
     _.each(props.snypprs.data, (snyppr) => {
       snyppr.certified === true ? certifiedSnypprs.push(snyppr) : null;
-    })
+    });
     return (
       <div className="entryholder">
         {certifiedSnypprs.map(snyppr =>
