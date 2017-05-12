@@ -340,8 +340,8 @@ modalimg{
 
 .navmenu-items, .sidebar-items{
     text-align: center;
-    line-height: 10vh;
-    height: 10vh;
+    line-height: 7vh;
+    height: 7vh;
     border-bottom: 1px solid lightgray;
     font-family: "Brandon Grotesque";
     font-size: 16px;
@@ -350,8 +350,8 @@ modalimg{
 
 .navmenu-items {
     text-align: center;
-    line-height: 10vh;
-    height: 10vh;
+    line-height: 7vh;
+    height: 7vh;
     font-family: "Brandon Grotesque";
     font-size: 16px;
     cursor: pointer;
@@ -791,5 +791,14 @@ button.stripeacctbtn {
     height: 150px;
 }
 
+.resultImage{
+    width: 300px;
+    height: 300px;
+}
+
+.certificatePic{
+    width: 300px;
+    height: 300px;
+}
 
 button:focus {outline:0;}
