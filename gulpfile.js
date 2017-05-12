@@ -70,7 +70,7 @@ gulp.task('webpackhot', (callback) => {
       {
         context: ['/client', '/addProfile', '/stripeId', '/verifyProfile', '/favorites',
           '/nearbySnypprs', '/images', '/verify', '/certificatepic', '/cloudText',
-          '/cloudFaces', '/certified', '/resultpic', '/analyze', '/profilepic'],
+          '/cloudFaces', '/certified', '/resultpic', '/analyze', '/profilepic', '/personality'],
         target: 'http://localhost:5000',
       },
     ],
