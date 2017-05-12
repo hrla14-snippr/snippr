@@ -158,6 +158,15 @@ const CertificatePic = db.define('certificatepic', {
   timestamps: true,
 });
 
+const ResultPic = db.define('resultpic', {
+  url: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+}, {
+  timestamps: true,
+});
+
 /*
   RELATIONSHIPS
 */
@@ -192,6 +201,7 @@ Snyppr.hasOne(CertificatePic);
 ProfilePic.belongsTo(Snypee);
 ProfilePic.belongsTo(Snyppr);
 CertificatePic.belongsTo(Snyppr);
+ResultPic.belongsTo(Snyppr);
 
 db.authenticate()
   .then(() => {
@@ -211,3 +221,4 @@ module.exports.SnypeeReview = SnypeeReview;
 module.exports.SnypprImage = SnypprImage;
 module.exports.ProfilePic = ProfilePic;
 module.exports.CertificatePic = CertificatePic;
+module.exports.ResultPic = ResultPic;
