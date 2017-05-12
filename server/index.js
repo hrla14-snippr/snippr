@@ -25,12 +25,21 @@ app.use(require('./routers/router.stripe'));
 app.use(require('./routers/router.reviews'));
 app.use(require('./routers/router.s3'));
 
-app.post('/cloud/:image', (req, res, next) => {
+app.post('/cloudText/:image', (req, res, next) => {
   vision.detectText(req.params.image, (err, text, apiResponse) => {
     if (err) {
       res.status(404).send(err);
     } else {
       res.status(201).send(text);
+    }
+  });
+});
+app.post('/cloudFaces/:image', (req, res, next) => {
+  vision.detectFaces(req.params.image, (err, faces, apiResponse) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(201).send(faces);
     }
   });
 });

@@ -10,6 +10,8 @@ import TransactionsList from '../components/TransactionsList';
 import PortfolioList from '../components/PortfolioList';
 import Footer from '../components/PageElements/Footer';
 import S3Uploader from '../components/S3Uploader';
+// import cheerio from 'cheerio'
+
 
 const axios = require('axios');
 
@@ -24,13 +26,32 @@ class BarberDashboard extends Component {
       currentWindow: 'Reviews',
       work: [],
       images: [],
+      certificatePic: '',
+      resultImageUrl: '',
+      resultImage: {
+        anger: null,
+        joy: null,
+        sorrow: null,
+        surprise: null,
+      },
     };
 
     this.handleChatToggle = this.handleChatToggle.bind(this);
     this.changeWindow = this.changeWindow.bind(this);
     this.getImages = this.getImages.bind(this);
     this.getVerified = this.getVerified.bind(this);
+    this.getResults = this.getResults.bind(this);
     this.certificateVerified = this.certificateVerified.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get(`/verify/${this.props.profile.id}`)
+         .then((res) => {
+          this.setState({ certificatePic: res.data.url})
+         })
+         .catch((err) => {
+           console.log(err)
+         })
   }
 
   getImages() {
@@ -47,22 +68,6 @@ class BarberDashboard extends Component {
       this.setState({ images: arr });
     });
   }
-  getVerified() {
-    console.log('we in getverified profile id', this.props.profile.id)
-    console.log('we in getverified ', localStorage);
-    axios.get(`/verify/${this.props.profile.id}`)
-         .then((res) => {
-           const image = encodeURIComponent(res.data.url);
-           return axios.post(`/cloud/${image}`)
-         })
-        .then((response) => {
-          console.log(response);
-          console.log(this.certificateVerified(response.data));
-        })
-        .catch(err => {
-          console.log(err);
-        })
-  }
   handleChatToggle() {
     this.setState({ displayBarberChat: !this.state.displayBarberChat });
   }
@@ -72,12 +77,54 @@ class BarberDashboard extends Component {
       this.getImages();
     }
   }
+  getVerified() {
+    axios.get(`/verify/${this.props.profile.id}`)
+         .then((res) => {
+           console.log(res)
+           const image = encodeURIComponent(res.data.url);
+           this.setState({ certificatePic: res.data.url})
+           return axios.post(`/cloudText/${image}`)
+         })
+        .then((response) => {
+          console.log(response);
+          console.log(this.certificateVerified(response.data));
+        })
+        .catch(err => {
+          console.log(err);
+        })
+  }
   certificateVerified(words) {
     const keyWords = ['CERTIFICATE', 'BARBER', 'COSMETOLOGY', 'HAIRCUTTER', 'BEAUTY']
     return _.some(words, (word) => {
       return keyWords.includes(word.toUpperCase());
     });
   }
+  getResults(){
+    console.log('we in getresults', this.props.profile.id)
+    axios.get(`/analyze/${this.props.profile.id}`)
+         .then((res) => {
+           const image = encodeURIComponent(res.data.url);
+           this.setState({ resultImageUrl: res.data.url })
+           console.log(this.state.resultImageUrl)
+           return axios.post(`/cloudFaces/${image}`)
+         })
+        .then((response) => {
+          console.log(response);
+          this.setState({
+            resultImage: {
+              anger: response.data[0].angerLikelihood,
+              joy: response.data[0].joyLikelihood,
+              sorrow: response.data[0].sorrowLikelihood,
+              surprise: response.data[0].surpriseLikelihood,
+            }
+          })
+          // console.log(this.certificateVerified(response.data));
+        })
+        .catch(err => {
+          console.log(err);
+        })
+  }
+
   render() {
     return (
       <div className="profile">
@@ -112,15 +159,32 @@ class BarberDashboard extends Component {
                   action="certificatepic"
                   type="snyppr"
                 />
+                <img className="certificatePic" src={this.state.certificatePic}/>
                 <br />
-                <Form>
-                  <input type="text" placeholder="First Name" />
-                  <br />
-                  <input type="text" placeholder="Last Name" />
-                  <br />
-                </Form>
                 <Button onClick={this.getVerified} bsStyle="primary">
                   Get Verified
+                </Button>
+              </center>
+            </div>
+            <div className={this.state.currentWindow === 'Train' ? '' : 'hidden'}>
+              <center>
+                <S3Uploader
+                  authId={this.props.profile.id}
+                  action="resultpic"
+                  type="snyppr"
+                />
+                <br />
+                <img className="resultImage" src={this.state.resultImageUrl} />
+                <div>
+                  <div>Anger: {this.state.resultImage.anger}</div>
+                  <div>Joy: {this.state.resultImage.joy}</div>
+                  <div>Sorrow: {this.state.resultImage.sorrow}</div>
+                  <div>Surprise: {this.state.resultImage.surprise}</div>
+                </div>
+                <br />
+                <br />
+                <Button onClick={this.getResults} bsStyle="primary">
+                  Get Results
                 </Button>
               </center>
             </div>
