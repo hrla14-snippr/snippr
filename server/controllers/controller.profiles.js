@@ -65,6 +65,36 @@ exports.updateCertified = (req, res) => {
     });
     res.status(200).send(data);
   }).catch((err) => {
-    res.status(404).send(err);
+    res.status(500).send(err);
   });
 };
+
+exports.updatePersonalitySnyppr = (req, res) => {
+  db.Snyppr.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((data) => {
+    data.updateAttributes({
+      personality: req.body.personality
+    });
+    res.status(201).send(data);
+  }).catch((err) => {
+    res.status(500).send(err);
+  })
+}
+
+exports.updatePersonalitySnypee = (req, res) => {
+  db.Snypee.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((data) => {
+    data.updateAttributes({
+      personality: req.body.personality
+    });
+    res.status(201).send(data);
+  }).catch((err) => {
+    res.status(500).send(err);
+  })
+}
