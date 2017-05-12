@@ -7,7 +7,7 @@ const PerfectList = (props) => {
   const perfectSnypprs = [];
   _.each(props.snypprs, (snyppr) => {
     if (snyppr.personality && snyppr.certified) {
-      (Math.abs(props.profile.personality - snyppr.personality) < 30) ? perfectSnypprs.push(snyppr) : null;
+      (Math.abs(props.profile.personality - snyppr.personality) < 0.30) ? perfectSnypprs.push(snyppr) : null;
     }
   });
 
