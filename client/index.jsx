@@ -1,5 +1,6 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 import 'react-hot-loader/patch';
+// Added import so that we can use sweetalert anywhere
 import '../node_modules/sweetalert/dist/sweetalert.css';
 import { AppContainer } from 'react-hot-loader';
 import React from 'react';

@@ -3,11 +3,12 @@ import PerfectListEntry from './PerfectListEntry';
 import _ from 'underscore';
 
 const PerfectList = (props) => {
+  // Checks to see if the snyppr is certified and if they are within a certain range of extraversion
   const perfectSnypprs = [];
   _.each(props.snypprs, (snyppr) => {
     if (snyppr.personality && snyppr.certified) {
       (Math.abs(props.profile.personality - snyppr.personality) < 30) ? perfectSnypprs.push(snyppr) : null;
-    };
+    }
   });
 
   return (

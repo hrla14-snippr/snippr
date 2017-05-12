@@ -27,7 +27,7 @@ class ProfilePage extends Component {
     this.getBarberImages = this.getBarberImages.bind(this);
     this.fetchCertificate = this.fetchCertificate.bind(this);
   }
-
+  // Fetches certificate of the barber the client is looking at
   componentDidMount() {
     this.fetchCertificate();
   }
@@ -54,6 +54,7 @@ class ProfilePage extends Component {
       this.getBarberImages();
     }
   }
+  // Fetches the certificate from the db for the snyppr the snypee is looking at
   fetchCertificate() {
     axios.get(`/verify/${this.props.snyppr.id}`)
          .then((res) => {
@@ -64,7 +65,7 @@ class ProfilePage extends Component {
            console.log(err);
          });
   }
-
+  // Added image for certificate pic on line 87
   render() {
     console.log('this is the barbers images state ', this.state);
     return (
