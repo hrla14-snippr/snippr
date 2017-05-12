@@ -96,6 +96,11 @@ class BarberDashboard extends Component {
               text: 'Your certificate was validated!',
               type: 'success',
             });
+          } else {
+            swal({
+              title: 'Please Submit a Valid Certificate!',
+              type: 'error',
+            });
           }
         })
         .catch(err => {
@@ -108,7 +113,7 @@ class BarberDashboard extends Component {
       return word.toUpperCase();
     };
     const upperWords = words.map(upperCase);
-    return (upperWords.includes('CERTIFICATE') || upperWords.includes('LICENSE')) && (words.includes('BARBER') || words.includes('BARBERS') || words.includes('COSMETOLOGY') || words.includes('BEAUTY') || words.includes('HAIRCUTTER'))
+    return (words.includes('BARBER') || words.includes('BARBERS') || words.includes('COSMETOLOGY') || words.includes('BEAUTY') || words.includes('HAIRCUTTER'));
   }
   // Analyzes client result picture to see how happy they were about their cut
   getResults(){
