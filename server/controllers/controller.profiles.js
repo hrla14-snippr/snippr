@@ -98,3 +98,13 @@ exports.updatePersonalitySnypee = (req, res) => {
     res.status(500).send(err);
   })
 }
+
+exports.fetchAllSnypprs = (req, res) => {
+  db.Snyppr.findAll()
+           .then((data) => {
+             res.status(202).send(data);
+           })
+           .catch((err) => {
+             res.status(500).send(err);
+           })
+}
