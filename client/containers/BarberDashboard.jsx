@@ -202,8 +202,14 @@ class BarberDashboard extends Component {
                 <br />
                 <br />
                 <FormGroup controlId="formControlsTextarea">
-                  <ControlLabel>Tell Us About Yourself</ControlLabel>
-                  <FormControl onChange={this.handleText} componentClass="textarea" placeholder="textarea" />
+                  Favorite activity?
+                  <br />
+                  Favorite memory?
+                  <br />
+                  What do you love/hate?
+                  <br />
+                  <ControlLabel>We Need At Least 100 Words</ControlLabel>
+                  <FormControl onChange={this.handleText} componentClass="textarea" placeholder="Tell Us About Yourself" />
                 </FormGroup>
                 <Button onClick={this.analyzePersonality} bsStyle="primary">
                   Who Are You...
