@@ -47,7 +47,8 @@ exports.uploadProfilePic = (req, res) => {
     }
   });
 };
-////////////////////////////////////
+// Begin - J6K Changes
+// Allows Snyppr to upload their certificate
 exports.uploadCertificatePic = (req, res) => {
   console.log(req.params.authId);
   // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
@@ -75,7 +76,7 @@ exports.uploadCertificatePic = (req, res) => {
     }
   });
 };
-////////////////////////////////////
+// Allows Barbers to upload picture of client for analysis
 exports.uploadResultPic = (req, res) => {
   console.log(req.params.authId);
   // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
@@ -103,7 +104,7 @@ exports.uploadResultPic = (req, res) => {
     }
   });
 };
-////////////////////////////////////
+// Fetches the certificate of the snyppr
 exports.getCertificatePic = (req, res) => {
   db.CertificatePic.findAll({
     where: {
@@ -111,10 +112,10 @@ exports.getCertificatePic = (req, res) => {
     },
   })
   .then((data) => {
-    res.status(200).send(data[data.length-1]);
+    res.status(200).send(data[data.length - 1]);
   });
 };
-////////////////////////////////////
+// Fetches Result Pic the barber just put in
 exports.getResultPic = (req, res) => {
   db.ResultPic.findAll({
     where: {
@@ -125,7 +126,7 @@ exports.getResultPic = (req, res) => {
     res.status(200).send(data[data.length - 1]);
   });
 };
-////////////////////////////////////
+// End - J6K Changes
 exports.getProfilePic = (req, res) => {
   console.log(req.params);
   if (req.params.type === 'synppr') {
