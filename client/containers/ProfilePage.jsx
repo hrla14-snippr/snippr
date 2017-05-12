@@ -25,16 +25,11 @@ class ProfilePage extends Component {
     this.handleChatToggle = this.handleChatToggle.bind(this);
     this.changeWindow = this.changeWindow.bind(this);
     this.getBarberImages = this.getBarberImages.bind(this);
+    this.fetchCertificate = this.fetchCertificate.bind(this);
   }
 
   componentDidMount() {
-    axios.get(`/verify/${this.props.profile.id}`)
-         .then((res) => {
-           this.setState({ certificatePic: res.data.url });
-         })
-         .catch((err) => {
-           console.log(err)
-         })
+    this.fetchCertificate();
   }
   getBarberImages() {
     const barberId = this.props.snyppr.id;
@@ -58,6 +53,16 @@ class ProfilePage extends Component {
     if (event.target.value === 'Portfolio') {
       this.getBarberImages();
     }
+  }
+  fetchCertificate() {
+    axios.get(`/verify/${this.props.snyppr.id}`)
+         .then((res) => {
+           console.log(res);
+           this.setState({ certificatePic: res.data.url });
+         })
+         .catch((err) => {
+           console.log(err);
+         });
   }
 
   render() {
