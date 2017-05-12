@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, ButtonControl } from 'react-bootstrap';
+import { Form, FormControl, FormGroup, ControlLabel, Button, ButtonControl } from 'react-bootstrap';
 import _ from 'underscore';
 import swal from 'sweetalert';
 import axios from 'axios';
@@ -88,7 +88,14 @@ class BarberDashboard extends Component {
          })
         .then((response) => {
           console.log(response);
-          console.log(this.certificateVerified(response.data));
+          if(this.certificateVerified(response.data) === true) {
+            axios.put(`/certified/${this.props.profile.id}`);
+            swal({
+              title: "Congratulations!",
+              text: "Your certificate was validated!",
+              type: "success"
+            })
+          }
         })
         .catch(err => {
           console.log(err);
@@ -136,6 +143,17 @@ class BarberDashboard extends Component {
     axios.post(`/personality/${this.state.text}`)
          .then((res) => {
            console.log(res.data.personality[2].percentile);
+           swal({
+             title: "Personality Assessed!",
+             text: "We Know All Your Secrets..",
+             type: "success"
+           })
+           return axios.put(`/updateSnyppr/${this.props.profile.id}`, {
+             personality: res.data.personality[2].percentile
+           })
+         })
+         .then(data => {
+           console.log(data);
          })
          .catch((err) => {
            console.log(err);
@@ -173,9 +191,13 @@ class BarberDashboard extends Component {
                 />
                 <br />
                 <br />
-                <form onSubmit={this.analyzePersonality}>
-                  <input onChange={this.handleText} type="text" placeholder="Tell us about yourself" />
-                </form>
+                <FormGroup controlId="formControlsTextarea">
+                  <ControlLabel>Tell Us About Yourself</ControlLabel>
+                  <FormControl onChange={this.handleText} componentClass="textarea" placeholder="textarea" />
+                </FormGroup>
+                <Button onClick={this.analyzePersonality} bsStyle="primary">
+                  Who Are You...
+                </Button>
               </center>
             </div>
             <div className={this.state.currentWindow === 'Certification' ? '' : 'hidden'}>
