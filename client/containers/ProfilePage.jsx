@@ -20,12 +20,22 @@ class ProfilePage extends Component {
       displayClientChat: false,
       currentWindow: 'Reviews',
       barberImages: [],
+      certificatePic: '',
     };
     this.handleChatToggle = this.handleChatToggle.bind(this);
     this.changeWindow = this.changeWindow.bind(this);
     this.getBarberImages = this.getBarberImages.bind(this);
   }
 
+  componentDidMount() {
+    axios.get(`/verify/${this.props.profile.id}`)
+         .then((res) => {
+           this.setState({ certificatePic: res.data.url });
+         })
+         .catch((err) => {
+           console.log(err)
+         })
+  }
   getBarberImages() {
     const barberId = this.props.snyppr.id;
     const endpoint = `/images/${barberId}`;
@@ -68,6 +78,7 @@ class ProfilePage extends Component {
               />
             </div>
             <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+              <img className="certificatePic" src={this.state.certificatePic} />
               <PortfolioList images={this.state.barberImages || []} />
             </div>
             <div className="chatbox-container">
