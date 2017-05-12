@@ -1,6 +1,6 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 import 'react-hot-loader/patch';
-
+import '../node_modules/sweetalert/dist/sweetalert.css';
 import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';

@@ -40,6 +40,11 @@ const Snyppr = db.define('snyppr', {
     allowNull: false,
     defaultValue: false,
   },
+  personality: {
+    type: Sequelize.DECIMAL,
+    allowNull: true,
+    defaultValue: null,
+  },
 }, {
   timestamps: false,
 });
@@ -80,6 +85,11 @@ const Snypee = db.define('snypee', {
   lng: {
     type: Sequelize.FLOAT,
     allowNull: false,
+  },
+  personality: {
+    type: Sequelize.DECIMAL,
+    allowNull: true,
+    defaultValue: null,
   },
 }, {
   timestamps: false,

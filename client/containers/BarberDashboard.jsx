@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Button, ButtonControl } from 'react-bootstrap';
+import { Form, FormControl, FormGroup, ControlLabel, Button, ButtonControl } from 'react-bootstrap';
 import _ from 'underscore';
+import swal from 'sweetalert';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import BarberChat from './BarberChat';
 import Header from '../components/PageElements/Header';
@@ -12,8 +14,6 @@ import Footer from '../components/PageElements/Footer';
 import S3Uploader from '../components/S3Uploader';
 // import cheerio from 'cheerio'
 
-
-const axios = require('axios');
 
 class BarberDashboard extends Component {
   constructor(props) {
@@ -34,6 +34,7 @@ class BarberDashboard extends Component {
         sorrow: null,
         surprise: null,
       },
+      text: '',
     };
 
     this.handleChatToggle = this.handleChatToggle.bind(this);
@@ -42,6 +43,8 @@ class BarberDashboard extends Component {
     this.getVerified = this.getVerified.bind(this);
     this.getResults = this.getResults.bind(this);
     this.certificateVerified = this.certificateVerified.bind(this);
+    this.handleText = this.handleText.bind(this);
+    this.analyzePersonality = this.analyzePersonality.bind(this);
   }
 
   componentDidMount() {
@@ -59,12 +62,10 @@ class BarberDashboard extends Component {
     const endpoint = `/images/${this.props.profile.id}`;
     axios.get(endpoint)
     .then((res) => {
-      console.log(res.data);
       const arr = [];
       res.data.forEach((image) => {
         arr.push(image.url);
       });
-      console.log(arr);
       this.setState({ images: arr });
     });
   }
@@ -82,12 +83,19 @@ class BarberDashboard extends Component {
          .then((res) => {
            console.log(res)
            const image = encodeURIComponent(res.data.url);
-           this.setState({ certificatePic: res.data.url})
+           this.setState({ certificatePic: res.data.url })
            return axios.post(`/cloudText/${image}`)
          })
         .then((response) => {
           console.log(response);
-          console.log(this.certificateVerified(response.data));
+          if(this.certificateVerified(response.data) === true) {
+            axios.put(`/certified/${this.props.profile.id}`);
+            swal({
+              title: "Congratulations!",
+              text: "Your certificate was validated!",
+              type: "success"
+            })
+          }
         })
         .catch(err => {
           console.log(err);
@@ -95,9 +103,11 @@ class BarberDashboard extends Component {
   }
   certificateVerified(words) {
     const keyWords = ['CERTIFICATE', 'BARBER', 'COSMETOLOGY', 'HAIRCUTTER', 'BEAUTY']
-    return _.some(words, (word) => {
-      return keyWords.includes(word.toUpperCase());
-    });
+    const upperCase = (word) => {
+      return word.toUpperCase();
+    }
+    let upperWords = words.map(upperCase);
+    return (upperWords.includes('CERTIFICATE') || upperWords.includes('LICENSE')) && (words.includes('BARBER') || words.includes('BARBERS') || words.includes('COSMETOLOGY') || words.includes('BEAUTY') || words.includes('HAIRCUTTER'))
   }
   getResults(){
     console.log('we in getresults', this.props.profile.id)
@@ -118,11 +128,42 @@ class BarberDashboard extends Component {
               surprise: response.data[0].surpriseLikelihood,
             }
           })
-          // console.log(this.certificateVerified(response.data));
         })
         .catch(err => {
           console.log(err);
         })
+  }
+  analyzePersonality(event) {
+    event.preventDefault();
+    if (this.state.text.split(' ').length < 100) {
+      swal({
+        title: "We need atleast 100 words minimum!",
+        text: "You have " + (100 - this.state.text.split(' ').length) + " words left!",
+        type: "error"
+      })
+    }
+    axios.post(`/personality/${this.state.text}`)
+         .then((res) => {
+           console.log(res.data.personality[2].percentile);
+           swal({
+             title: "Personality Assessed!",
+             text: "We Know All Your Secrets..",
+             type: "success"
+           })
+           return axios.put(`/updateSnyppr/${this.props.profile.id}`, {
+             personality: res.data.personality[2].percentile
+           })
+         })
+         .then(data => {
+           console.log(data);
+         })
+         .catch((err) => {
+           console.log(err);
+         })
+  }
+  handleText(event) {
+    event.preventDefault();
+    this.setState({ text: event.target.value });
   }
 
   render() {
@@ -150,6 +191,15 @@ class BarberDashboard extends Component {
                   authId={this.props.profile.id}
                   action="upload"
                 />
+                <br />
+                <br />
+                <FormGroup controlId="formControlsTextarea">
+                  <ControlLabel>Tell Us About Yourself</ControlLabel>
+                  <FormControl onChange={this.handleText} componentClass="textarea" placeholder="textarea" />
+                </FormGroup>
+                <Button onClick={this.analyzePersonality} bsStyle="primary">
+                  Who Are You...
+                </Button>
               </center>
             </div>
             <div className={this.state.currentWindow === 'Certification' ? '' : 'hidden'}>
