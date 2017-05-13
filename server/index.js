@@ -16,7 +16,6 @@ const gcloud = require('google-cloud')({
 
 // Begin - Google Cloud Vision API required
 const vision = gcloud.vision();
-// Begin - Google Cloud Vision API required
 
 // Begin - IBM Watson Personality Inisghts API 
 const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
