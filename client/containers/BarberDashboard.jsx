@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormControl, FormGroup, ControlLabel, Button, ButtonControl } from 'react-bootstrap';
+import { Form, FormControl, FormGroup, ControlLabel, Button, ButtonControl, ProgressBar } from 'react-bootstrap';
 import swal from 'sweetalert';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -32,6 +32,7 @@ class BarberDashboard extends Component {
         joy: null,
         sorrow: null,
         surprise: null,
+        confidence: null,
       },
       text: '',
     };
@@ -132,6 +133,7 @@ class BarberDashboard extends Component {
               joy: response.data[0].joyLikelihood,
               sorrow: response.data[0].sorrowLikelihood,
               surprise: response.data[0].surpriseLikelihood,
+              confidence: response.data[0].confidence,
             }
           });
         })
@@ -145,7 +147,7 @@ class BarberDashboard extends Component {
     if (this.state.text.split(' ').length < 100) {
       swal({
         title: 'We need atleast 100 words minimum!',
-        text: 'You have ' + (100 - this.state.text.split(' ').length) + ' words left!',
+        text: 'You have ' + (101 - this.state.text.split(' ').length) + ' words left!',
         type: 'error',
       });
     }
@@ -153,9 +155,9 @@ class BarberDashboard extends Component {
          .then((res) => {
            console.log(res.data.personality[2].percentile);
            swal({
-             title: "Personality Assessed!",
-             text: "We Know All Your Secrets..",
-             type: "success"
+             title: 'Personality Assessed!',
+             text: 'We Know All Your Secrets..',
+             type: 'success',
            });
            return axios.put(`/updateSnyppr/${this.props.profile.id}`, {
              personality: res.data.personality[2].percentile,
@@ -175,6 +177,7 @@ class BarberDashboard extends Component {
   }
   // J6K Changes
   render() {
+    console.log('we in bdashboard for the profile', this.props.profile)
     return (
       <div className="profile">
         <Header />
@@ -230,7 +233,7 @@ class BarberDashboard extends Component {
                 </Button>
               </center>
             </div>
-            <div className={this.state.currentWindow === 'Train' ? '' : 'hidden'}>
+            <div className={this.state.currentWindow === 'Train' ? 'Train' : 'hidden'}>
               <center>
                 <S3Uploader
                   authId={this.props.profile.id}
@@ -239,15 +242,16 @@ class BarberDashboard extends Component {
                 />
                 <br />
                 <img className="resultImage" src={this.state.resultImageUrl} />
-                <div>
-                  <div>Anger: {this.state.resultImage.anger}</div>
-                  <div>Joy: {this.state.resultImage.joy}</div>
-                  <div>Sorrow: {this.state.resultImage.sorrow}</div>
-                  <div>Surprise: {this.state.resultImage.surprise}</div>
+                <div className="analyticsCard">
+                  <div className="rowFaces">Anger: <div className="pgbar"><ProgressBar striped bsStyle="danger" now={this.state.resultImage.anger * 10} /> </div></div>
+                  <div className="rowFaces">Joy: <div className="pgbar"><ProgressBar striped bsStyle="info" now={this.state.resultImage.joy * 10} /></div></div>
+                  <div className="rowFaces">Sorrow: <div className="pgbar"><ProgressBar striped bsStyle="success" now={this.state.resultImage.sorrow * 10} /></div></div>
+                  <div className="rowFaces">Surprise: <div className="pgbar"><ProgressBar striped bsStyle="warning" now={this.state.resultImage.surpirse * 10} /></div></div>
+                  <div className="rowFaces">Accuracy: <div className="pgbar"><ProgressBar striped bsStyle="info" now={this.state.resultImage.confidence} /></div></div>
                 </div>
                 <br />
                 <br />
-                <Button onClick={this.getResults} bsStyle="primary">
+                <Button className="buttonTrain" onClick={this.getResults} bsStyle="primary">
                   Get Results
                 </Button>
               </center>
