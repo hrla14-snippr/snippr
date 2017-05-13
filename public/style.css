@@ -791,14 +791,54 @@ button.stripeacctbtn {
     height: 150px;
 }
 
-.resultImage{
+.certificatePic{
     width: 300px;
     height: 300px;
 }
 
-.certificatePic{
+.resultImage{
     width: 300px;
     height: 300px;
+    display: inline-block;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+}
+
+.analyticsCard{
+    display: inline-block;
+    position: absolute;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 6px;
+    font-family: 'Roboto', 'Noto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    top: 30%;
+    right: 15%;
+    height: 300px;
+    width: 300px;
+    border: 1px solid lightgrey;
+}
+
+.buttonTrain{
+    position: absolute;
+    bottom: 25%;
+    width: 30%;
+    left: 35%;
+}
+
+.rowFaces{
+    display: block;
+    text-align: left;
+    padding: 5%;
+
+}
+
+.pgbar{
+    display:inline-block;
+    width: 50%;
+    position: absolute;
+    right: 15%;
 }
 
 button:focus {outline:0;}
