@@ -2,6 +2,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 const app = express();
 const server = require('http').Server(app);
@@ -9,6 +10,7 @@ const io = require('socket.io')(server);
 
 
 app.use('/public', express.static('public'));
+app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('./routers/router.snypprLocations'));

@@ -19,7 +19,5 @@ db.Snyppr.destroy({ where: {} })
     db.SnypeeReview.destroy({ where: {} });
   })
   .then(() => db.Snyppr.bulkCreate(StylesSeed.SNYPPRS))
-  .then(data => console.log('bulk created', data))
-  .then(() => db.Snyppr.findAll())
-  .then(data => console.log('findall barbers', data))
+  .then(() => console.log('Seed complete'))
   .catch(err => console.log('error seeding db', err));
