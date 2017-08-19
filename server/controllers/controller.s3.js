@@ -47,7 +47,86 @@ exports.uploadProfilePic = (req, res) => {
     }
   });
 };
-
+// Begin - J6K Changes
+// Allows Snyppr to upload their certificate
+exports.uploadCertificatePic = (req, res) => {
+  console.log(req.params.authId);
+  // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
+  s3.upload({
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+    ACL: 'public-read', // your permisions
+  }, (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      console.log('datalocation', data.Location);
+      res.send('File uploaded to S3');
+      if (req.params.type === 'snyppr') {
+        db.Snyppr.findOne({ where: { id: req.params.authId } })
+      .then(({ id }) => db.CertificatePic
+      .create({
+        snypprId: id,
+        url: data.Location,
+      }))
+      .then((datum) => {
+        console.log('this is the datum', datum._previousDataValues.url);
+      });
+      }
+    }
+  });
+};
+// Allows Barbers to upload picture of client for analysis
+exports.uploadResultPic = (req, res) => {
+  console.log(req.params.authId);
+  // var bucket = new AWS.S3({params: {Bucket: 'snyppr'}})
+  s3.upload({
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+    ACL: 'public-read', // your permisions
+  }, (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      console.log('datalocation', data.Location);
+      res.send('File uploaded to S3');
+      if (req.params.type === 'snyppr') {
+        db.Snyppr.findOne({ where: { id: req.params.authId } })
+      .then(({ id }) => db.ResultPic
+      .create({
+        snypprId: id,
+        url: data.Location,
+      }))
+      .then((datum) => {
+        console.log('this is the datum', datum._previousDataValues.url);
+      });
+      }
+    }
+  });
+};
+// Fetches the certificate of the snyppr
+exports.getCertificatePic = (req, res) => {
+  db.CertificatePic.findAll({
+    where: {
+      snypprId: req.params.snypprId,
+    },
+  })
+  .then((data) => {
+    res.status(200).send(data[data.length - 1]);
+  });
+};
+// Fetches Result Pic the barber just put in
+exports.getResultPic = (req, res) => {
+  db.ResultPic.findAll({
+    where: {
+      snypprId: req.params.snypprId,
+    },
+  })
+  .then((data) => {
+    res.status(200).send(data[data.length - 1]);
+  });
+};
+// End - J6K Changes
 exports.getProfilePic = (req, res) => {
   console.log(req.params);
   if (req.params.type === 'synppr') {

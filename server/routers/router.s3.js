@@ -14,6 +14,11 @@ Router.post('/upload/:authId', upload.single('theseNamesMustMatch'), s3Controlle
 Router.get('/images/:authId', s3Controller.getPhotos);
 Router.post('/profilepic/:authId/:type', upload.single('theseNamesMustMatch'), s3Controller.uploadProfilePic);
 Router.get('/profilepic/:authId/:type', s3Controller.getProfilePic);
-
+// J6K Changes
+Router.post('/certificatepic/:authId/:type', upload.single('theseNamesMustMatch'), s3Controller.uploadCertificatePic);
+Router.post('/resultpic/:authId/:type', upload.single('theseNamesMustMatch'), s3Controller.uploadResultPic);
+Router.get('/verify/:snypprId/', s3Controller.getCertificatePic);
+Router.get('/analyze/:snypprId/', s3Controller.getResultPic);
+// J6K Changes
 
 module.exports = Router;

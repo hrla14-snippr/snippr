@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
-const socket = io();
+const socket = io('http://localhost:5000');
 
 const customStyles = {
   overlay: {
@@ -76,10 +76,10 @@ class ClientChat extends Component {
       amount: this.state.charge,
       snypprId: this.props.snyppr.id,
       snypeeId: this.props.profile.id,
-    })
-      .then((response) => {
-        console.log('data is', response);
-      });
+    });
+      // .then((response) => {
+      //   // console.log('data is', response);
+      // });
   }
   openModal() {
     this.setState({ modalIsOpen: true });

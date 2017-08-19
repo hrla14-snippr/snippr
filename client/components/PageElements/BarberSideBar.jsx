@@ -15,7 +15,7 @@ class BarberSideBar extends Component {
     console.log('active tab', idx);
     this.setState({ activeTab: idx });
   }
-
+  // Added Certification and Train tabs
   render() {
     return (<div className="sidebar">
       <div className="picturebox">
@@ -40,10 +40,25 @@ class BarberSideBar extends Component {
         <button
           onClick={(e) => {
             this.props.changeWindow(e);
+            this.changeActiveTab(6);
+          }}
+          value="Certification" className={`navmenu-items ${this.state.activeTab === 6 ? 'navmenu-active' : ''}`}
+        >Certification
+        </button>
+        <button
+          onClick={(e) => {
+            this.props.changeWindow(e);
             this.changeActiveTab(2);
           }}
           value="Reviews" className={`navmenu-items ${this.state.activeTab === 2 ? 'navmenu-active' : ''}`}
         >Reviews</button>
+        <button
+          onClick={(e) => {
+            this.props.changeWindow(e);
+            this.changeActiveTab(7);
+          }}
+          value="Train" className={`navmenu-items ${this.state.activeTab === 7 ? 'navmenu-active' : ''}`}
+        >Train</button>
         <button
           className={`navmenu-items ${this.state.activeTab === 3 ? 'navmenu-active' : ''}`}
           onClick={(e) => {

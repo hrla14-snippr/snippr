@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 
-const socket = io();
+const socket = io('http://localhost:5000');
 
 const customStyles = {
   overlay: {
@@ -110,7 +110,7 @@ class BarberChat extends Component {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <h1 className="text-center">How much would you like ?</h1>
+          <h1 className="text-center">How much would yoffu like ?</h1>
           <form
             onSubmit={() => {
               this.closeModal();

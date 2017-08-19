@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { Form, FormControl, FormGroup, ControlLabel, Button, ButtonControl } from 'react-bootstrap';
+import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import GoogleMaps from '../components/GoogleMaps';
 import SnypprList from '../components/SnypprList';
 import ReviewsList from '../components/ReviewsList';
 import FavoriteList from '../components/FavoriteList';
 import TransactionsList from '../components/TransactionsList';
+import PerfectList from '../components/PerfectList';
 import Header from '../components/PageElements/Header';
 import Footer from '../components/PageElements/Footer';
 import { CurrentFavorites } from '../actions/CurrentFavorites';
@@ -17,21 +20,39 @@ class ClientDashboard extends Component {
     super(props);
     const profilePic = this.props.profile.profilepic ? this.props.profile.profilepic.url : 'https://timeforgeography.co.uk/static/img/avatar-placeholder.png';
     this.state = {
+      text: '',
       nearbySnypprs: [],
+      allSnypprs: [],
       clientAddress: { lat: props.profile.lat, lng: props.profile.lng },
       favorites: [],
       currentWindow: 'Nearby',
       profilePic,
     };
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleText = this.handleText.bind(this);
+    this.analyzePersonality = this.analyzePersonality.bind(this);
+    this.fetchAllSnypprs = this.fetchAllSnypprs.bind(this);
     // this.openProfilePicModal = this.openProfilePicModal.bind(this);
   }
 
   componentDidMount() {
     this.fetchSnypprs(JSON.stringify(this.state.clientAddress));
     this.fetchFavorites();
+    this.fetchAllSnypprs();
   }
 
+  // Begin - Fetches all snypprs so that I can determine who is a good fit for the client
+  fetchAllSnypprs() {
+    axios.get('/fetchAllSnypprs')
+         .then((data) => {
+           console.log(data);
+           this.setState({ allSnypprs: [...this.state.allSnypprs, ...data.data] });
+         })
+         .catch((err) => {
+           console.log(err);
+         });
+  }
+  // End
   fetchSnypprs(address) {
     axios.get(`/nearbySnypprs/${address}`)
       .then((results) => {
@@ -58,7 +79,40 @@ class ClientDashboard extends Component {
     this.setState({ currentWindow: event.target.value });
     console.log(event);
   }
-
+  // Anaylsis of client personality. Same thing as barber side
+  analyzePersonality(event) {
+    event.preventDefault();
+    if (this.state.text.split(' ').length < 100) {
+      swal({
+        title: 'We need atleast 100 words minimum!',
+        text: 'You have ' + (100 - this.state.text.split(' ').length) + ' words left!',
+        type: 'error',
+      });
+    }
+    axios.post(`/personality/${this.state.text}`)
+        .then((res) => {
+          console.log(res.data.personality[2].percentile);
+          swal({
+            title: 'Personality Assessed!',
+            text: 'We Know All Your Secrets..',
+            type: 'success',
+          });
+          return axios.put(`/updateSnypee/${this.props.profile.id}`, {
+            personality: res.data.personality[2].percentile,
+          });
+        })
+        .then(data => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }
+  // Sets state of text to use in IBM Watson API
+  handleText(event) {
+    event.preventDefault();
+    this.setState({ text: event.target.value });
+  }
   render() {
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
@@ -85,6 +139,10 @@ class ClientDashboard extends Component {
                 className="navmenu-items"
               >Nearby Snypprs</button>
               <button
+                onClick={this.handleToggle} value="Perfect"
+                className="navmenu-items"
+              >Find Your Perfect Barber</button>
+              <button
                 onClick={this.handleToggle} value="Favorites"
                 className="navmenu-items"
               >Favorites</button>
@@ -99,7 +157,7 @@ class ClientDashboard extends Component {
             </div>
           </div>
           <div className="right-box">
-            <div className={['Reviews', 'ProfilePic', 'Transactions'].includes(this.state.currentWindow) ? 'hidden' : ''}>
+            <div className={['Reviews', 'ProfilePic', 'Transactions', 'Perfect'].includes(this.state.currentWindow) ? 'hidden' : ''}>
               <GoogleMaps
                 clientAddress={this.state.clientAddress}
                 snypprs={this.state.nearbySnypprs}
@@ -108,6 +166,23 @@ class ClientDashboard extends Component {
             </div>
             <div className={this.state.currentWindow === 'Nearby' ? '' : 'hidden'}>
               <SnypprList snypprs={this.state.nearbySnypprs} />
+            </div>
+            <div style={{ textAlign: 'center' }} className={this.state.currentWindow === 'Perfect' ? '' : 'hidden'}>
+              <br /><br />
+              <FormGroup controlId="formControlsTextarea">
+                Favorite activity?
+                <br />
+                Favorite memory?
+                <br />
+                What do you love/hate?
+                <br />
+                <ControlLabel>We Need Atleast 100 Words</ControlLabel>
+                <FormControl onChange={this.handleText} componentClass="textarea" placeholder="Tell Us About Yourself" />
+              </FormGroup>
+              <Button onClick={this.analyzePersonality} bsStyle="primary">
+                Who Are You...
+              </Button>
+              <PerfectList profile={this.props.profile} snypprs={this.state.allSnypprs} />
             </div>
             <div className={this.state.currentWindow === 'Favorites' ? '' : 'hidden'}>
               <FavoriteList

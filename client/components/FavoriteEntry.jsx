@@ -13,7 +13,7 @@ class FavoriteEntry extends Component {
   }
   deleteFavorite() {
     const favToDelete =
-      JSON.stringify({ snypprId: this.props.favorite.id, snypeeId: this.props.snypeeId });
+    JSON.stringify({ snypprId: this.props.favorite.id, snypeeId: this.props.snypeeId });
     console.log(favToDelete, 'fav to delete ');
     axios.delete(`/favorites/${favToDelete}`)
       .then((response) => {

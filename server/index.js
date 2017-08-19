@@ -8,6 +8,24 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+// Begin -Google Cloud API credentials
+const gcloud = require('google-cloud')({
+  projectId: 'Snypper',
+  keyFilename: 'cloud.json',
+});
+// End - Google Cloud API credentials
+
+// Begin - Google Cloud Vision API required
+const vision = gcloud.vision();
+
+// Begin - IBM Watson Personality Inisghts API 
+const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
+
+const personality_insights = new PersonalityInsightsV3(require('../watson.json'));
+
+// End - IBM Watson Personality Inisghts API 
+
+
 
 app.use('/public', express.static('public'));
 app.use(morgan('tiny'));
@@ -21,6 +39,50 @@ app.use(require('./routers/router.stripe'));
 app.use(require('./routers/router.reviews'));
 app.use(require('./routers/router.s3'));
 
+// Begin - Google Cloud Vision API for scanning documents 
+app.post('/cloudText/:image', (req, res, next) => {
+  vision.detectText(req.params.image, (err, text, apiResponse) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(201).send(text);
+    }
+  });
+});
+// End - Google Cloud Vision API for scanning documents 
+
+// Begin - Google Cloud Vision API for scanning faces and giving statistics on Anger, Joy, Sorrow, Surprise 
+app.post('/cloudFaces/:image', (req, res, next) => {
+  vision.detectFaces(req.params.image, (err, faces, apiResponse) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(201).send(faces);
+    }
+  });
+});
+// End - Google Cloud Vision API for scanning faces and giving statistics on Anger, Joy, Sorrow, Surprise 
+
+// Begin - IBM Watson Personality Inisghts API 
+app.post(`/personality/:text`, (req, res, next) => {
+  const params = {
+    text: req.params.text,
+    consumption_preferences: true,
+    raw_scores: true,
+    headers: {
+      "accept-language": "en",
+      "accept": "application/json"
+    }
+  }
+  personality_insights.profile(params, (error, response) => {
+    if(error) {
+      res.status(500).send(error);
+    } else {
+      res.status(201).send(response, null , 2);
+    }
+  })
+})
+// End - IBM Watson Personality Inisghts API 
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/../public/index.html')));
 

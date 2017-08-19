@@ -9,7 +9,8 @@ class LandingPage extends Component {
 
     this.state = {
       accountType: '',
-      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', props.history, props.accountType),
+      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN,
+        props.history, props.accountType),
     };
 
     this.typedSignup = this.typedSignup.bind(this);
@@ -17,7 +18,8 @@ class LandingPage extends Component {
 
   typedSignup(e) {
     this.setState({
-      auth: new AuthService('enONSvCznucqb91b3s0guCDKxX5Ce6KO', 'kirisakima.auth0.com', this.props.history, e.target.value),
+      auth: new AuthService(AUTH0_CLIENT_ID, AUTH0_DOMAIN,
+        this.props.history, e.target.value),
     }, () => this.state.auth.signup());
   }
 
@@ -47,7 +49,7 @@ class LandingPage extends Component {
           </div>
         </div>
         <div className="about-us">
-          <h1 className="text-center">ABOUT US!!!</h1>
+          <h1 className="text-center">ABOUT US!!</h1>
         </div>
       </div>
     );
@@ -60,3 +62,4 @@ LandingPage.propTypes = {
 };
 
 export default withRouter(LandingPage);
+

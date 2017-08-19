@@ -1,6 +1,6 @@
 const db = require('../models/db');
-const strConverter = require('../../dev/utils/stringConverter');
-const geoConverter = require('../../dev/utils/geoConverter');
+const strConverter = require('../../client/utils/stringConverter');
+const geoConverter = require('../../client/utils/geoConverter');
 // store whether user is snypee or snyppr in auth0 profile
 
 exports.verifyHasProfile = (req, res) => {
@@ -53,3 +53,60 @@ exports.addProfile = (req, res) => {
       console.log('error during geoconversion, heres the error ', err);
     });
 };
+// J6K Changes
+// Finds the snyppr by ID and changes them to certified so that they can be rendered on the map
+exports.updateCertified = (req, res) => {
+  db.Snyppr.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((data) => {
+    data.updateAttributes({
+      certified: true,
+    });
+    res.status(200).send(data);
+  }).catch((err) => {
+    res.status(500).send(err);
+  });
+};
+// Updates personality with raw score of extraversion from IBM Watson
+exports.updatePersonalitySnyppr = (req, res) => {
+  db.Snyppr.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((data) => {
+    data.updateAttributes({
+      personality: req.body.personality
+    });
+    res.status(201).send(data);
+  }).catch((err) => {
+    res.status(500).send(err);
+  });
+};
+
+exports.updatePersonalitySnypee = (req, res) => {
+  db.Snypee.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((data) => {
+    data.updateAttributes({
+      personality: req.body.personality
+    });
+    res.status(201).send(data);
+  }).catch((err) => {
+    res.status(500).send(err);
+  });
+};
+// Updates personality with raw score of extraversion from IBM Watson
+exports.fetchAllSnypprs = (req, res) => {
+  db.Snyppr.findAll()
+           .then((data) => {
+             res.status(202).send(data);
+           })
+           .catch((err) => {
+             res.status(500).send(err);
+           });
+};
+// J6K Changes

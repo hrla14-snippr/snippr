@@ -12,7 +12,7 @@ class UserInfoForm extends Component {
   }
 
   render() {
-    const stripeURL = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AZdNGhV2VUe0pilvxfh5jkNfsevELTNz&scope=read_write&redirect_uri=http://localhost:3000/stripeId&state=${this.props.authId}`;
+    const stripeURL = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${STRIPE_CLIENT_ID}&scope=read_write&redirect_uri=${SITE_URL}/stripeId&state=${this.props.authId}`;
     return (
       (this.props.accountType === 'Snyppr' && this.props.hasProfile && !this.props.hasStripeId)
       ? <StripeSignUp stripeURL={stripeURL} />

@@ -1,14 +1,14 @@
 // const request = require('request-promise');
 const db = require('../models/db');
 const axios = require('axios');
-const stripe = require('stripe')('sk_test_DLdp9uxn2BsYrBMyVsvyvPdv');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // db.Snyppr.findOne({ where: { id: authId } })
 //         .then(({ id }) =>
 exports.fetchStripeSnyppr = (req, res) => {
   // res.send(req.query);
   axios.post('https://connect.stripe.com/oauth/token', {
     code: req.query.code,
-    client_secret: 'sk_test_DLdp9uxn2BsYrBMyVsvyvPdv',
+    client_secret: process.env.STRIPE_SECRET_KEY,
     grant_type: 'authorization_code',
   })
     .then((response) => {
